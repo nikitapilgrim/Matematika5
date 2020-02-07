@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState, useMemo} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import {Simple} from "./Simple";
 import useStoreon from "storeon/react";
 

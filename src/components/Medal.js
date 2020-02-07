@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import MedalOne from '../assets/svg/medal_1.svg';
 import MedalTwo from '../assets/svg/medal_2.svg';
 import MedalThree from '../assets/svg/medal_3.svg';

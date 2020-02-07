@@ -1,5 +1,5 @@
 import React from 'react'
-import { Draggable } from 'react-beautiful-dnd'
+import {Draggable} from 'react-beautiful-dnd'
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -7,20 +7,16 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
+    position: static !important;
     z-index: 5;
     min-width: 4rem;
-    min-height: 4rem;
-    color: #fff;
-    background-color: #f70400;
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 900;
+    color: #000;
+    background-color: #fff;
+    font-family: 'Boogaloo', sans-serif;
     font-size: 2rem;
     text-align: center;
     cursor: pointer;
-    border-radius: 0.5rem;    
-    padding: 0.5rem;
-    
+    padding: 0.2rem 0.5em;
 `;
 
 

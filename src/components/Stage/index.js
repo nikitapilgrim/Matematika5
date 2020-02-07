@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from 'react';
-import useKeyPressEvent from "react-use/lib/useKeyPressEvent";
+import React,{useMemo} from 'react';
 import useStoreon from "storeon/react";
 import styled from 'styled-components';
 import {Simple} from "./Simple";
@@ -15,8 +14,8 @@ import {Graph} from "./Graph";
 import {ColumnCalculations} from "./СolumnСalculations";
 import {Between} from "./Between";
 import {JustInput} from "./JustInput";
+const nanoid = require('nanoid');
 
-import {Speech} from "../Speech";
 
 
 const NextButton = styled.button`
@@ -50,10 +49,13 @@ const NextButton = styled.button`
 
 export const Stage = ({data, onNext}) => {
     const {dispatch, modal, kviz, preloader} = useStoreon('modal', 'kviz', 'preloader');
+    const dataWithKey = useMemo(() => {
+        return {key: nanoid(5), ...data}
+    }, [data]);
 
 
     return (
-        <WithAdditional data={data}>
+        <WithAdditional data={dataWithKey}>
             {data.layout === LAYOUTS.simple &&
             <Simple solo={true} question={data.question} answer={data.answer}/>}
             {data.layout === LAYOUTS.manyInputs && <ManyInputs handler={onNext} data={data}/>}

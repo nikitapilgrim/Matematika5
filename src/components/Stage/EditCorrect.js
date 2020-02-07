@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useReducer} from "react";
+import React, {useEffect, useReducer} from "react";
 import styled from "styled-components";
 import {Simple} from "./Simple";
 import refresh from '../../assets/image/refresh.png'

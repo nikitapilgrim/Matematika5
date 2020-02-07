@@ -1,26 +1,35 @@
-import React, {Fragment, useEffect, useState, useMemo, useRef} from 'react';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
 import styled from 'styled-components';
 import useStoreon from "storeon/react";
 import {Simple} from "./Simple";
-const nanoid = require('nanoid')
+
+const nanoid = require('nanoid');
 
 const Wrapper = styled.div`
-
+  color: #fff;
 `;
 
 
 const Top = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-bottom: 2px solid black;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #FFF;
 `;
 
 const Answer = styled.div`
-
+  margin-top: 1rem;
 `;
 
+const Sign = styled.div`
+  position: absolute;
+  left: -0.5rem;
+  bottom: 0.5rem;
+  font-size: 2rem;
+`;
 
 const parseQuestions = (questions) => {
     const regexp = /{{([^}]+)}}/i;
@@ -31,6 +40,7 @@ const parseQuestions = (questions) => {
 
     if (Array.isArray(questions)) {
         return questions.reduce((acc, item, i) => {
+            const reg = new RegExp('^\\d+$');
             const checkAnswer = Boolean(item.match(regexp));
             const data = {
                 answer: checkAnswer && item.match(regexp)[1] || false,
@@ -74,8 +84,8 @@ export const ColumnCalculations = ({data, handler}) => {
             }
             return check;
         });
-        if (Object.values(inputs).length === nodes.length) {
-            if (right) dispatch('stage/next')
+        if (nodes.length && Object.values(inputs).length === nodes.length) {
+            if (right) handler(true)
         }
     }, [inputs, ref]);
 
@@ -84,17 +94,17 @@ export const ColumnCalculations = ({data, handler}) => {
             <Top direction={data.direction}>
                 {questions.map((data => (
                     <Simple
-                        key={data.key}
+                        key={data.key + data.answer}
                         answer={data.answer}
                         question={data.question}
                         handlerInput={inputHandler(data.answer)}
                     />
                 )))}
+                <Sign>{data.sign}</Sign>
             </Top>
             <Answer>
                 {answer.answer &&
                 <Simple
-                    key={'a' + answer.key}
                     answer={answer.answer}
                     question={answer.question}
                     handlerInput={inputHandler(answer.answer)}

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import styled, {css, keyframes} from "styled-components";
-import {TextWithBorders} from "./TextWithBorders";
 import useStoreon from "storeon/react";
+import bg from "../assets/background-image.jpg";
 
 const SlideTop = keyframes`
   0% {
@@ -107,16 +107,18 @@ export const Kviz = ({order}) => {
     }, [kviz.order]);
 
     return (
-        <Wrapper show={show}>
-            <ImgWrapper>
-                <img src={title} alt={kviz.order}/>
-            </ImgWrapper>
-            {/*<TextWithBorders
+        <>
+            <Wrapper show={show}>
+                <ImgWrapper>
+                    <img src={title} alt={kviz.order}/>
+                </ImgWrapper>
+                {/*<TextWithBorders
                 strokeColor={'#ffd2ba'}
                 strokeWidth={'0.1em'}
                 size={6}
                 color="#662c0c"
                 text={`Kviz ${number || 1}`}/>*/}
-        </Wrapper>
+            </Wrapper>
+        </>
     )
 };

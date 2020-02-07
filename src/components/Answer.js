@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from "react";
+import React, {useEffect, useState} from "react";
 import styled, {keyframes} from "styled-components";
 /*import ResponsiveCanvas from 'react-responsive-canvas';
 import useMount from "react-use/lib/useMount";

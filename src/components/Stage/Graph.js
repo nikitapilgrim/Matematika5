@@ -1,8 +1,7 @@
-import React, {useEffect,useLayoutEffect, useState} from "react";
+import React, {useEffect, useLayoutEffect, useState} from "react";
 import styled from "styled-components";
 import {usePlaceholder} from "../../hooks/usePlaceholder";
 import {Simple} from "./Simple";
-import {useMount} from "react-use";
 
 const Wrapper = styled.div`
   transform: rotate(180deg) translateZ(0);

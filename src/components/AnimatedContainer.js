@@ -1,5 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react';
-import Slide from 'react-reveal/Slide';
+import React, {useCallback, useEffect, useState} from 'react';
 import {Slide as NewSlide} from './Animate/Slide'
 import useWindowSize from 'react-use/lib/useWindowSize'
 import Confetti from 'react-confetti'

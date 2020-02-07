@@ -11,12 +11,12 @@ const Wrapper = styled.div`
     background-size: cover;
     
     svg {
+      fill: ${props => props.color};
       width: 100%;    
-      filter: drop-shadow(0 0 3px #FFF);
     }
 `;
 
-export const Help = () => {
+export const Help = ({color}) => {
     const {dispatch, help} = useStoreon('help');
 
     const handlerClick = () => {
@@ -27,7 +27,7 @@ export const Help = () => {
     };
 
     return (
-        <Wrapper onClick={handlerClick}>
+        <Wrapper color={color} onClick={handlerClick}>
             <HelpIcon/>
         </Wrapper>
     )

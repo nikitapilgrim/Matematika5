@@ -21,7 +21,7 @@ export default [
     {
         id: 1,
         layout: LAYOUTS.manyInputs,
-        title: require('../assets/image/headline/headline-01.png'),
+        title: 'Dopuni koliko ti nedostaje do 1000',
         questions: [
             {
                 question: '256 + {{744}} = 1000'
@@ -45,6 +45,7 @@ export default [
             '485',
             '367',
         ],
+        sign: '+',
         answer: '{{852}}'
     },
     {
@@ -55,6 +56,7 @@ export default [
             '237',
             '482',
         ],
+        sign: '+',
         answer: '{{719}}'
     },
     {
@@ -65,6 +67,7 @@ export default [
             '592',
             '189',
         ],
+        sign: '+',
         answer: '{{781}}'
     },
     {
@@ -73,8 +76,9 @@ export default [
         title: 'Oduzmi',
         questions: [
             '456',
-            '-183',
+            '183',
         ],
+        sign: '-',
         answer: '{{273}}'
     },
     {
@@ -83,8 +87,9 @@ export default [
         title: 'Oduzmi',
         questions: [
             '456',
-            '-376',
+            '376',
         ],
+        sign: '-',
         answer: '{{466}}'
     },
     {
@@ -93,8 +98,9 @@ export default [
         title: 'Oduzmi',
         questions: [
             '724',
-            '-382',
+            '382',
         ],
+        sign: '-',
         answer: '{{342}}'
     },
     {
@@ -103,8 +109,9 @@ export default [
         title: 'Oduzmi',
         questions: [
             '724',
-            '-382',
+            '382',
         ],
+        sign: '-',
         answer: '{{342}}'
     },
     {
@@ -302,7 +309,6 @@ export default [
     {
         id: 20,
         layout: LAYOUTS.manyInputs,
-        title: require('../assets/image/headline/headline-10.png'),
         text: `Napiši brojeve za 1000 veće od brojeva`,
         direction: `column`,
         questions: [
@@ -339,7 +345,6 @@ export default [
     {
         id: 21,
         layout: LAYOUTS.manyInputs,
-        title: require('../assets/image/headline/headline-10.png'),
         text: `Napiši brojeve za 1000 veće od brojeva`,
         direction: `column`,
         questions: [
@@ -539,8 +544,9 @@ export default [
         title: 'Saberi',
         questions: [
             '5824',
-            '+485',
+            '485',
         ],
+        sign: '+',
         answer: '{{6312}}'
     }, {
         id: 33,
@@ -548,8 +554,9 @@ export default [
         title: 'Saberi',
         questions: [
             '2947',
-            '+5768',
+            '5768',
         ],
+        sign: '+',
         answer: '{{8715}}'
     }, {
         id: 34,
@@ -557,8 +564,9 @@ export default [
         title: 'Saberi',
         questions: [
             '4256',
-            '+3809',
+            '3809',
         ],
+        sign: '+',
         answer: '{{8065}}'
     }, {
         id: 35,
@@ -566,8 +574,9 @@ export default [
         title: 'Oduzmi',
         questions: [
             '8740',
-            '-3286',
+            '3286',
         ],
+        sign: '-',
         answer: '{{4954}}'
     }, {
         id: 36,
@@ -575,8 +584,9 @@ export default [
         title: 'Oduzmi',
         questions: [
             '7841',
-            '-3294',
+            '3294',
         ],
+        sign: '-',
         answer: '{{4547}}'
     },
     {
@@ -585,8 +595,9 @@ export default [
         title: 'Oduzmi',
         questions: [
             '9405',
-            '-3567',
+            '3567',
         ],
+        sign: '-',
         answer: '{{5838}}'
     },
     {

@@ -1,7 +1,6 @@
-import React, {useEffect, useState, useMemo} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import styled from 'styled-components';
-import {DragDropContext} from 'react-beautiful-dnd'
-import {Droppable, Draggable} from 'react-beautiful-dnd'
+import {DragDropContext, Droppable} from 'react-beautiful-dnd'
 import {DraggableElem} from "./Sortable/DraggableElem";
 import arrayMove from 'array-move';
 import reactStringReplace from 'react-string-replace';

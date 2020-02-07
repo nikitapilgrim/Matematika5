@@ -1,5 +1,6 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React from 'react'
 import styled from 'styled-components'
+
 const { detect } = require('detect-browser');
 const browser = detect();
 
@@ -20,7 +21,7 @@ const HiddenText = styled.div`
     display: inline-block;
     font-size: ${props => `${props.size}rem`};
     text-align: center;
-    font-family: 'Luckiest Guy', cursive;
+    font-family: 'Boogaloo', cursive;
     font-weight: bold;
     line-height: 0.9;
     letter-spacing: 0;

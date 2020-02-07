@@ -3,6 +3,7 @@ import styled, {css} from 'styled-components';
 import useComponentSize from '@rehooks/component-size'
 import reactStringReplace from 'react-string-replace';
 import useStoreon from "storeon/react";
+
 const nanoid = require('nanoid');
 
 const Wrapper = styled.div`
@@ -39,7 +40,7 @@ const Question = styled.div`
     flex-direction: ${props => props.direction};
     font-weight: normal;
     font-size: ${props => props.size}rem;
-    color: black;
+    color: #fff;
     //text-shadow: 1px 1px 1px #000;
 `;
 
@@ -50,7 +51,6 @@ const InputWrapper = styled.span`
     position: relative;
     font-size: 1em;
     white-space: nowrap;
-    border-radius: 7px;
     width: ${props => props.width ? `${props.width}px` : '3rem'};
     height: ${props => props.height ? `${props.height}px` : '3rem'};
     padding: 0px 10px;
@@ -94,20 +94,20 @@ const Input = styled.input`
     vertical-align: middle;
     -moz-appearance: textfield;
     text-align: center;
-    background-color: #cebda3;
-    border-radius: 7px;
-    border: solid black 0.02em;
+    background-color: #FFF;
+    border: solid #FFF 0.02em;
     outline: none;
     color: ${props => {
     if (props.help) {
         return 'transparent'
     }
     if (!props.help && props.color) {
-        return props.color
+        return `black`
     } else {
         return 'black'
     }
 }};
+
    
     //border: solid black 2px;
    
@@ -138,7 +138,8 @@ const HiddenAnswer = styled.div`
   position: absolute;
   pointer-events: none;
   z-index: 1;
-  ${props => props.edit && 'padding: 0 0.3em'}
+  ${props => props.edit && 'padding: 0 0.3em'};
+  color: black;
 `;
 
 const ImgWrapper = styled.div`

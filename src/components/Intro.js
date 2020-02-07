@@ -1,47 +1,36 @@
-import React, {useState} from 'react';
-import styled from "styled-components";
+import React, {useState, useEffect} from 'react';
+import styled, {keyframes} from "styled-components";
 import {sounds} from "../sounds";
 import {Sound} from "./Sound";
 import {Menu} from "./Menu";
-import {SlideVert} from "./Animate/Slide";
+import {Scale} from "./Animate/Slide";
 import useStoreon from "storeon/react";
-import menuobjects from '../assets/image/start-menu-objects.png'
-import menuType1 from '../assets/image/menu-typo-1.png'
-import menuType2 from '../assets/image/menu-typo-2.png'
-import menuType3 from '../assets/image/menu-typo-3.png'
+import menuobjects from '../assets/image/intro/Frontelements.png'
+import kids from '../assets/image/intro/kids-rotation.png'
+import bg from "../assets/background-image.jpg";
 
-
-const SoundHint = styled.div`
-    position: absolute;
-    top: -9rem;
-    left: -6rem;
-    width: 9rem;
-    height: 9rem;
-    background: url(${menuType1}) no-repeat;
-    background-size: cover;
-`;
-const KvizHint = styled.div`
-    position: absolute;
-    top: -5rem;
-    left: -11rem;
-    width: 12rem;
-    height: 8rem;
-    background: url(${menuType2}) no-repeat;
-    background-size: cover;
+const rotate = keyframes`
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 `;
 
-
-const StartHint = styled.div`
-    position: absolute;
-    top: 75%;
-    left: -5%;
-    width: 12rem;
-    height: 10rem;
-    background: url(${menuType3}) no-repeat;
-    background-size: cover;
+const ChildrenRotateBG = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: ${rotate} 10s linear infinite;
+  background: url(${kids});
+  background-size: cover;
+  width: 50rem;
+  height: 50rem;
+  pointer-events: none;
+  will-change: tranform;
 `;
-
-
 
 const Wrapper = styled.div`
   position: fixed;
@@ -50,7 +39,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  ${props => props.show !== null && SlideVert};
+  ${props => props.show !== null && Scale};
 `;
 
 const Buttons = styled.div`
@@ -59,12 +48,15 @@ const Buttons = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 34%;
-  left: 6%;
+  top: 10%;
+  right: 25%
 `;
 
 const ButtonWrapper = styled.div`
-  position: relative;
+  position: absolute;
+  top: 0;
+  right: 0;
+  
 `;
 
 const Button = styled.div`
@@ -72,11 +64,12 @@ const Button = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 5rem; height: 5rem;
-  border: 0.37em solid #814a22;
+  width: 4.2rem; height: 4.2rem;
+  border: 0.1em solid #000;
   border-radius: 50% 50%;
-  background-color: #dcc6ac;
+  background-color: #B12A17;
   cursor: pointer;
+  transform: rotate(-25deg);
   &:not(:first-child) {
     margin-left: 1rem;
   }
@@ -85,6 +78,7 @@ const Button = styled.div`
 
 const MenuObjectsWrapper = styled.div`
   position: relative;
+  z-index: 2;
   width: 40rem;
   button {
     background: none;
@@ -117,16 +111,38 @@ const Pos = styled.div`
   top: 0.1em;
 `;
 
+const Blur = styled.div`
+    ${props => props.blur ? 'filter: blur(10px)' : ''}; //brightness(0.70) saturate(130%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: ${props => props.zIndex || '-1'};
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transition: filter 1s;
+    ${props => !props.bgNone && `background: url(${bg});`};
+    background-size: cover;
+    background-position: 50% 50%;
+    backface-visibility: hidden;
+    perspective: 1000;
+    transform: translate3d(0,0,0);
+    transform: translateZ(0);
+`;
+
 export const Intro = () => {
-    const [isShow, setIsShow] = useState(null);
-    const {dispatch} = useStoreon('start');
+    const [isShow, setIsShow] = useState(false);
+    const [blured, setBlured] = useState(false);
+    const {dispatch, preloader} = useStoreon('start', 'preloader');
 
     const handlerStart = (e) => {
         sounds.mouseclick.play();
         const target = e.target;
-        target.style.top = '-0.3em';
         setTimeout(() => {
             setIsShow(false);
+            setBlured(false);
             target.style.top = '0';
             setTimeout(() => {
                 dispatch('game/start')
@@ -134,46 +150,33 @@ export const Intro = () => {
         }, 100)
     };
 
-    return (
-        <Wrapper show={isShow}>
-            <MenuObjectsWrapper >
-                <Buttons>
-                    <ButtonWrapper>
-                        <KvizHint/>
-                        <Button>
-                            <Pos>
-                                <Menu color={'#814a22'} size={{width: '70%', height: '70%'}}/>
-                            </Pos>
-                        </Button>
-                    </ButtonWrapper>
-                    <ButtonWrapper>
-                        <SoundHint/>
-                        <Button>
-                            <Sound color={'#814a22'} size={{width: '80%', height: '80%'}}/>
-                        </Button>
-                    </ButtonWrapper>
-                </Buttons>
-                <StartHint/>
-                <FakeButton onClick={handlerStart} >
-                    <img src={menuobjects} alt=""/>
-                </FakeButton>
-            </MenuObjectsWrapper>
-           {/* <Title>
-                <TextWithBorders strokeColor={'#814a22'} color={'#dcc6ac'} text={'matematika 3'}/>
-                <Owl>
-                    <img src={owl} alt="owl"/>
-                </Owl>
-                <Buttons>
-                    <Button>
-                        <Sound color={'#814a22'} size={{width: '80%', height: '80%'}}/>
-                    </Button>
-                    <Button>
-                        <Menu color={'#814a22'} size={{width: '80%', height: '80%'}}/>
-                    </Button>
-                </Buttons>
-            </Title>
+    useEffect(() => {
+        if (preloader.count === 100) {
+            setTimeout(() => {
+                setBlured(true);
+                setTimeout(() => {
+                    setIsShow(true)
+                }, 1000)
+            }, 1000);
+        }
+    }, [preloader.count]);
 
-            <Start onClick={handlerStart}>Start</Start>*/}
-        </Wrapper>
+    return (
+        <>
+            <Blur className={'intro-blur'} bgNone={false} zIndex={1} blur={blured}/>
+            <Wrapper show={isShow}>
+                <MenuObjectsWrapper>
+                    <ChildrenRotateBG/>
+                    <Buttons>
+                        <Button>
+                            <Sound color={'#FFF'} size={{width: '80%', height: '80%'}}/>
+                        </Button>
+                    </Buttons>
+                    <FakeButton onClick={handlerStart}>
+                        <img src={menuobjects} alt=""/>
+                    </FakeButton>
+                </MenuObjectsWrapper>
+            </Wrapper>
+        </>
     )
 };

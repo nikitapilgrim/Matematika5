@@ -1,4 +1,4 @@
-import {Howl, Howler} from 'howler';
+import {Howl} from 'howler';
 
 const data = {
     success: [
@@ -7,7 +7,7 @@ const data = {
         require('./assets/sound/success_mixdown.ogg'),
     ],
     background: [
-        require('./assets/sound/background_music.aac'),
+        require('./assets/sound/music.mp3'),
     ],
     fail: [
         require('./assets/sound/error_mixdown_2.aac'),

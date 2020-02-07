@@ -1,36 +1,28 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState, useCallback} from "react";
 import useStoreon from 'storeon/react';
 import tutorialData from "../data/tutorial";
-
-import useClickAway from 'react-use/lib/useClickAway'
-import Fullscreen from "react-full-screen";
-import {SlideVert} from "./Animate/Slide";
-import notebook from '../assets/image/papersheet@3x.png'
+import {SlideVert, Scale} from "./Animate/Slide";
+import notebook from '../assets/image/blackboard.png'
 import styled from "styled-components";
 import {Intro} from './Intro'
-import {Medal} from "./Medal";
-import {Owl} from "./Owl";
-import stagesData, {LAYOUTS} from "../data/stages";
+import stagesData from "../data/stages";
 import {TopPanel} from "./TopPanel";
-import {Tutorial} from "./Tutorial";
 import {Stage} from "./Stage";
-import {Answer} from "./Answer";
-import {sounds} from "../sounds";
 
 import {Kviz} from "./Kviz";
-import {Final} from "./Final";
-import bg from '../assets/image/wood-background.jpeg'
+import bg from '../assets/background-image.jpg'
 import {useMount} from "react-use";
 
 const Wrapper = styled.div`
-    width: 50rem;
+    width: 55rem;
     min-width: 300px;
-    max-width: 700px;
+    max-width: 900px;
     display: flex;
     justify-content: center;
     position: relative;
     z-index: 1;
     pointer-events: auto;
+    ${props => props.show !== null && SlideVert};
 `;
 
 const DeskWrapper = styled.div`
@@ -66,7 +58,7 @@ const Bg = styled.div`
     left: 0;
     height: 100%;
     width: 100%;
-    //${props => !props.bgNone && `background: url(${bg});`};
+    ${props => !props.bgNone && `background: url(${notebook});`};
     background-size: cover;
     background-position: 50% 50%;
     transition: filter 1s;
@@ -75,7 +67,7 @@ const Bg = styled.div`
 `;
 
 const Blur = styled.div`
-    //${props => props.tutorial ? 'filter: blur(10px)' : ''}; //brightness(0.70) saturate(130%);
+    ${props => props.blur ? 'filter: blur(10px)' : ''}; //brightness(0.70) saturate(130%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -86,8 +78,7 @@ const Blur = styled.div`
     height: 100%;
     width: 100%;
     transition: filter 1s;
-    background-color: gray;
-    //${props => !props.bgNone && `background: url(${bg});`};
+    ${props => !props.bgNone && `background: url(${bg});`};
     background-size: cover;
     background-position: 50% 50%;
     backface-visibility: hidden;
@@ -124,9 +115,6 @@ const CurrentStage = styled.div`
 
 const WrapperImg = styled.div`
     position: relative;
-    transform: translateY(-100vh);
-    background-color: white;
-    ${props => props.show !== null && SlideVert};
     img {
       opacity: 0;
     }
@@ -160,6 +148,7 @@ export function GameView({handlerFullscreen}) {
     const [showTutorial, setShowTutorial] = useState(false);
     const [showStage, setShowStage] = useState(null);
 
+
     useEffect(() => {
         if (start && !kviz.show) {
             setTimeout(() => {
@@ -179,17 +168,20 @@ export function GameView({handlerFullscreen}) {
     }, [stage]);
     useMount(() => {
         dispatch('preload/set', 100);
-
-        /*let count = 0;
-        const setPreload = i => () => {
-            count = i + 1;
-            dispatch('preload/set', i);
-            if (i < 100) {
-                setTimeout(setPreload(count), 10)
-            }
-        };
-        setTimeout(setPreload(count), 0);*/
+        /*
+                let count = 0;
+                const setPreload = i => () => {
+                    count = i + 1;
+                    dispatch('preload/set', i);
+                    if (i < 100) {
+                        setTimeout(setPreload(count), 0)
+                    }
+                };
+                setTimeout(setPreload(count), 0);
+            });
+            */
     });
+
 
     // show kviz
     useEffect(() => {
@@ -216,32 +208,30 @@ export function GameView({handlerFullscreen}) {
             },
             [a, b],
         );*/
-    const handlerNext = (right) => {
-        console.log(right)
+    const handlerNext = useCallback((right) => {
         if (right) {
-            dispatch('medal/set', {type: 'gold', id: stage})
+            dispatch('medal/set', {type: 'gold', id: stage});
             dispatch('stage/next');
         }
-    };
+    }, []);
 
     return (
         <>
             <WrapperApp>
-                <Blur zIndex={1} tutorial={showTutorial}/>
-                <Blur bgNone={true} zIndex={2} tutorial={modal}>
-                    {/*<Intro/>*/}
+                <Blur zIndex={1} blur={false}/>
+                <Blur bgNone={false} zIndex={2} blur={modal}>
+                    <Intro/>
                     <Kviz/>
                     {/*<Tutorial handler={handlerNextTutorial} active={showTutorial && !kviz.show}
                               data={tutorialData[tutorialCount]}/>*/}
                     {/*<Owl active={showStage && !showTutorial && !kviz.show}
                          data={stageData.hasOwnProperty('speech') && stageData.speech}/>*/}
                     <CurrentStage>{stageData.id && stageData.id}</CurrentStage>
-
-                    <Wrapper>
+                    <Wrapper show={start && !kviz.show}>
                         <DeskWrapper className="desk-wrapper">
                             <TopPanel show={showStage} data={tutorialData[tutorialCount]}/>
-                            <Bg bgNone={true} zIndex={3} position={'relative'} tutorial={showTutorial || modal}>
-                                <WrapperImg show={start && !kviz.show}>
+                            <Bg bgNone={false} zIndex={3} position={'relative'} tutorial={showTutorial || modal}>
+                                <WrapperImg>
                                     <img src={notebook} alt="notebook"/>
                                     {/*<Medal/>*/}
                                 </WrapperImg>

@@ -1,13 +1,12 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import useStoreon from "storeon/react";
 import {createPortal} from "react-dom";
-import {InnerMenu} from "./InnerMenu";
-import styled, {keyframes, css} from "styled-components";
-import {Slide} from "../Animate/Slide";
+import styled, {css, keyframes} from "styled-components";
 import useClickAway from "react-use/lib/useClickAway";
 import useKeyPressEvent from 'react-use/lib/useKeyPressEvent';
 
 import closeIcon from '../../assets/image/close-button-2x.png'
+import bg from "../../assets/background-image.jpg";
 
 
 const SlideTop = keyframes`
@@ -110,15 +109,16 @@ export const Modal = React.memo((({children, style, inner}) => {
                 {children}
             </div>
             {createPortal(
-                <Wrapper isOpen={modal}>
-                    <Inner ref={ref}>
-                        <Close onClick={onCloseModal}><img src={closeIcon} alt="close"/></Close>
-                        {inner}
-                    </Inner>
-                    {/* <Slide delay={modal ? 500 : 0} when={modal} onReveal={handlerAnimationEnd} top>
+                    <Wrapper isOpen={modal}>
+                        <Inner ref={ref}>
+                            <Close onClick={onCloseModal}><img src={closeIcon} alt="close"/></Close>
+                            {inner}
+                        </Inner>
+                        {/* <Slide delay={modal ? 500 : 0} when={modal} onReveal={handlerAnimationEnd} top>
 
                     </Slide>*/}
-                </Wrapper>, document.querySelector('body'))}
+                    </Wrapper>
+                , document.querySelector('body'))}
         </>
     );
 }));

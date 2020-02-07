@@ -1,11 +1,8 @@
-import React, {useEffect, useRef, useState, useMemo} from 'react';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
 import useMount from "react-use/lib/useMount";
 import styled from "styled-components";
 import useStoreon from 'storeon/react';
-import stagesData from "../../data/stages";
-import {LAYOUTS} from "../../data/stages";
-import {TextWithBorders} from "../TextWithBorders";
-import useClickAway from "react-use/lib/useClickAway";
+import stagesData, {LAYOUTS} from "../../data/stages";
 import {sounds} from "../../sounds";
 import range from "ramda/es/range";
 import MedalOne from '../../assets/svg/medal_1.svg';

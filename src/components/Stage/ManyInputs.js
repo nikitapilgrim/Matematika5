@@ -1,14 +1,16 @@
-import React, {useState, useMemo, useEffect, useRef} from 'react';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
 import styled from 'styled-components';
 import useStoreon from "storeon/react";
 import {Simple} from "./Simple";
 import reactStringReplace from 'react-string-replace';
+
 const nanoid = require('nanoid')
 
 const Inputs = styled.div`
   display: flex;
   flex-direction: ${props => props.direction === 'row' ? 'row' : 'column'};
   justify-content: flex-start;
+  color: white;
   & > div {
     margin-top: 0.5em;
   }
@@ -18,6 +20,9 @@ const Row = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  font-family: 'Boogaloo', cursive;
+  font-size: 2rem;
+  
 `;
 
 const Left = styled.div`
@@ -73,8 +78,8 @@ export const ManyInputs = ({data, handler}) => {
                 if (check === true) nodes[i + 1] && nodes[i + 1].focus()
                 return check
             });
-            if (Object.values(inputs).length === nodes.length) {
-                if (right) dispatch('stage/next')
+            if (nodes.length && Object.values(inputs).length === nodes.length) {
+                if (right) handler(true)
             }
         }
     }, [inputs,ref]);

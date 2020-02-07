@@ -8,8 +8,8 @@ import useStoreon from "storeon/react";
 
 const Wrapper = styled.div`
   position: absolute;
-  right: 4rem;
-  top: 5rem;
+  left: 10%;
+  top: 30%;
   display: flex;
   align-items: center;
   z-index: 99999;
@@ -69,15 +69,16 @@ export function TopPanel({data, show}) {
 
     return (
         <Wrapper show={show} blur={modal}>
-            <HiddenWrapp round={data.elem === 'music'} hide={!showElems.includes('music')}>
-                <Sound/>
+            <HiddenWrapp round={data.elem === 'music'} hide={false}>
+                <Sound color={'#FFF'}/>
             </HiddenWrapp>
-            <HiddenWrapp round={data.elem === 'menu'} hide={!showElems.includes('menu')}>
-                <Menu/>
+            <HiddenWrapp round={data.elem === 'menu'} hide={false}>
+                <Menu color={'#FFF'}/>
             </HiddenWrapp>
-            <HiddenWrapp round={data.elem === 'help'} hide={!showElems.includes('help')}>
-                <Help/>
+            <HiddenWrapp round={data.elem === 'help'} hide={false}>
+                <Help color={'#FFF'}/>
             </HiddenWrapp>
         </Wrapper>
     )
 }
+// !showElems.includes('help')

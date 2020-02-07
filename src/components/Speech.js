@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import {Howl, Howler} from 'howler';
-import {LAYOUTS} from "../data/stages";
 
 const Text = styled.p`
       margin: 0;
