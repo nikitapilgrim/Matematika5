@@ -49,7 +49,7 @@ const Buttons = styled.div`
   justify-content: center;
   align-items: center;
   top: 10%;
-  right: 25%
+  right: 24%
 `;
 
 const ButtonWrapper = styled.div`

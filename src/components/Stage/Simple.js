@@ -97,6 +97,7 @@ const Input = styled.input`
     background-color: #FFF;
     border: solid #FFF 0.02em;
     outline: none;
+    padding: 0 0.2rem;
     color: ${props => {
     if (props.help) {
         return 'transparent'

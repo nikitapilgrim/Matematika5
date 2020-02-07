@@ -31,6 +31,7 @@ const Left = styled.div`
   justify-content: center;
   font-weight: 900;
   font-size: 2em;
+  margin-right: 1rem;
 `;
 
 const parseQuestions = (questions) => {

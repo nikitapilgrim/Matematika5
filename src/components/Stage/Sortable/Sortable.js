@@ -141,7 +141,7 @@ export const Sortable = ({data, handler}) => {
             return false;
         }
 
-        if (result.source.droppableId !== items  && result.destination.droppableId !== 'items') {
+        if (result.source.droppableId !== items && result.destination.droppableId !== 'items') {
             // if no swap
             if (!resultItems[result.destination.droppableId]) {
                 const deletedProp = result.source.droppableId;
@@ -164,39 +164,14 @@ export const Sortable = ({data, handler}) => {
 
     return (
         <DragDropContext onDragEnd={onDragEnd}>
-            {/*<DroppedContainer>
-
-                {data.answer.map((answer, index) => {
-                    return (
-                        <Droppable key={index} droppableId={'result' + index}>
-                            {provided => (
-                                <DroppedPlaceholder ref={provided.innerRef} {...provided.droppableProps}>
-                                    <PlaceholderInner>{answer.placeholder}</PlaceholderInner>
-
-                                    {help && <HiddenWrapper help={help}>
-                                        <DraggableElem item={{id: 'help' + index, value: result[index]}} index={index}
-                                                       key={'help' + index}/>
-                                    </HiddenWrapper>}
-
-                                    {resultItems['result' + index] &&
-                                    <DraggableElem item={resultItems['result' + index]} index={index}
-                                                   key={resultItems['result' + index].id}/>}
-                                </DroppedPlaceholder>)}
-                        </Droppable>
-                    )
-                })}
-
-            </DroppedContainer>*/}
-            <div>
-                <Droppable direction="vertical" droppableId="items">
-                    {provided => (
-                        <ItemsContainer ref={provided.innerRef} {...provided.droppableProps}>
-                            <ItemsList items={items}/>
-                            {provided.placeholder}
-                        </ItemsContainer>
-                    )}
-                </Droppable>
-            </div>
+            <Droppable direction="vertical" droppableId="items">
+                {provided => (
+                    <ItemsContainer ref={provided.innerRef} {...provided.droppableProps}>
+                        <ItemsList items={items}/>
+                        {provided.placeholder}
+                    </ItemsContainer>
+                )}
+            </Droppable>
         </DragDropContext>
     )
 };

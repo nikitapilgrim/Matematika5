@@ -111,6 +111,7 @@ const CurrentStage = styled.div`
   font-size: 40px;
   color: red;
   opacity: 0.8;
+  z-index: 10;
 `;
 
 const WrapperImg = styled.div`
