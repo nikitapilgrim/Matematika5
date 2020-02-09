@@ -68,7 +68,6 @@ const parseQuestions = (questions) => {
 
 export const ColumnCalculations = React.memo(({data, handler, layout}) => {
     const ref = useRef(null);
-    const {dispatch, stage, help} = useStoreon('help', 'stage');
     const questions = useMemo(() => parseQuestions(data.questions), [data.questions]);
     const answer = useMemo(() => parseQuestions(data.answer), [data.answer]);
     const all = useMemo(() => ([...questions, answer]), [questions, answer]);
@@ -80,12 +79,12 @@ export const ColumnCalculations = React.memo(({data, handler, layout}) => {
     };
 
     useEffect(() => {
-        setInputs({});
         if (data.sign) {
             setSign(data.sign)
         } else {
             setSign(null)
         }
+        setInputs({})
     }, [data]);
 
     useEffect(() => {

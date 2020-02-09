@@ -51,15 +51,12 @@ const parseQuestions = (questions) => {
 
 };
 
-export const ManyInputs = ({data, handler, layout}) => {
+export const ManyInputs = React.memo(({data, handler, layout}) => {
     const [inputs, setInputs] = useState({});
     const ref = useRef();
     const {dispatch, stage, help} = useStoreon('help', 'stage');
     const questions = useMemo(() => parseQuestions(data.questions), [data.questions]);
     const simpleDirection = data.direction === 'row' ? 'column' : 'row';
-
-    console.log(questions)
-    
 
     const inputHandler = (i, pos) => (value) => {
         setInputs({...inputs, [`${pos.row}_${pos.col}`]: {
@@ -70,9 +67,7 @@ export const ManyInputs = ({data, handler, layout}) => {
 
     useEffect(() => {
         setInputs({});
-        if (ref.current) {
-        }
-    }, [data, ref]);
+    }, [data]);
 
     useEffect(() => {
         if (ref && ref.current) {
@@ -115,4 +110,4 @@ export const ManyInputs = ({data, handler, layout}) => {
 
         </Inputs>
     )
-};
+});
