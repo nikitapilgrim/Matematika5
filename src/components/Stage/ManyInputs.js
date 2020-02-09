@@ -58,6 +58,9 @@ export const ManyInputs = ({data, handler, layout}) => {
     const questions = useMemo(() => parseQuestions(data.questions), [data.questions]);
     const simpleDirection = data.direction === 'row' ? 'column' : 'row';
 
+    console.log(questions)
+    
+
     const inputHandler = (i, pos) => (value) => {
         setInputs({...inputs, [`${pos.row}_${pos.col}`]: {
                 value,

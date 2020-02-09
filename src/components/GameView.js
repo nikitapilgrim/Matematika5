@@ -206,7 +206,8 @@ export function GameView({handlerFullscreen}) {
             <WrapperApp>
                 <Blur zIndex={1} blur={false}/>
                 <Blur bgNone={false} zIndex={2} blur={false}>
-                    <Intro/>
+                    {/*<Intro/>*/}
+
                     <Kviz/>
                     {/*<Tutorial handler={handlerNextTutorial} active={showTutorial && !kviz.show}
                               data={tutorialData[tutorialCount]}/>*/}

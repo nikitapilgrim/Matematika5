@@ -1,67 +1,34 @@
-import React, {useEffect, useMemo, useState} from 'react';
-import styled from 'styled-components';
-import {DragDropContext, Droppable} from 'react-beautiful-dnd'
-import {DraggableElem} from "./DraggableElem";
+import React, {useEffect, useMemo, useState, useRef} from 'react';
+import styled, {css} from 'styled-components';
 import arrayMove from 'array-move';
 import useStoreon from "storeon/react";
+import {SortableContainer, SortableElement} from 'react-sortable-hoc';
 
-const DroppedContainer = styled.div`
-  display: flex;
+const Wrapper = styled.div`
+  width: 60%;
   position: relative;
-  & > div {
-    &:not(:first-child) {
-      margin-left: 0.4rem;
-    }
-  }
-`;
-
-const DroppedPlaceholder = styled.div`
-    position: relative;
-    width: 4rem;
-    height: 4rem;
-    text-align: center;
-    border: dashed #fff 3px;
-
-    & > div {
-      &:nth-child(1) {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: -0.2rem;
-        }
-      &:nth-child(2) {
-        top: -0.22rem;
-        left: -0.19rem;
-        transform: scale(1.03);
-      }
-    }
-`;
-const PlaceholderInner = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   
-    z-index: 0;
-    height: 100%;
-    width: 100%;
-    color: #fff;
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 900;
-    font-size: 2rem;
 `;
 
 const ItemsContainer = styled.div`
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 0.5rem;
-  & > div {
-      &:not(:first-child) {
-          margin-left: 0.4rem;
-        }
-  }
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+`;
+
+const Elem = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    min-width: 4rem;
+    color: #000;
+    background-color: #fff;
+    font-family: 'Boogaloo', sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    cursor: pointer;
+    padding: 0.2rem 0.5em;
 `;
 
 
@@ -79,16 +46,30 @@ const HiddenWrapper = styled.div`
 `;
 
 
-const ItemsList = React.memo(({items}) => {
-    return items.map((item, index) => (
-        <DraggableElem item={item} index={index} key={item.id}/>
-    ));
+const SortableItem = SortableElement(({value}) => <Elem>{value}</Elem>);
+
+const SortableList = SortableContainer(({items}) => {
+    return (
+        <ItemsContainer>
+            {items.map((item, index) => (
+                <SortableItem key={`item-${item.id}`} index={index} value={item.value}/>
+            ))}
+        </ItemsContainer>
+    );
 });
+
+function defaultGetHelperDimensions({node}) {
+    return {
+        height: node.offsetHeight,
+        width: node.offsetWidth,
+    };
+}
 
 export const Sortable = ({data, handler}) => {
     const [items, setItems] = useState(data.items);
     const [resultItems, setResultItems] = useState({});
     const {dispatch, help} = useStoreon('help');
+    const ref = useRef(null);
 
     const result = useMemo(() => {
         const items = data.items;
@@ -110,68 +91,18 @@ export const Sortable = ({data, handler}) => {
         setResultItems({})
     }, [data]);
 
-    const onDragEnd = (result) => {
 
-        if (!result.destination) {
-            return;
-        }
-        console.log(result, 'result')
-
-        // from items to items
-        if (result.source.droppableId === 'items' && result.destination.droppableId === 'items') {
-            setItems(arrayMove(items, result.source.index, result.destination.index));
-            return false;
-        }
-        // from items to result
-        if (result.source.droppableId === 'items' && result.destination.droppableId !== 'items') {
-            if (!resultItems[result.destination.droppableId]) {
-                setResultItems({
-                    ...resultItems, [result.destination.droppableId]: items[result.source.index]
-                });
-                setItems(items.filter(item => items[result.source.index] !== item))
-            } else {
-                const second = result.destination.droppableId;
-                const copy = {...resultItems};
-                const deletedElem = copy[second];
-                delete copy[second];
-                copy[second] = items[result.source.index];
-                setResultItems(copy);
-                setItems([...items, deletedElem].filter(item => item !== items[result.source.index]))
-            }
-            return false;
-        }
-
-        if (result.source.droppableId !== items && result.destination.droppableId !== 'items') {
-            // if no swap
-            if (!resultItems[result.destination.droppableId]) {
-                const deletedProp = result.source.droppableId;
-                const copy = {...resultItems};
-                delete copy[deletedProp];
-                setResultItems({...copy, [result.destination.droppableId]: resultItems[deletedProp]})
-                return false;
-            } else {
-                // if swap
-                const first = result.source.droppableId;
-                const second = result.destination.droppableId;
-                const copy = {...resultItems};
-                copy[first] = resultItems[second];
-                copy[second] = resultItems[first];
-                setResultItems(copy)
-            }
-        }
+    const onSortEnd = ({oldIndex, newIndex}) => {
+        setItems((items) => (
+            arrayMove(items, oldIndex, newIndex)
+        ));
     };
 
-
     return (
-        <DragDropContext onDragEnd={onDragEnd}>
-            <Droppable direction="vertical" droppableId="items">
-                {provided => (
-                    <ItemsContainer ref={provided.innerRef} {...provided.droppableProps}>
-                        <ItemsList items={items}/>
-                        {provided.placeholder}
-                    </ItemsContainer>
-                )}
-            </Droppable>
-        </DragDropContext>
+        <Wrapper ref={ref}>
+            <SortableList getHelperDimensions={defaultGetHelperDimensions} useWindowAsScrollContainer={true}
+                          helperClass={'.helper-class'} helperContainer={document.body} axis={'xy'}
+                          items={items} onSortEnd={onSortEnd}/>
+        </Wrapper>
     )
 };
