@@ -22,12 +22,15 @@ const Top = styled.div`
 
 const Answer = styled.div`
   margin-top: 1rem;
+  font-size: 2rem;
+  font-family: Boogaloo;
+  text-align: center;
 `;
 
 const Sign = styled.div`
+  font-family: Boogaloo;
   position: absolute;
-  left: -0.5rem;
-  bottom: 0.5rem;
+  left: -1.5rem;
   font-size: 2rem;
 `;
 
@@ -68,47 +71,64 @@ export const ColumnCalculations = ({data, handler, layout}) => {
     const {dispatch, stage, help} = useStoreon('help', 'stage');
     const questions = useMemo(() => parseQuestions(data.questions), [data.questions]);
     const answer = useMemo(() => parseQuestions(data.answer), [data.answer]);
+    const all = useMemo(() => ([...questions, answer]), [questions, answer]);
+    const [sign, setSign] = useState(null);
     const [inputs, setInputs] = useState({});
 
-    const inputHandler = (i) => (value) => {
-        setInputs({...inputs, [i]: value})
+    const inputHandler = (key) => (value) => {
+        setInputs({...inputs, [key]: value})
     };
 
+    useEffect(() => {
+        setInputs({});
+        if (data.sign) {
+            setSign(data.sign)
+        } else {
+            setSign(null)
+        }
+    }, [data]);
 
     useEffect(() => {
-        const nodes = ref.current.querySelectorAll('input');
-        const right = Object.entries(inputs).every((pair, i) => {
-            const check = pair[0] === pair[1];
-            if (check) {
-                nodes[i + 1] && nodes[i + 1].focus();
+        if (Object.values(inputs).length && ref && ref.current) {
+            const nodes = ref.current.querySelectorAll('input');
+            const right = Object.entries(inputs).every((pair, i) => {
+                const [key, value] = pair;
+                const compareValue = all.find(item => item.key === key);
+                const right = compareValue.answer === value;
+                if (right) {
+                    if (nodes[i + 1]) {
+                        nodes[i + 1].focus()
+                    }
+                }
+                return right;
+            });
+            if (nodes.length && Object.values(inputs).length === nodes.length) {
+                if (right) handler(true)
             }
-            return check;
-        });
-        if (nodes.length && Object.values(inputs).length === nodes.length) {
-            if (right) handler(true)
         }
     }, [inputs, ref]);
 
     return (
         <Wrapper ref={ref}>
             <Top direction={data.direction}>
-                {questions.map((data => (
+                {questions.map(((data, i, arr) => (
                     <Simple
-                        key={data.key + data.answer}
+                        key={data.key}
                         answer={data.answer}
                         question={data.question}
-                        handlerInput={inputHandler(data.answer)}
+                        handlerInput={inputHandler(data.key)}
                         layout={layout}
-                    />
+                    >
+                        {i === arr.length - 1 && <Sign>{sign}</Sign>}
+                    </Simple>
                 )))}
-                <Sign>{data.sign}</Sign>
             </Top>
             <Answer>
                 {answer.answer &&
                 <Simple
                     answer={answer.answer}
                     question={answer.question}
-                    handlerInput={inputHandler(answer.answer)}
+                    handlerInput={inputHandler(answer.key)}
                     layout={layout}
                 />
                 || answer.question}

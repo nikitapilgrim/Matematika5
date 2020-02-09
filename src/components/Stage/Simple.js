@@ -7,8 +7,10 @@ import useStoreon from "storeon/react";
 const nanoid = require('nanoid');
 
 const Wrapper = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
 
 const TabbleInput = css`
@@ -53,11 +55,11 @@ const InputWrapper = styled.span`
     white-space: nowrap;
     width: ${props => props.width ? `${props.width}px` : '3rem'};
     height: ${props => props.height ? `${props.height}px` : '3rem'};
-    padding: 0px 10px;
+    padding: 0px ${props => props.layout === `columnCalculation` ? `` : '10px'};
     margin: 0;
-    margin-left: 10px;
-    margin-right: 10px;
-    min-width: 2em;
+    margin-left: ${props => props.layout === `columnCalculation` ? `` : '10px'};
+    margin-right:  ${props => props.layout === `columnCalculation` ? `` : '10px'};
+    min-width: ${props => props.layout === `columnCalculation` ? `1em` : '2em'};
     min-height: 1.5em;
     ${props => props.theme === 'table' && TabbleInput};
     ${props => props.separator && ''}
@@ -97,7 +99,7 @@ const Input = styled.input`
     background-color: #FFF;
     border: solid #FFF 0.02em;
     outline: none;
-    padding: 0 0.2rem;
+    padding: 0 ${props => props.layout === `columnCalculation` ? `` : '0.2rem'};
     color: ${props => {
     if (props.help) {
         return 'transparent'
@@ -244,7 +246,8 @@ const InputWithState = React.memo(({separator, edit, val, solo, question, answer
         return (
             <InputWrapper theme={theme} width={width} height={height}>
                 {!placeholder || edit &&
-                <HiddenAnswer edit={edit} show={help} ref={ref}>{Array.isArray(answer) ? answer[0] : answer}</HiddenAnswer>}
+                <HiddenAnswer edit={edit} show={help}
+                              ref={ref}>{Array.isArray(answer) ? answer[0] : answer}</HiddenAnswer>}
                 {!placeholder &&
                 <HiddenAnswer show={help} ref={ref}>{Array.isArray(answer) ? answer[0] : answer}</HiddenAnswer>}
 
@@ -270,7 +273,7 @@ const InputWithState = React.memo(({separator, edit, val, solo, question, answer
         <>
             {question.split('\n').map((item, i) => (
                 <React.Fragment key={i}>
-                    { direction !== 'row' && layout !== 'columnCalculation' &&<br/>}
+                    {direction !== 'row' && layout !== 'columnCalculation' && <br/>}
                     {reactStringReplace(item, /{{([^}]+)}}/g, (match, i) => {
                         return (
                             <React.Fragment>
@@ -279,10 +282,13 @@ const InputWithState = React.memo(({separator, edit, val, solo, question, answer
                                     <img src={separator.src} alt=""/>
                                 </SepatatorWrapper>
                                 }
-                                <InputWrapper separator={separator && separator.width} width={width} height={height} key={i}>
-                                    <HiddenAnswer show={help} ref={ref}>{Array.isArray(answer) ? answer[0] : answer}</HiddenAnswer>
+                                <InputWrapper layout={layout} separator={separator && separator.width} width={width}
+                                              height={height} key={i}>
+                                    <HiddenAnswer show={help}
+                                                  ref={ref}>{Array.isArray(answer) ? answer[0] : answer}</HiddenAnswer>
 
                                     <Input
+                                        layout={layout}
                                         onFocus={handlerOnFocus}
                                         onBlur={handlerOnBlur}
                                         help={help}
@@ -292,7 +298,6 @@ const InputWithState = React.memo(({separator, edit, val, solo, question, answer
                                         pattern={type === "number" ? "[0-9]*" : ''} value={value}
                                         onChange={handlerInput}
                                     />
-
                                 </InputWrapper>
                             </React.Fragment>
                         )
@@ -304,7 +309,7 @@ const InputWithState = React.memo(({separator, edit, val, solo, question, answer
 });
 
 
-export const Simple = React.memo(({separator, edit, value, solo, question, img, handlerInput, answer, direction, layout, placeholder, disabled, theme}) => {
+export const Simple = ({children, separator, edit, value, solo, question, img, handlerInput, answer, direction, layout, placeholder, disabled, theme}) => {
     const props = {
         size: layout === 'simple' ? 2 : 2,
         color: layout === 'simple' ? '#000' : '#7b4728'
@@ -312,6 +317,8 @@ export const Simple = React.memo(({separator, edit, value, solo, question, img, 
 
     return (
         <Wrapper>
+            {children}
+
             <Question size={props.size} direction={direction}>
                 {img &&
                 <ImgWrapper width={img.width}>
@@ -337,4 +344,4 @@ export const Simple = React.memo(({separator, edit, value, solo, question, img, 
             </Question>
         </Wrapper>
     )
-});
+};

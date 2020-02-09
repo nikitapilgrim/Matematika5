@@ -108,28 +108,35 @@ export default [
         layout: LAYOUTS.columnCalculation,
         title: 'Oduzmi',
         questions: [
-            '724',
-            '382',
+            '42{{3}}',
+            '{{3}}27',
         ],
-        sign: '-',
-        answer: '{{342}}'
+        sign: '+',
+        answer: '7{{5}}0'
     },
     {
         id: 8,
-        layout: LAYOUTS.manyInputs,
-        title: 'U kvadratić upiši odgovarajuće brojeve',
+        layout: LAYOUTS.columnCalculation,
+        title: 'Oduzmi',
         questions: [
-            {
-                question: '42{{3}}+{{3}}27=7{{5}}0'
-            },
-            {
-                question: '{{5}}26+4{{3}}5=961'
-            },
-            {
-                question: '4{{1}}7+{{2}}8{{4}}=701'
-            },
+            '{{5}}26',
+            '4{{3}}5',
         ],
+        sign: '+',
+        answer: '961'
     },
+    {
+        id: 8.1,
+        layout: LAYOUTS.columnCalculation,
+        title: 'Oduzmi',
+        questions: [
+            '4{{1}}7',
+            '{{2}}84',
+        ],
+        sign: '+',
+        answer: '701'
+    },
+
     {
         id: 9,
         layout: LAYOUTS.manyInputs,
@@ -139,7 +146,7 @@ export default [
                 question: '{{471}} + 385 = 856'
             },
             {
-                question: '{{204}}+437=641'
+                question: '{{204}} + 437=641'
             },
             {
                 question: '427 + {{420}} = 847'
