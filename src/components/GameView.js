@@ -6,6 +6,7 @@ import notebook from '../assets/image/blackboard.png'
 import styled from "styled-components";
 import {Intro} from './Intro'
 import stagesData from "../data/stages";
+import {Tutorial} from "./Tutorial";
 import {TopPanel} from "./TopPanel";
 import {Stage} from "./Stage";
 
@@ -160,7 +161,7 @@ export function GameView({handlerFullscreen}) {
 
     useEffect(() => {
         if (start) {
-            //setShowTutorial(true);
+            setShowTutorial(true);
         }
     }, [start]);
 
@@ -177,13 +178,16 @@ export function GameView({handlerFullscreen}) {
     }, [stageData]);
 
 
-    const handlerNextTutorial = () => {
-        if (tutorialData[tutorialCount + 1]) {
-            setTutorialCount((prev) => prev + 1);
-        } else {
-            setShowTutorial(false)
+    const handlerNextTutorial = useCallback(() => {
+        if (start === true) {
+            if (tutorialData[tutorialCount + 1]) {
+                setTutorialCount((prev) => prev + 1);
+            } else {
+                setShowTutorial(false)
+            }
         }
-    };
+    }, [start, tutorialData, tutorialCount]);
+
 
 
     /*
@@ -206,11 +210,10 @@ export function GameView({handlerFullscreen}) {
             <WrapperApp>
                 <Blur zIndex={1} blur={false}/>
                 <Blur bgNone={false} zIndex={2} blur={false}>
-                    {/*<Intro/>*/}
-
+                    <Intro/>
                     <Kviz/>
-                    {/*<Tutorial handler={handlerNextTutorial} active={showTutorial && !kviz.show}
-                              data={tutorialData[tutorialCount]}/>*/}
+                    <Tutorial handler={handlerNextTutorial} active={showTutorial}
+                              data={tutorialData[tutorialCount]}/>
                     {/*<Owl active={showStage && !showTutorial && !kviz.show}
                          data={stageData.hasOwnProperty('speech') && stageData.speech}/>*/}
                     <CurrentStage>{stageData.id && stageData.id}</CurrentStage>

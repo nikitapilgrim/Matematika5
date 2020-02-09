@@ -1,3 +1,5 @@
+import tutorialAssets from "./image/tutorial";
+
 const assets = [
     {
         name: 'svg_help',
@@ -42,7 +44,8 @@ const assets = [
     {
         name: 'font',
         url: require('./font/Boogaloo-Regular.woff2')
-    }
+    },
+    ...tutorialAssets
 ];
 
 export default assets;

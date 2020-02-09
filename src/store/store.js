@@ -9,7 +9,7 @@ const stage = store => {
         stage: 0,
         final: false,
         modal: false,
-        start: true,
+        start: false,
         music: false,
         preloader: {
             container: preloader,

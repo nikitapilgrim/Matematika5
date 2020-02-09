@@ -27,7 +27,7 @@ export default [
                 question: '256 + {{744}} = 1000'
             },
             {
-                question: '324 - {{676}} = 1000'
+                question: '324 – {{676}} = 1000'
             },
             {
                 question: '687 + {{313}} = 1000'
@@ -78,7 +78,7 @@ export default [
             '456',
             '183',
         ],
-        sign: '-',
+        sign: '–',
         answer: '{{273}}'
     },
     {
@@ -89,7 +89,7 @@ export default [
             '456',
             '376',
         ],
-        sign: '-',
+        sign: '–',
         answer: '{{466}}'
     },
     {
@@ -100,7 +100,7 @@ export default [
             '724',
             '382',
         ],
-        sign: '-',
+        sign: '–',
         answer: '{{342}}'
     },
     {
@@ -146,7 +146,7 @@ export default [
                 question: '{{471}} + 385 = 856'
             },
             {
-                question: '{{204}} + 437=641'
+                question: '{{204}} + 437 = 641'
             },
             {
                 question: '427 + {{420}} = 847'
@@ -162,7 +162,7 @@ export default [
         title: 'Nađi nepoznati umanjenik ili umanjitelj',
         questions: [
             {
-                question: '{{719}}–281=438'
+                question: '{{719}} – 281 = 438'
             },
             {
                 question: '253 – {{125}} = 128'
@@ -292,7 +292,7 @@ export default [
         title: 'Riješiti nejednačine',
         questions: [
             {
-                question: '{{< 643}} - 387 < 256'
+                question: '{{< 643}} – 387 < 256'
             },
             {
                 question: '{{> 205}} + 487 > 692'
@@ -536,13 +536,13 @@ export default [
                 question: '4271 + {{2086}} = 6357'
             },
             {
-                question: '5784 - {{2499}} = 3285'
+                question: '5784 – {{2499}} = 3285'
             },
             {
                 question: '3825 + {{5175}} = 9000'
             },
             {
-                question: '7000 - {{5103}} = 1897'
+                question: '7000 – {{5103}} = 1897'
             },
         ],
     }, {
@@ -583,7 +583,7 @@ export default [
             '8740',
             '3286',
         ],
-        sign: '-',
+        sign: '–',
         answer: '{{4954}}'
     }, {
         id: 36,
@@ -593,7 +593,7 @@ export default [
             '7841',
             '3294',
         ],
-        sign: '-',
+        sign: '–',
         answer: '{{4547}}'
     },
     {
@@ -604,7 +604,7 @@ export default [
             '9405',
             '3567',
         ],
-        sign: '-',
+        sign: '–',
         answer: '{{5838}}'
     },
     {
@@ -1076,7 +1076,7 @@ export default [
                 question: '430 : 9 + 470 : 9 = {{100}}'
             },
             {
-                question: '129 : 5 - 79: 5 = {{100}}'
+                question: '129 : 5 – 79: 5 = {{100}}'
             },
             {
                 question: '325 : 7 + 375 : 7 = {{10}}'
@@ -1894,10 +1894,10 @@ export default [
         text: `Upiši ciframa brojeve`,
         questions: [
             {
-                question: '5 miliona 4 hiljade 37 - {{5004037}}'
+                question: '5 miliona 4 hiljade 37 – {{5004037}}'
             },
             {
-                question: '13 miliona 84 - {{13000084}}'
+                question: '13 miliona 84 – {{13000084}}'
             }
         ],
     }

@@ -3,42 +3,52 @@ import {LAYOUTS} from "./stages";
 export default [
     {
         layout: LAYOUTS.speech,
-        title: 'Zdravo!',
-        phrase: `Hoćemo li malo vježbati matematiku? Ne brini, nije teško! Više je zabavno nego teško!`,
+        teacher: require('../assets/image/tutorial/teacher-1.png'),
+        bubble: {
+            src: require('../assets/image/tutorial/bubble-1.png'),
+            position: 'left'
+        },
         type: 'tutorial',
+        offset: '100%'
     },
     {
         layout: LAYOUTS.speech,
-        title: 'Zdravo!',
-        phrase: `Sad ću ti pokazati kako se koristi ovaj digitalni udžbenik.`,
-        type: 'tutorial',
-    },
-    {
-        layout: LAYOUTS.speech,
-        title: 'Zdravo!',
-        phrase: `Klikni ovdje da uključiš ili isključiš muziku. Klikni sada da isprobaš.`,
-        type: 'tutorial',
-        elem: 'music'
-    },
-    {
-        layout: LAYOUTS.speech,
-        title: 'Zdravo!',
-        phrase: `Klikni ovdje da preskočiš lekcije ako želiš.`,
+        teacher: require('../assets/image/tutorial/teacher-1.png'),
+        bubble: {
+            src: require('../assets/image/tutorial/bubble-2.png'),
+            position: 'right'
+        },
         type: 'tutorial',
         elem: 'menu'
     },
     {
         layout: LAYOUTS.speech,
-        title: 'Zdravo!',
-        phrase: `Klikni ovdje ako ti je negdje zapelo. Dobićeš pomoć.`,
+        teacher: require('../assets/image/tutorial/teacher-1.png'),
+        bubble: {
+            src: require('../assets/image/tutorial/bubble-3.png'),
+            position: 'right'
+        },
         type: 'tutorial',
-        elem: 'help'
-
+        elem: 'sound'
     },
     {
         layout: LAYOUTS.speech,
-        title: 'Zdravo!',
-        phrase: `Hoćeš li da počnemo sa prvom lekcijom?`,
-        type: 'tutorial'
+        teacher: require('../assets/image/tutorial/teacher-2.png'),
+        bubble: {
+            src: require('../assets/image/tutorial/bubble-4.png'),
+            position: 'right'
+        },
+        type: 'tutorial',
+        elem: 'help'
+    },
+    {
+        layout: LAYOUTS.speech,
+        teacher: require('../assets/image/tutorial/teacher-1.png'),
+        bubble: {
+            src: require('../assets/image/tutorial/bubble-5.png'),
+            position: 'right'
+        },
+        type: 'tutorial',
+        offset: '20%'
     }
 ]
