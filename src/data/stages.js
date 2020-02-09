@@ -253,7 +253,7 @@ export default [
         title: 'Riješi jednačine!',
         questions: [
             {
-                question: '8∙ {{125}} = 1000'
+                question: '8 ∙ {{125}} = 1000'
             },
             {
                 question: '6 ∙ {{146}} = 876'

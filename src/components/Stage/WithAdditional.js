@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
 import {TextWithBorders} from "../TextWithBorders";
 
@@ -51,6 +51,13 @@ const isReactElement = (obj) => {
 export function WithAdditional({children, data}) {
     const {text, title, layout, img, key} = data;
     const isTitleImage = title && title.includes('.png');
+
+    useEffect(()=> {
+        const nodes = document.querySelectorAll('input')
+        if (nodes[0]) {
+            nodes[0].focus();
+        }
+    }, [data]);
 
     return (
         <Wrapper>

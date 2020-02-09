@@ -19,15 +19,15 @@ const data = {
 };
 
 export const sounds = {
-    success: new Howl({
+    /*success: new Howl({
         src: data.success
     }),
     fail: new Howl({
         src: data.fail
-    }),
+    }),*/
     background: new Howl({
         src: data.background,
-        autoplay: true,
+        autoplay: false,
         loop: true,
     }),
     mouseclick: new Howl({

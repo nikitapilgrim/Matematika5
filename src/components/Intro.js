@@ -135,14 +135,14 @@ const Blur = styled.div`
 export const Intro = () => {
     const [isShow, setIsShow] = useState(false);
     const [blured, setBlured] = useState(false);
-    const {dispatch, preloader} = useStoreon('start', 'preloader');
+    const {dispatch, preloader, music} = useStoreon('start', 'preloader', 'music' );
 
     const handlerStart = (e) => {
         sounds.mouseclick.play();
         const target = e.target;
         setTimeout(() => {
             setIsShow(false);
-            setBlured(false);
+            // setBlured(false);
             target.style.top = '0';
             setTimeout(() => {
                 dispatch('game/start')

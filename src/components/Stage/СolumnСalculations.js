@@ -63,7 +63,7 @@ const parseQuestions = (questions) => {
 };
 
 
-export const ColumnCalculations = ({data, handler}) => {
+export const ColumnCalculations = ({data, handler, layout}) => {
     const ref = useRef(null);
     const {dispatch, stage, help} = useStoreon('help', 'stage');
     const questions = useMemo(() => parseQuestions(data.questions), [data.questions]);
@@ -98,6 +98,7 @@ export const ColumnCalculations = ({data, handler}) => {
                         answer={data.answer}
                         question={data.question}
                         handlerInput={inputHandler(data.answer)}
+                        layout={layout}
                     />
                 )))}
                 <Sign>{data.sign}</Sign>
@@ -108,6 +109,7 @@ export const ColumnCalculations = ({data, handler}) => {
                     answer={answer.answer}
                     question={answer.question}
                     handlerInput={inputHandler(answer.answer)}
+                    layout={layout}
                 />
                 || answer.question}
             </Answer>

@@ -167,21 +167,6 @@ export function GameView({handlerFullscreen}) {
     useEffect(() => {
         setStageData(stagesData[stage]);
     }, [stage]);
-    useMount(() => {
-        dispatch('preload/set', 100);
-        /*
-                let count = 0;
-                const setPreload = i => () => {
-                    count = i + 1;
-                    dispatch('preload/set', i);
-                    if (i < 100) {
-                        setTimeout(setPreload(count), 0)
-                    }
-                };
-                setTimeout(setPreload(count), 0);
-            });
-            */
-    });
 
 
     // show kviz
@@ -220,7 +205,7 @@ export function GameView({handlerFullscreen}) {
         <>
             <WrapperApp>
                 <Blur zIndex={1} blur={false}/>
-                <Blur bgNone={false} zIndex={2} blur={modal}>
+                <Blur bgNone={false} zIndex={2} blur={false}>
                     <Intro/>
                     <Kviz/>
                     {/*<Tutorial handler={handlerNextTutorial} active={showTutorial && !kviz.show}
@@ -236,7 +221,7 @@ export function GameView({handlerFullscreen}) {
                                     <img src={notebook} alt="notebook"/>
                                     {/*<Medal/>*/}
                                 </WrapperImg>
-                                <Inner show={showStage}>
+                                <Inner show={!modal && showStage}>
                                     <Stage onNext={handlerNext} data={stageData}/>
                                 </Inner>
                             </Bg>

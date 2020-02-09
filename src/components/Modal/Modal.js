@@ -31,6 +31,11 @@ const slide = props => css`
   animation: ${props.isOpen ? SlideTop : SlideBottom} 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 `;
 
+const close = css`
+  opacity: 1;
+  pointer-events: none;
+  z-index: -3;
+`;
 
 
 const Wrapper = styled.div`
@@ -39,8 +44,8 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 5;
-  ${slide};
-  top: 0;
+  ${ props => props.isOpen ? `` : close};
+  top: 5%;
   left: 0;
   right: 0;
   bottom: 0;
@@ -111,7 +116,7 @@ export const Modal = React.memo((({children, style, inner}) => {
             {createPortal(
                     <Wrapper isOpen={modal}>
                         <Inner ref={ref}>
-                            <Close onClick={onCloseModal}><img src={closeIcon} alt="close"/></Close>
+                            {/*<Close onClick={onCloseModal}><img src={closeIcon} alt="close"/></Close>*/}
                             {inner}
                         </Inner>
                         {/* <Slide delay={modal ? 500 : 0} when={modal} onReveal={handlerAnimationEnd} top>

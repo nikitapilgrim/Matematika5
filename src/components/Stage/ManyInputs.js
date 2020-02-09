@@ -18,7 +18,7 @@ const Inputs = styled.div`
 
 const Row = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   font-family: 'Boogaloo', cursive;
   font-size: 2rem;
@@ -26,6 +26,7 @@ const Row = styled.div`
 `;
 
 const Left = styled.div`
+  font-family: 'Boogaloo', cursive;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,7 +51,7 @@ const parseQuestions = (questions) => {
 
 };
 
-export const ManyInputs = ({data, handler}) => {
+export const ManyInputs = ({data, handler, layout}) => {
     const [inputs, setInputs] = useState({});
     const ref = useRef();
     const {dispatch, stage, help} = useStoreon('help', 'stage');
@@ -96,6 +97,7 @@ export const ManyInputs = ({data, handler}) => {
                         {reactStringReplace(item.question, /{{([^}]+)}}/g, (match, col) => {
                             return (
                                 <Simple
+                                    layout={layout}
                                     img={data.img}
                                     direction={'row'}
                                     handlerInput={inputHandler(match, {row,col})}

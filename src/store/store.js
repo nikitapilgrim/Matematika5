@@ -10,6 +10,7 @@ const stage = store => {
         final: false,
         modal: false,
         start: false,
+        music: false,
         preloader: {
             container: preloader,
             count: 0,
@@ -37,6 +38,10 @@ const stage = store => {
     store.on('tutorial', () => {
         return ({start: true});
     });
+    store.on('music/change', ({music}) => {
+        return ({music: !music});
+    });
+
     store.on('game/start', () => {
         return ({start: true});
     });

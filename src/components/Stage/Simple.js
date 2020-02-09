@@ -34,7 +34,7 @@ const TabbleInput = css`
 const Question = styled.div`
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     font-family: 'Boogaloo', cursive;
     flex-direction: ${props => props.direction};
@@ -161,7 +161,7 @@ const SepatatorWrapper = styled.div`
   }
 `;
 
-const InputWithState = React.memo(({separator, edit, val, solo, question, answer, handler, direction, color, disabled, placeholder, theme}) => {
+const InputWithState = React.memo(({separator, edit, val, solo, question, answer, handler, direction, color, disabled, placeholder, theme, layout}) => {
     const [id] = React.useState(nanoid)
     const {dispatch, help} = useStoreon('help');
     const [right, setRight] = useState(null);
@@ -270,7 +270,7 @@ const InputWithState = React.memo(({separator, edit, val, solo, question, answer
         <>
             {question.split('\n').map((item, i) => (
                 <React.Fragment key={i}>
-                    { direction !== 'row' && <br/>}
+                    { direction !== 'row' && layout !== 'columnCalculation' &&<br/>}
                     {reactStringReplace(item, /{{([^}]+)}}/g, (match, i) => {
                         return (
                             <React.Fragment>
@@ -331,7 +331,9 @@ export const Simple = React.memo(({separator, edit, value, solo, question, img, 
                     disabled={disabled}
                     answer={answer}
                     question={question}
-                    handler={handlerInput}/>
+                    handler={handlerInput}
+                    layout={layout}
+                />
             </Question>
         </Wrapper>
     )

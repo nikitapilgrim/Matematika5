@@ -8,7 +8,7 @@ import range from "ramda/es/range";
 import MedalOne from '../../assets/svg/medal_1.svg';
 import MedalTwo from '../../assets/svg/medal_2.svg';
 import MedalThree from '../../assets/svg/medal_3.svg';
-import izaberiKviz from '../../assets/image/headline/izaberi_kviz_headline.png';
+import {TextWithBorders} from "../TextWithBorders";
 
 const Buttons = styled.div`
     position: relative;
@@ -17,8 +17,6 @@ const Buttons = styled.div`
     grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 1rem;
-    filter: drop-shadow(0px 0px 0.2rem #896549);  
-
 `;
 
 const Medal = styled.div`
@@ -39,12 +37,13 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   max-width: 600px;
+  font-family: Boogaloo,serif;
 `;
 
 const stagesColor = {
-    current: '#e9c78d',
-    some: '#fce4be',
-    hover: '#d89d57'
+    current: '#FFF',
+    some: 'transparent',
+    hover: '#FFF'
 };
 
 const Button = styled.div`
@@ -56,19 +55,21 @@ const Button = styled.div`
   padding: 0.5rem 0;
   background-color: ${props => props.current ? stagesColor.current : stagesColor.some};
   border-radius: 0.3em;
-  border: 2px solid #896549;
-  font-size: 3rem;
-  color: #896549;
+  font-size: 2.5rem;
+  color: ${props => props.current ? `#374F48` : `#FFF`};
   font-weight: 900;
   transition: background-color 0.3s ease;
   cursor: pointer;
   text-align: center;
   &:hover {
-    background-color: #d89d57;
+    background-color: RGBA(255,255,255, 0.2);
   }
 `;
 
 const Title = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   //filter: drop-shadow(0px 0px 10px white);  
 `;
 const Inner = styled.div`
@@ -145,10 +146,12 @@ export const InnerMenu = (props) => {
         <Wrapper>
             <Inner ref={ref}>
                 <Title>
+                    {/*
                     <ImgWrapper>
                         <img src={izaberiKviz} alt=""/>
                     </ImgWrapper>
-                    {/*<TextWithBorders strokeWidth={"0.15em"} strokeColor={"#896549"} color='#fce4be' text="Izaberi kviz!"/>*/}
+                    */}
+                    <TextWithBorders size={4} strokeWidth={"0"} strokeColor={"#896549"} color='#FFFFFF' text="Izaberi test!"/>
                 </Title>
                 <Buttons>
                     {
@@ -157,7 +160,7 @@ export const InnerMenu = (props) => {
                             return (
                                 <Button current={kviz.order === index + 1} onClick={handlerStage(button.id, index + 1)}
                                         key={button.id}>
-                                    {index + 1}
+                                    Test {index + 1}
                                     <Medal>
                                         {button.type === 'bronze' && <MedalOne/>}
                                         {button.type === 'iron' && <MedalTwo/>}
