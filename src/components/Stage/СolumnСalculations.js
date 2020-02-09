@@ -66,7 +66,7 @@ const parseQuestions = (questions) => {
 };
 
 
-export const ColumnCalculations = ({data, handler, layout}) => {
+export const ColumnCalculations = React.memo(({data, handler, layout}) => {
     const ref = useRef(null);
     const {dispatch, stage, help} = useStoreon('help', 'stage');
     const questions = useMemo(() => parseQuestions(data.questions), [data.questions]);
@@ -136,4 +136,4 @@ export const ColumnCalculations = ({data, handler, layout}) => {
 
         </Wrapper>
     )
-};
+});

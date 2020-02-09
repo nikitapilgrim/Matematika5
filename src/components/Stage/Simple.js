@@ -276,7 +276,7 @@ const InputWithState = React.memo(({separator, edit, val, solo, question, answer
                     {direction !== 'row' && layout !== 'columnCalculation' && <br/>}
                     {reactStringReplace(item, /{{([^}]+)}}/g, (match, i) => {
                         return (
-                            <React.Fragment>
+                            <React.Fragment key={i}>
                                 {separator &&
                                 <SepatatorWrapper width={separator.width}>
                                     <img src={separator.src} alt=""/>
