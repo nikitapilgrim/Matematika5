@@ -10,7 +10,10 @@ const loader = new ResourcesLoader();
 let init = false;
 let sounds = {};
 
-
+const extension = {
+    images: ['png','jpg','jpeg'],
+    sounds: ['mp3','aac','ogg']
+};
 export const Loader = ({resources, onProgress}) => {
     if (init) return loader;
     if (resources) init = true;
@@ -22,7 +25,7 @@ export const Loader = ({resources, onProgress}) => {
     loader
         .add(resources)
         .use((resource, next) => {
-            if (resource.loadType === 3) {
+            if (extension.sounds.some(ext => ext === resource.extension)) {
                 const data = new Howl({
                     src: [resource.url],
                     autoplay: false,
@@ -32,11 +35,11 @@ export const Loader = ({resources, onProgress}) => {
                         sounds[resource.name] = resource.data;
                         setTimeout(() => {
                             next();
-                        },  3000)
+                        },  1000)
                     }
                 });
             }
-            else {
+            if (extension.images.some(ext => ext === resource.extension)) {
                 function cacheImage(blob) {
                     const objUrl = URL.createObjectURL(blob);
                     const image = document.createElementNS('http://www.w3.org/1999/xhtml', 'img');
@@ -50,8 +53,12 @@ export const Loader = ({resources, onProgress}) => {
                     image.src = objUrl;
                     image.style.visibility = 'hidden';
                     document.body.appendChild(image);
+                    next();
                 }
-                fileLoader.load([resource.url], cacheImage, next, () => console.log(false));
+                fileLoader.load([resource.url], cacheImage, () => void(0), () => console.log(false));
+            }
+            else {
+                fileLoader.load([resource.url], next, () => void(0), () => console.log(false));
             }
         })
 
@@ -71,7 +78,8 @@ export const Loader = ({resources, onProgress}) => {
     }); // Called when a resource starts loading.
     loader.onError.add(() => {
     }); // Called when a resource fails to load.
-    loader.onLoad.add(() => {
+    loader.onLoad.add((a) => {
+
     }); // Called when a resource successfully loads.
     if (onProgress) loader.onProgress.add(onProgress); // Called when a resource finishes loading (success or fail).
     loader.onComplete.add(() => {
