@@ -58,8 +58,8 @@ const InputWrapper = styled.span`
     height: ${props => props.height ? `${props.height}px` : '3rem'};
     padding: 0px ${props => props.layout === `columnCalculation` ? `` : '10px'};
     margin: 0;
-    margin-left: ${props => props.layout === `columnCalculation` ? `` : '10px'};
-    margin-right:  ${props => props.layout === `columnCalculation` ? `` : '10px'};
+    margin-left: ${props => props.layout === `columnCalculation` ? `` : '0.6em'};
+    margin-right:  ${props => props.layout === `columnCalculation` ? `` : '0.6em'};
     min-width: ${props => props.layout === `columnCalculation` ? `1em` : '2em'};
     min-height: 1.5em;
     ${props => props.theme === 'table' && TabbleInput};
