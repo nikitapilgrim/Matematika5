@@ -9,7 +9,7 @@ export default [
             position: 'left'
         },
         type: 'tutorial',
-        offset: '100%'
+        offset: '50vw'
     },
     {
         layout: LAYOUTS.speech,
@@ -49,6 +49,6 @@ export default [
             position: 'right'
         },
         type: 'tutorial',
-        offset: '20%'
+        offset: '0vw'
     }
 ]

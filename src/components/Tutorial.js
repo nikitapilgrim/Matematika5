@@ -50,6 +50,7 @@ const Teacher = styled.div`
   width: 52vh;
   transition: transform 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940);
   transform: translateX(${props => props.left});
+  pointer-events: none;
   img {
     max-width: 100%;
       height: auto;

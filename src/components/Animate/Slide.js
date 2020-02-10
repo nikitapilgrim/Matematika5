@@ -2,7 +2,7 @@ import {css, keyframes} from "styled-components";
 
 const SlideTop = keyframes`
   0% {
-    transform: translateY(-100vh);
+    transform: translateY(-110vh);
   }
   100% {
     transform: translateY(0vh);
@@ -14,7 +14,7 @@ const SlideBottom = keyframes`
     transform: translateY(0vh);
   }
   100% {
-    transform: translateY(-100vh);
+    transform: translateY(-110vh);
   }
 `;
 
