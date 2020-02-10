@@ -1,21 +1,58 @@
+import {FileLoader} from "three/src/loaders/FileLoader";
+import {Cache} from "three/src/loaders/Cache";
+
 import {Loader as ResourcesLoader} from 'resource-loader';
 import React, {useState, useMemo, useEffect} from 'react';
 import {LoaderContext} from "./context";
+import {Howl} from 'howler';
 
 const loader = new ResourcesLoader();
 let init = false;
+let sounds = {};
+
+
 export const Loader = ({resources, onProgress}) => {
     if (init) return loader;
     if (resources) init = true;
-    loader
-        // Chainable `add` to enqueue a resource
-        .add(resources)
+    let cache = Cache;
+    cache.enabled = true;
+    let fileLoader = new FileLoader();
+    fileLoader.setResponseType('blob');
 
-        // Chainable `use` to add a middleware that runs for each resource, *after* loading that resource.
-        // This is useful to implement custom parsing modules (like spritesheet parsers).
+    loader
+        .add(resources)
         .use((resource, next) => {
-            // Be sure to call next() when you have completed your middleware work.
-            next();
+            if (resource.loadType === 3) {
+                const data = new Howl({
+                    src: [resource.url],
+                    autoplay: false,
+                    preload: true,
+                    onload: function() {
+                        resource.data = data;
+                        sounds[resource.name] = resource.data;
+                        setTimeout(() => {
+                            next();
+                        },  3000)
+                    }
+                });
+            }
+            else {
+                function cacheImage(blob) {
+                    const objUrl = URL.createObjectURL(blob);
+                    const image = document.createElementNS('http://www.w3.org/1999/xhtml', 'img');
+
+                    image.onload = ()=> {
+                        cache.add([resource.url], image);
+                        URL.revokeObjectURL(objUrl);
+                        document.body.removeChild(image);
+                    };
+
+                    image.src = objUrl;
+                    image.style.visibility = 'hidden';
+                    document.body.appendChild(image);
+                }
+                fileLoader.load([resource.url], cacheImage, next, () => console.log(false));
+            }
         })
 
         // The `load` method loads the queue of resources, and calls the passed in callback called once all

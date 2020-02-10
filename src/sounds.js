@@ -29,8 +29,10 @@ export const sounds = {
         src: data.background,
         autoplay: false,
         loop: true,
+        preload: true
     }),
     mouseclick: new Howl({
         src: data.mouseclick,
+        preload: true
     }),
 };

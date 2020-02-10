@@ -48,7 +48,6 @@ const Teacher = styled.div`
   bottom: -1rem;
   z-index: 3;
   width: 52vh;
-  pointer-events: none;
   transition: transform 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940);
   transform: translateX(${props => props.left});
   img {
@@ -59,12 +58,12 @@ const Teacher = styled.div`
 
 const left = css`
   top: 30%;
-  left: -70%;
+  left: -20rem;
 `;
 
 const right = css`
   top: 30%;
-  right: -70%;
+  right: -20rem;
 `;
 
 const Bubble = styled.div`
