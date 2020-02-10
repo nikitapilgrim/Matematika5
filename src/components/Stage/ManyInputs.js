@@ -12,7 +12,21 @@ const Inputs = styled.div`
   justify-content: flex-start;
   color: white;
   & > div {
-    margin-top: 0.5em;
+     margin-top: 0.5em;
+     
+    }
+     & > div {
+      display: block;
+      text-align: justify;
+     text-align-last: justify;
+     vertical-align: middle;
+       
+       & > div {
+          display: inline-flex;
+          position: relative;
+          top: 0.3em
+       }
+     }
   }
 `;
 
@@ -23,9 +37,12 @@ const Row = styled.div`
   font-family: 'Boogaloo', cursive;
   font-size: 2rem;
   
+  
 `;
 
 const Left = styled.div`
+  position: relative;
+  top: 0.5em;
   font-family: 'Boogaloo', cursive;
   display: flex;
   align-items: center;

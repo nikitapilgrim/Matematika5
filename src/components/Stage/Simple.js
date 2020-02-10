@@ -43,6 +43,7 @@ const Question = styled.div`
     font-weight: normal;
     font-size: ${props => props.size}rem;
     color: #fff;
+    text-align: ${props => props.layout === 'manyInputs' ? 'justify' : ''};
     //text-shadow: 1px 1px 1px #000;
 `;
 
@@ -319,7 +320,7 @@ export const Simple = ({children, separator, edit, value, solo, question, img, h
         <Wrapper>
             {children}
 
-            <Question size={props.size} direction={direction}>
+            <Question size={props.size} layout={layout} direction={direction}>
                 {img &&
                 <ImgWrapper width={img.width}>
                     <img src={img.src} alt=""/>
