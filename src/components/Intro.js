@@ -119,9 +119,9 @@ const Blur = styled.div`
     position: fixed;
     z-index: ${props => props.zIndex || '-1'};
     top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
+    left: -5vw;   
+    height: 110vh;
+    width: 110vw;
     transition: filter 1s;
     ${props => !props.bgNone && `background: url(${bg});`};
     background-size: cover;
