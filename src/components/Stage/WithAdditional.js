@@ -9,7 +9,8 @@ const Wrapper = styled.div`
   align-items: center;
   width: 100%;
   position: relative;
-  top: 8%
+  top: 7rem;
+  height: 50%;
 `;
 
 const Title = styled.div`
@@ -19,15 +20,24 @@ const Title = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
+  margin-top: 3rem;
 `;
 
 const Paragraph = styled.p`
-    font-family: 'Boogaloo', cursive;
+    font-family: 'Mali', cursive;
     font-size: 2rem;
     text-align: center;
     max-width: 60%;
     color: white;
 
+`;
+
+const WrapperQuestion = styled.div`
+    padding-bottom: 3rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
 `;
 
 const MedalContainer = styled.div`
@@ -73,16 +83,18 @@ export function WithAdditional({children, data}) {
                         <br/>
                     </React.Fragment>);
             })}</Paragraph>}
-            {React.Children.map(children, child => {
-                return (
-                    <React.Fragment key={key}>
-                        {isReactElement(child) && <>
-                            {React.cloneElement(child, {layout})}
-                        </>}
+            <WrapperQuestion>
+                {React.Children.map(children, child => {
+                    return (
+                        <React.Fragment key={key}>
+                            {isReactElement(child) && <>
+                                {React.cloneElement(child, {layout})}
+                            </>}
 
-                    </React.Fragment>
-                )
-            })}
+                        </React.Fragment>
+                    )
+                })}
+            </WrapperQuestion>
         </Wrapper>
     )
 }

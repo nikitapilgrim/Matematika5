@@ -219,12 +219,12 @@ export function GameView({handlerFullscreen}) {
                     <CurrentStage>{stageData.id && stageData.id}</CurrentStage>
                     <Wrapper show={start && !kviz.show}>
                         <DeskWrapper className="desk-wrapper">
-                            <TopPanel show={showStage} data={tutorialData[tutorialCount]}/>
                             <Bg bgNone={false} zIndex={3} position={'relative'} tutorial={showTutorial || modal}>
                                 <WrapperImg>
                                     <img src={notebook} alt="notebook"/>
                                     {/*<Medal/>*/}
                                 </WrapperImg>
+                                <TopPanel show={showStage} data={tutorialData[tutorialCount]}/>
                                 <Inner show={!modal && showStage}>
                                     <Stage onNext={handlerNext} data={stageData}/>
                                 </Inner>

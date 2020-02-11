@@ -25,7 +25,7 @@ const Elem = styled.div`
     justify-content: center;
     color: #fff;
     background-color: #fe0002;
-    font-family: 'Boogaloo', cursive;
+    font-family: 'Mali', cursive;
     font-size: 2rem;
     text-align: center;
     font-weight: 900;

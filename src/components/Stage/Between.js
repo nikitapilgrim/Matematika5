@@ -3,7 +3,7 @@ import styled from "styled-components";
 import arrow from '../../assets/image/arrow.png'
 
 const Wrapper = styled.div`
-  font-family: 'Boogaloo', cursive;
+  font-family: 'Mali', cursive;
   font-size: 2rem;
   text-align: center;
 `;

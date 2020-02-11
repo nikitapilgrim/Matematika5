@@ -12,7 +12,7 @@ const Inputs = styled.div`
   justify-content: flex-start;
   color: white;
   & > div {
-     margin-top: 0.5em;
+     margin-top: 0.1em;
      word-spacing: 0.3em;
      
     }
@@ -35,7 +35,7 @@ const Row = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Boogaloo', cursive;
+  font-family: 'Mali', cursive;
   font-size: 2rem;
   
   
@@ -44,7 +44,7 @@ const Row = styled.div`
 const Left = styled.div`
   position: relative;
   top: 0.5em;
-  font-family: 'Boogaloo', cursive;
+  font-family: 'Mali', cursive;
   display: flex;
   align-items: center;
   justify-content: center;

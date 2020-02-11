@@ -5,7 +5,7 @@ import useStoreon from "storeon/react";
 import {SortableContainer, SortableElement} from 'react-sortable-hoc';
 
 const Wrapper = styled.div`
-  width: 60%;
+  width: 100%;
   position: relative;
 `;
 

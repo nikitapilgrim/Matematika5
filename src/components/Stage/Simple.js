@@ -38,7 +38,7 @@ const Question = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-family: 'Boogaloo', cursive;
+    font-family: 'Mali', cursive;
     flex-direction: ${props => props.direction};
     font-weight: normal;
     font-size: ${props => props.size}rem;
@@ -58,8 +58,6 @@ const InputWrapper = styled.span`
     height: ${props => props.height ? `${props.height}px` : '3rem'};
     padding: 0px ${props => props.layout === `columnCalculation` ? `` : '10px'};
     margin: 0;
-    margin-left: ${props => props.layout === `columnCalculation` ? `` : '0.6em'};
-    margin-right:  ${props => props.layout === `columnCalculation` ? `` : '0.6em'};
     min-width: ${props => props.layout === `columnCalculation` ? `1em` : '2em'};
     min-height: 1.5em;
     ${props => props.theme === 'table' && TabbleInput};
@@ -89,7 +87,7 @@ const Input = styled.input`
     top: 0;
     width: 100%;
     height: 100%;
-    font-family: 'Boogaloo', cursive;
+    font-family: 'Mali', cursive;
     font-weight: normal;
     font-size: 1em;
     display: inline-block;

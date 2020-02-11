@@ -21,7 +21,7 @@ const HiddenText = styled.div`
     display: inline-block;
     font-size: ${props => `${props.size}rem`};
     text-align: center;
-    font-family: 'Boogaloo', cursive;
+    font-family: 'Mali', cursive;
     font-weight: bold;
     line-height: 0.9;
     letter-spacing: 0;

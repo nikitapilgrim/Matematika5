@@ -14,7 +14,6 @@ export const LAYOUTS = {
     justInput: 'justInput'
 };
 
-const titles = {}
 
 export default [
     {layout: LAYOUTS.quiz},
@@ -24,16 +23,16 @@ export default [
         title: 'Dopuni koliko ti nedostaje do 1000',
         questions: [
             {
-                question: '256 +{{744}}= 1000'
+                question: '256 + {{744}} = 1000'
             },
             {
-                question: '324 –{{676}}= 1000'
+                question: '324 – {{676}} = 1000'
             },
             {
-                question: '687 +{{313}}= 1000'
+                question: '687 + {{313}} = 1000'
             },
             {
-                question: '794 +{{306}}= 1000'
+                question: '794 + {{306}} = 1000'
             },
         ],
     },
@@ -46,7 +45,7 @@ export default [
             '367',
         ],
         sign: '+',
-        answer: '{{852}}'
+        answer:  '{{852}}'
     },
     {
         id: 2.1,
@@ -57,7 +56,7 @@ export default [
             '482',
         ],
         sign: '+',
-        answer: '{{719}}'
+        answer:  '{{719}}'
     },
     {
         id: 3,
@@ -68,7 +67,7 @@ export default [
             '189',
         ],
         sign: '+',
-        answer: '{{781}}'
+        answer:  '{{781}}'
     },
     {
         id: 4,
@@ -79,7 +78,7 @@ export default [
             '183',
         ],
         sign: '–',
-        answer: '{{273}}'
+        answer:  '{{273}}'
     },
     {
         id: 5,
@@ -90,7 +89,7 @@ export default [
             '376',
         ],
         sign: '–',
-        answer: '{{466}}'
+        answer:  '{{466}}'
     },
     {
         id: 6,
@@ -101,26 +100,26 @@ export default [
             '382',
         ],
         sign: '–',
-        answer: '{{342}}'
+        answer:  '{{342}}'
     },
     {
         id: 7,
         layout: LAYOUTS.columnCalculation,
         title: 'Oduzmi',
         questions: [
-            '42{{3}}',
-            '{{3}}27',
+            '42 {{3}}',
+             '{{3}} 27',
         ],
         sign: '+',
-        answer: '7{{5}}0'
+        answer: '7 {{5}} 0'
     },
     {
         id: 8,
         layout: LAYOUTS.columnCalculation,
         title: 'Oduzmi',
         questions: [
-            '{{5}}26',
-            '4{{3}}5',
+             '{{5}} 26',
+            '4 {{3}} 5',
         ],
         sign: '+',
         answer: '961'
@@ -130,8 +129,8 @@ export default [
         layout: LAYOUTS.columnCalculation,
         title: 'Oduzmi',
         questions: [
-            '4{{1}}7',
-            '{{2}}84',
+            '4 {{1}} 7',
+             '{{2}} 84',
         ],
         sign: '+',
         answer: '701'
@@ -143,16 +142,16 @@ export default [
         title: 'Nađi nepoznat sabirak',
         questions: [
             {
-                question: '{{471}}+ 385 = 856'
+                question:  '{{471}} + 385 = 856'
             },
             {
-                question: '{{204}}+ 437 = 641'
+                question:  '{{204}} + 437 = 641'
             },
             {
-                question: '427 +{{420}}= 847'
+                question: '427 + {{420}} = 847'
             },
             {
-                question: '189 +{{354}}= 543'
+                question: '189 + {{354}} = 543'
             },
         ],
     },
@@ -162,16 +161,16 @@ export default [
         title: 'Nađi nepoznati umanjenik ili umanjitelj',
         questions: [
             {
-                question: '{{719}}– 281 = 438'
+                question:  '{{719}} – 281 = 438'
             },
             {
-                question: '253 –{{125}}= 128'
+                question: '253 – {{125}} = 128'
             },
             {
-                question: '{{575}}– 328 = 247'
+                question:  '{{575}} – 328 = 247'
             },
             {
-                question: '457 –{{220}}= 237'
+                question: '457 – {{220}} = 237'
             },
         ],
     },
@@ -183,7 +182,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{473}}'
+                question:  '{{473}}'
             }
         ],
         left: `Rješenje:`
@@ -196,7 +195,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: 'Šljiva{{815}}kg, jabuka{{163}}kg'
+                question: 'Šljiva {{815}} kg, jabuka {{163}} kg'
             }
         ],
         left: `Rješenje:`
@@ -209,16 +208,16 @@ export default [
         text: `Izračunaj vrijednost brojnih izraza`,
         questions: [
             {
-                question: '(136 + 284) ∙ 2 ={{840}}'
+                question: '(136 + 284) ∙ 2 = {{840}}'
             },
             {
-                question: '(837 – 675) ∙ 3 ={{486}}'
+                question: '(837 – 675) ∙ 3 = {{486}}'
             },
             {
-                question: '453 + 182 ∙ 3 ={{999}}'
+                question: '453 + 182 ∙ 3 = {{999}}'
             },
             {
-                question: '187 ∙ 4 – 389 ={{359}}'
+                question: '187 ∙ 4 – 389 = {{359}}'
             },
         ],
     },
@@ -228,16 +227,16 @@ export default [
         title: 'Podijeli',
         questions: [
             {
-                question: '834 : 3 ={{278}}'
+                question: '834 : 3 = {{278}}'
             },
             {
-                question: '936 : 6 ={{15}}'
+                question: '936 : 6 = {{15}}'
             },
             {
-                question: '475 : 5 ={{95}}'
+                question: '475 : 5 = {{95}}'
             },
             {
-                question: '896 : 7 ={{128}}'
+                question: '896 : 7 = {{128}}'
             },
         ],
     },
@@ -249,7 +248,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{795}}'
+                question:  '{{795}}'
             }
         ],
         left: `Rješenje:`
@@ -260,16 +259,16 @@ export default [
         title: 'Riješi jednačine!',
         questions: [
             {
-                question: '8 ∙{{125}}= 1000'
+                question: '8 ∙ {{125}} = 1000'
             },
             {
-                question: '6 ∙{{146}}= 876'
+                question: '6 ∙ {{146}} = 876'
             },
             {
-                question: '{{748}}: 4 = 187'
+                question:  '{{748}} : 4 = 187'
             },
             {
-                question: '{{867}}: 3 = 289'
+                question:  '{{867}} : 3 = 289'
             },
         ],
     },
@@ -281,7 +280,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{240}}kg u mermeladu,{{480}}kg u kompot'
+                question:  '{{240}} kg u mermeladu, {{480}} kg u kompot'
             }
         ],
         left: `Rješenje:`
@@ -292,10 +291,10 @@ export default [
         title: 'Riješiti nejednačine',
         questions: [
             {
-                question: '{{< 643}}– 387 < 256'
+                question:  '{{< 643}} – 387 < 256'
             },
             {
-                question: '{{> 205}}+ 487 > 692'
+                question:  '{{> 205}} + 487 > 692'
             },
         ],
     },
@@ -305,10 +304,10 @@ export default [
         title: 'Riješiti nejednačine',
         questions: [
             {
-                question: '845 : 5 + 371  ={{540}}'
+                question: '845 : 5 + 371  = {{540}}'
             },
             {
-                question: '937 – 834 : 6 ={{798}}'
+                question: '937 – 834 : 6 = {{798}}'
             },
         ],
     },
@@ -320,28 +319,28 @@ export default [
         direction: `column`,
         questions: [
             {
-                question: '98854{{99854}}',
+                question: '98854 {{99854}}',
                 separator: {
                     src: require('../assets/image/11-08.png'),
                     width: '1rem'
                 }
             },
             {
-                question: '49826{{50826}}',
+                question: '49826 {{50826}}',
                 separator: {
                     src: require('../assets/image/11-08.png'),
                     width: '1rem'
                 }
             },
             {
-                question: '18924{{19924}}',
+                question: '18924 {{19924}}',
                 separator: {
                     src: require('../assets/image/11-08.png'),
                     width: '1rem'
                 }
             },
             {
-                question: '80999{{81999}}',
+                question: '80999 {{81999}}',
                 separator: {
                     src: require('../assets/image/11-08.png'),
                     width: '1rem'
@@ -356,28 +355,28 @@ export default [
         direction: `column`,
         questions: [
             {
-                question: '59827{{60827}}',
+                question: '59827 {{60827}}',
                 separator: {
                     src: require('../assets/image/11-08.png'),
                     width: '1rem'
                 }
             },
             {
-                question: '21208{{31208}}',
+                question: '21208 {{31208}}',
                 separator: {
                     src: require('../assets/image/11-08.png'),
                     width: '1rem'
                 }
             },
             {
-                question: '30724{{40724}}',
+                question: '30724 {{40724}}',
                 separator: {
                     src: require('../assets/image/11-08.png'),
                     width: '1rem'
                 }
             },
             {
-                question: '89099{{99099}}',
+                question: '89099 {{99099}}',
                 separator: {
                     src: require('../assets/image/11-08.png'),
                     width: '1rem'
@@ -438,21 +437,21 @@ export default [
         id: 23,
         layout: LAYOUTS.justInput,
         title: 'Napiši ciframa slijedeće brojeve',
-        questions: 'Devetsto devet hiljada petsto pet{{909505}}',
+        questions: 'Devetsto devet hiljada petsto pet {{909505}}',
         textInput: 'Devetsto devet hiljada petsto pet',
     },
     {
         id: 24,
         layout: LAYOUTS.justInput,
         title: 'Napiši ciframa slijedeće brojeve',
-        questions: 'Tristo tri hiljade trideset devet{{303039}}',
+        questions: 'Tristo tri hiljade trideset devet {{303039}}',
         textInput: 'Tristo tri hiljade trideset devet',
     },
     {
         id: 25,
         layout: LAYOUTS.justInput,
         title: 'Napiši ciframa slijedeće brojeve',
-        questions: 'Četiristotine hiljada devedeset devet{{400099}}',
+        questions: 'Četiristotine hiljada devedeset devet {{400099}}',
         textInput: 'Četiristotine hiljada devedeset devet',
     },
     {
@@ -463,7 +462,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{100000}}'
+                question:  '{{100000}}'
             }
         ],
         left: `Odgovor:`
@@ -476,7 +475,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{102567}}{{765210}}'
+                question:  '{{102567}}  {{765210}}'
             }
         ],
         left: `Odgovor:`
@@ -489,7 +488,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{521025}}'
+                question:  '{{521025}}'
             }
         ],
         left: `Odgovor:`
@@ -502,7 +501,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{59379}}'
+                question:  '{{59379}}'
             }
         ],
         left: `Odgovor:`
@@ -514,16 +513,16 @@ export default [
         title: 'Računaj!',
         questions: [
             {
-                question: '2843 + 3279 ={{6122}}'
+                question: '2843 + 3279 = {{6122}}'
             },
             {
-                question: '5826 – 2378 ={{3448}}'
+                question: '5826 – 2378 = {{3448}}'
             },
             {
-                question: '4577 + 3208 ={{7785}}'
+                question: '4577 + 3208 = {{7785}}'
             },
             {
-                question: '7304  –5 229 ={{2075}}'
+                question: '7304  –5 229 = {{2075}}'
             },
         ],
     },
@@ -533,16 +532,16 @@ export default [
         title: 'Računaj!',
         questions: [
             {
-                question: '4271 +{{2086}}= 6357'
+                question: '4271 + {{2086}} = 6357'
             },
             {
-                question: '5784 –{{2499}}= 3285'
+                question: '5784 – {{2499}} = 3285'
             },
             {
-                question: '3825 +{{5175}}= 9000'
+                question: '3825 + {{5175}} = 9000'
             },
             {
-                question: '7000 –{{5103}}= 1897'
+                question: '7000 – {{5103}} = 1897'
             },
         ],
     }, {
@@ -554,7 +553,7 @@ export default [
             '485',
         ],
         sign: '+',
-        answer: '{{6312}}'
+        answer:  '{{6312}}'
     }, {
         id: 33,
         layout: LAYOUTS.columnCalculation,
@@ -564,7 +563,7 @@ export default [
             '5768',
         ],
         sign: '+',
-        answer: '{{8715}}'
+        answer:  '{{8715}}'
     }, {
         id: 34,
         layout: LAYOUTS.columnCalculation,
@@ -574,7 +573,7 @@ export default [
             '3809',
         ],
         sign: '+',
-        answer: '{{8065}}'
+        answer:  '{{8065}}'
     }, {
         id: 35,
         layout: LAYOUTS.columnCalculation,
@@ -584,7 +583,7 @@ export default [
             '3286',
         ],
         sign: '–',
-        answer: '{{4954}}'
+        answer:  '{{4954}}'
     }, {
         id: 36,
         layout: LAYOUTS.columnCalculation,
@@ -594,7 +593,7 @@ export default [
             '3294',
         ],
         sign: '–',
-        answer: '{{4547}}'
+        answer:  '{{4547}}'
     },
     {
         id: 37,
@@ -605,7 +604,7 @@ export default [
             '3567',
         ],
         sign: '–',
-        answer: '{{5838}}'
+        answer:  '{{5838}}'
     },
     {
         id: 38,
@@ -615,7 +614,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{68293}}tona'
+                question:  '{{68293}} tona'
             }
         ],
         left: `Rješenje:`
@@ -628,7 +627,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '1. mjesec{{131842}}, 2. mjesec{{96937}}i 3. mjesec{{158435}}'
+                question: '1. mjesec {{131842}} , 2. mjesec {{96937}} i 3. mjesec {{158435}}'
             }
         ],
         left: `Rješenje:`
@@ -640,10 +639,10 @@ export default [
         title: 'Računaj',
         questions: [
             {
-                question: '41245 + 21255 + 37500 ={{100000}}'
+                question: '41245 + 21255 + 37500 = {{100000}}'
             },
             {
-                question: '38188 + 18239 + 21761 ={{78188}}'
+                question: '38188 + 18239 + 21761 = {{78188}}'
             },
         ],
     },
@@ -655,7 +654,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: 'Poveća se za{{50}}'
+                question: 'Poveća se za {{50}}'
             }
         ],
         left: `Rješenje:`
@@ -668,7 +667,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{3480}}'
+                question:  '{{3480}}'
             }
         ],
         left: `Rješenje:`
@@ -681,7 +680,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{37374}}'
+                question:  '{{37374}}'
             }
         ],
         left: `Rješenje:`
@@ -694,7 +693,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{50250}}'
+                question:  '{{50250}}'
             }
         ],
         left: `Rješenje:`
@@ -707,7 +706,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: 'Smanjiti ga za{{65}}'
+                question: 'Smanjiti ga za {{65}}'
             }
         ],
         left: `Rješenje:`
@@ -719,16 +718,16 @@ export default [
         title: 'Riješi jednačine',
         questions: [
             {
-                question: '{{797}}+ 1784 = 2581'
+                question:  '{{797}} + 1784 = 2581'
             },
             {
-                question: '637 +{{1349}}= 1986'
+                question: '637 + {{1349}} = 1986'
             },
             {
-                question: '3485 –{{1550}}= 1935'
+                question: '3485 – {{1550}} = 1935'
             },
             {
-                question: '{{6741}}– 4156 = 2585'
+                question:  '{{6741}} – 4156 = 2585'
             },
         ],
     }, {
@@ -739,7 +738,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{2816}}'
+                question:  '{{2816}}'
             }
         ],
         left: `Rješenje:`
@@ -751,7 +750,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{7440}}'
+                question:  '{{7440}}'
             }
         ],
         left: `Rješenje:`
@@ -761,16 +760,16 @@ export default [
         title: 'Riješi nejednačine',
         questions: [
             {
-                question: '57826 +{{41753}}< 99579'
+                question: '57826 + {{41753}} < 99579'
             },
             {
-                question: '{{475024}}– 451190 < 23834'
+                question:  '{{475024}} – 451190 < 23834'
             },
             {
-                question: '{{49805}}+ 28175 > 77980'
+                question:  '{{49805}} + 28175 > 77980'
             },
             {
-                question: '83196 –{{56818}}> 26378'
+                question: '83196 – {{56818}} > 26378'
             },
         ],
     },
@@ -782,7 +781,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{12175}}'
+                question:  '{{12175}}'
             }
         ],
         left: `Rješenje:`
@@ -795,7 +794,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{50096}}'
+                question:  '{{50096}}'
             }
         ],
         left: `Rješenje:`
@@ -807,22 +806,22 @@ export default [
         title: 'Računaj',
         questions: [
             {
-                question: '1852 ∙ 100 ={{185200}}'
+                question: '1852 ∙ 100 = {{185200}}'
             },
             {
-                question: '5840 : 10 ={{584}}'
+                question: '5840 : 10 = {{584}}'
             },
             {
-                question: '897 ∙ 1000 ={{897000}}'
+                question: '897 ∙ 1000 = {{897000}}'
             },
             {
-                question: '78500 : 100 ={{785}}'
+                question: '78500 : 100 = {{785}}'
             },
             {
-                question: '42 ∙ 10000 ={{420000}}'
+                question: '42 ∙ 10000 = {{420000}}'
             },
             {
-                question: '342000 : 100 ={{3420}}'
+                question: '342000 : 100 = {{3420}}'
             },
         ],
     },
@@ -834,42 +833,42 @@ export default [
         direction: `column`,
         questions: [
             {
-                question: '5760{{576000}}',
+                question: '5760 {{576000}}',
                 separator: {
                     src: require('../assets/image/11-08.png'),
                     width: '1rem'
                 }
             },
             {
-                question: '4263{{426300}}',
+                question: '4263 {{426300}}',
                 separator: {
                     src: require('../assets/image/11-08.png'),
                     width: '1rem'
                 }
             },
             {
-                question: '108{{10800}}',
+                question: '108 {{10800}}',
                 separator: {
                     src: require('../assets/image/11-08.png'),
                     width: '1rem'
                 }
             },
             {
-                question: '1342{{134200}}',
+                question: '1342 {{134200}}',
                 separator: {
                     src: require('../assets/image/11-08.png'),
                     width: '1rem'
                 }
             },
             {
-                question: '2840{{284000}}',
+                question: '2840 {{284000}}',
                 separator: {
                     src: require('../assets/image/11-08.png'),
                     width: '1rem'
                 }
             },
             {
-                question: '425{{42500}}',
+                question: '425 {{42500}}',
                 separator: {
                     src: require('../assets/image/11-08.png'),
                     width: '1rem'
@@ -885,7 +884,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{100 puta}}'
+                question:  '{{100 puta}}'
             }
         ],
         left: `Rješenje:`
@@ -899,42 +898,42 @@ export default [
         direction: `column`,
         questions: [
             {
-                question: '324000{{324}}',
+                question: '324000 {{324}}',
                 separator: {
                     src: require('../assets/image/11-08.png'),
                     width: '1rem'
                 }
             },
             {
-                question: '40000{{40}}',
+                question: '40000 {{40}}',
                 separator: {
                     src: require('../assets/image/11-08.png'),
                     width: '1rem'
                 }
             },
             {
-                question: '84000{{84}}',
+                question: '84000 {{84}}',
                 separator: {
                     src: require('../assets/image/11-08.png'),
                     width: '1rem'
                 }
             },
             {
-                question: '820000{{820}}',
+                question: '820000 {{820}}',
                 separator: {
                     src: require('../assets/image/11-08.png'),
                     width: '1rem'
                 }
             },
             {
-                question: '50000{{50}}',
+                question: '50000 {{50}}',
                 separator: {
                     src: require('../assets/image/11-08.png'),
                     width: '1rem'
                 }
             },
             {
-                question: '379000{{379}}',
+                question: '379000 {{379}}',
                 separator: {
                     src: require('../assets/image/11-08.png'),
                     width: '1rem'
@@ -951,7 +950,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{589000}}'
+                question:  '{{589000}}'
             }
         ],
         left: `Rješenje:`
@@ -962,22 +961,22 @@ export default [
         title: 'Računaj',
         questions: [
             {
-                question: '320 : 8 ={{40}}'
+                question: '320 : 8 = {{40}}'
             },
             {
-                question: '81000 : 90 ={{900}}'
+                question: '81000 : 90 = {{900}}'
             },
             {
-                question: '5600 : 70 ={{80}}'
+                question: '5600 : 70 = {{80}}'
             },
             {
-                question: '4900 : 70 ={{70}}'
+                question: '4900 : 70 = {{70}}'
             },
             {
-                question: '40000 : 50  ={{800}}'
+                question: '40000 : 50  = {{800}}'
             },
             {
-                question: '3600 : 60 ={{6}}'
+                question: '3600 : 60 = {{6}}'
             },
         ],
     },
@@ -987,22 +986,22 @@ export default [
         title: 'Računaj',
         questions: [
             {
-                question: '320 : 8 ={{40}}'
+                question: '320 : 8 = {{40}}'
             },
             {
-                question: '81000 : 90 ={{900}}'
+                question: '81000 : 90 = {{900}}'
             },
             {
-                question: '5600 : 70 ={{80}}'
+                question: '5600 : 70 = {{80}}'
             },
             {
-                question: '4900 : 70 ={{70}}'
+                question: '4900 : 70 = {{70}}'
             },
             {
-                question: '40000 : 50  ={{800}}'
+                question: '40000 : 50  = {{800}}'
             },
             {
-                question: '3600 : 60 ={{6}}'
+                question: '3600 : 60 = {{6}}'
             },
         ],
     },
@@ -1013,28 +1012,28 @@ export default [
         title: 'Računaj',
         questions: [
             {
-                question: '(8 + 7) ∙ 4 ={{60}}'
+                question: '(8 + 7) ∙ 4 = {{60}}'
             },
             {
-                question: '3 ∙ 156  + 7 ∙ 156 ={{1560}}'
+                question: '3 ∙ 156  + 7 ∙ 156 = {{1560}}'
             },
             {
-                question: '(9 + 8) ∙ 7 ={{119}}'
+                question: '(9 + 8) ∙ 7 = {{119}}'
             },
             {
-                question: '17 ∙ 19 + 3 ∙ 19 ={{380}}'
+                question: '17 ∙ 19 + 3 ∙ 19 = {{380}}'
             },
             {
-                question: '(14 + 6) ∙ 8 ={{160}}'
+                question: '(14 + 6) ∙ 8 = {{160}}'
             },
             {
-                question: '36 ∙ 8 + 4 ∙ 8 ={{320}}'
+                question: '36 ∙ 8 + 4 ∙ 8 = {{320}}'
             },
             {
-                question: '(23 + 7) ∙ 9 ={{270}}'
+                question: '(23 + 7) ∙ 9 = {{270}}'
             },
             {
-                question: '238 ∙ 4 + 238 ∙ 6 ={{2380}}'
+                question: '238 ∙ 4 + 238 ∙ 6 = {{2380}}'
             },
         ],
     }, {
@@ -1043,22 +1042,22 @@ export default [
         title: 'Računaj',
         questions: [
             {
-                question: '346 ∙ 8 – 46 ∙ 8 ={{2400}}'
+                question: '346 ∙ 8 – 46 ∙ 8 = {{2400}}'
             },
             {
-                question: '(56 – 26) ∙ 9 ={{270}}'
+                question: '(56 – 26) ∙ 9 = {{270}}'
             },
             {
-                question: '13417 – 134 ∙ 7 ={{1340}}'
+                question: '13417 – 134 ∙ 7 = {{1340}}'
             },
             {
-                question: '(278 – 78) ∙ 7 ={{1400}}'
+                question: '(278 – 78) ∙ 7 = {{1400}}'
             },
             {
-                question: '128 ∙ 5 – 28 ∙ 5 ={{500}}'
+                question: '128 ∙ 5 – 28 ∙ 5 = {{500}}'
             },
             {
-                question: '(543 – 43) ∙ 4 ={{2000}}'
+                question: '(543 – 43) ∙ 4 = {{2000}}'
             },
         ],
     }, {
@@ -1067,22 +1066,22 @@ export default [
         title: 'Računaj',
         questions: [
             {
-                question: '45 : 6 + 15 : 6 ={{100}}'
+                question: '45 : 6 + 15 : 6 = {{100}}'
             },
             {
-                question: '87:  4 – 63 : 4 ={{6}}'
+                question: '87:  4 – 63 : 4 = {{6}}'
             },
             {
-                question: '430 : 9 + 470 : 9 ={{100}}'
+                question: '430 : 9 + 470 : 9 = {{100}}'
             },
             {
-                question: '129 : 5 – 79: 5 ={{100}}'
+                question: '129 : 5 – 79: 5 = {{100}}'
             },
             {
-                question: '325 : 7 + 375 : 7 ={{10}}'
+                question: '325 : 7 + 375 : 7 = {{10}}'
             },
             {
-                question: '253 : 8 – 221 : 8 ={{4}}'
+                question: '253 : 8 – 221 : 8 = {{4}}'
             },
         ],
     },
@@ -1094,7 +1093,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{540}}KM '
+                question:  '{{540}} KM '
             }
         ],
         left: `Rješenje:`
@@ -1107,7 +1106,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{540}}KM '
+                question:  '{{540}} KM '
             }
         ],
         left: `Rješenje:`
@@ -1120,7 +1119,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: 'Djeljenik treba povećati za vrijednost{{djeljenika}}'
+                question: 'Djeljenik treba povećati za vrijednost {{djeljenika}}'
             }
         ],
         left: `Rješenje:`
@@ -1133,7 +1132,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{25}}i{{225}}'
+                question:  '{{25}} i {{225}}'
             }
         ],
         left: `Rješenje:`
@@ -1145,16 +1144,16 @@ export default [
         title: 'Računaj',
         questions: [
             {
-                question: '8379 : 9 ={{931}}'
+                question: '8379 : 9 = {{931}}'
             },
             {
-                question: '3875 : 5 ={{775}}'
+                question: '3875 : 5 = {{775}}'
             },
             {
-                question: '48234 : 6 ={{8039}}'
+                question: '48234 : 6 = {{8039}}'
             },
             {
-                question: '77944 : 4 ={{19486}}'
+                question: '77944 : 4 = {{19486}}'
             },
         ],
     }, {
@@ -1165,7 +1164,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{4216}}KM'
+                question:  '{{4216}} KM'
             }
         ],
         left: `Rješenje:`
@@ -1177,7 +1176,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '4371:6={{728}}ostatak{{3}}'
+                question: '4371:6= {{728}} ostatak {{3}}'
             }
         ],
         left: `Rješenje:`
@@ -1189,7 +1188,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '127571 : 6 ={{21261}}ostatak{{5}}'
+                question: '127571 : 6 = {{21261}} ostatak {{5}}'
             }
         ],
         left: `Rješenje:`
@@ -1202,7 +1201,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{972}}KM'
+                question:  '{{972}} KM'
             }
         ],
         left: `Rješenje:`
@@ -1215,7 +1214,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{54906}}'
+                question:  '{{54906}}'
             }
         ],
         left: `Rješenje:`
@@ -1227,31 +1226,31 @@ export default [
         title: 'Množi',
         questions: [
             {
-                question: '74 ∙ 38 ={{2812}}'
+                question: '74 ∙ 38 = {{2812}}'
             },
             {
-                question: '236 ∙ 584 ={{137824}}'
+                question: '236 ∙ 584 = {{137824}}'
             },
             {
-                question: '156 ∙ 49 ={{7644}}'
+                question: '156 ∙ 49 = {{7644}}'
             },
             {
-                question: '156 ∙ 49 ={{7644}}'
+                question: '156 ∙ 49 = {{7644}}'
             },
             {
-                question: '1237 ∙ 385 ={{476245}}'
+                question: '1237 ∙ 385 = {{476245}}'
             },
             {
-                question: '608 ∙ 72 ={{43776}}'
+                question: '608 ∙ 72 = {{43776}}'
             },
             {
-                question: '986 ∙ 187 ={{184382}}'
+                question: '986 ∙ 187 = {{184382}}'
             },
             {
-                question: '936 ∙ 18 ={{16848}}'
+                question: '936 ∙ 18 = {{16848}}'
             },
             {
-                question: '785 ∙ 239 ={{187615}}'
+                question: '785 ∙ 239 = {{187615}}'
             },
         ],
     },
@@ -1263,7 +1262,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{48792}}'
+                question:  '{{48792}}'
             }
         ],
         left: `Rješenje:`
@@ -1276,7 +1275,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{7056}}'
+                question:  '{{7056}}'
             }
         ],
         left: `Rješenje:`
@@ -1289,7 +1288,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{6708}}'
+                question:  '{{6708}}'
             }
         ],
         left: `Rješenje:`
@@ -1302,7 +1301,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{2856}}litara'
+                question:  '{{2856}} litara'
             }
         ],
         left: `Rješenje:`
@@ -1315,7 +1314,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{3945}}pari'
+                question:  '{{3945}} pari'
             }
         ],
         left: `Rješenje:`
@@ -1328,7 +1327,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{3945}}pari'
+                question:  '{{3945}} pari'
             }
         ],
         left: `Rješenje:`
@@ -1342,7 +1341,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{54756}}cm2'
+                question:  '{{54756}} cm2'
             }
         ],
         left: `Rješenje:`
@@ -1355,7 +1354,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{9}}puta'
+                question:  '{{9}} puta'
             }
         ],
         left: `Rješenje:`
@@ -1368,7 +1367,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{2880}}dm2'
+                question:  '{{2880}} dm2'
             }
         ],
         left: `Rješenje:`
@@ -1381,7 +1380,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{7660}}m2'
+                question:  '{{7660}} m2'
             }
         ],
         left: `Rješenje:`
@@ -1394,7 +1393,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: 'Površina{{kvadrata}}je veća za{{4}}m2:'
+                question: 'Površina {{kvadrata}} je veća za {{4}} m2:'
             }
         ],
         left: `Rješenje:`
@@ -1408,7 +1407,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{338}}m2'
+                question:  '{{338}} m2'
             }
         ],
         left: `Rješenje:`
@@ -1422,7 +1421,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{20482}}cm2'
+                question:  '{{20482}} cm2'
             }
         ],
         left: `Rješenje:`
@@ -1435,7 +1434,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{5480}}dm2'
+                question:  '{{5480}} dm2'
             }
         ],
         left: `Rješenje:`
@@ -1448,7 +1447,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{648}}dm2'
+                question:  '{{648}} dm2'
             }
         ],
         left: `Rješenje:`
@@ -1461,7 +1460,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{112}}cm2'
+                question:  '{{112}} cm2'
             }
         ],
         left: `Rješenje:`
@@ -1474,7 +1473,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{256}}cm2'
+                question:  '{{256}} cm2'
             }
         ],
         left: `Rješenje:`
@@ -1486,16 +1485,16 @@ export default [
         title: 'Podijeli',
         questions: [
             {
-                question: '1896 : 12 ={{158}}'
+                question: '1896 : 12 = {{158}}'
             },
             {
-                question: '3312 : 24 ={{138}}'
+                question: '3312 : 24 = {{138}}'
             },
             {
-                question: '14644 : 28 ={{523}}'
+                question: '14644 : 28 = {{523}}'
             },
             {
-                question: '73692 : 36 ={{2047}}'
+                question: '73692 : 36 = {{2047}}'
             }
         ],
     },
@@ -1507,7 +1506,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{1236}}kg'
+                question:  '{{1236}} kg'
             }
         ],
         left: `Rješenje:`
@@ -1520,7 +1519,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{24}}'
+                question:  '{{24}}'
             }
         ],
         left: `Rješenje:`
@@ -1533,7 +1532,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{13036}}'
+                question:  '{{13036}}'
             }
         ],
         left: `Rješenje:`
@@ -1546,7 +1545,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{214}}m2'
+                question:  '{{214}} m2'
             }
         ],
         left: `Rješenje:`
@@ -1558,13 +1557,13 @@ export default [
         text: `Koristi jednakost 111 : 37 = 3, pa izračunaj :`,
         questions: [
             {
-                question: '666 : 37 ={{18}}}'
+                question: '666 : 37 = {{18}} }'
             },
             {
-                question: '888 : 37 ={{24}}'
+                question: '888 : 37 = {{24}}'
             },
             {
-                question: '999 : 37 ={{27}}'
+                question: '999 : 37 = {{27}}'
             }
         ],
     },
@@ -1575,13 +1574,13 @@ export default [
         text: `Koristi jednakost 111 : 37 = 3, pa izračunaj :`,
         questions: [
             {
-                question: '666 : 37 ={{18}}}'
+                question: '666 : 37 = {{18}} }'
             },
             {
-                question: '888 : 37 ={{24}}'
+                question: '888 : 37 = {{24}}'
             },
             {
-                question: '999 : 37 ={{27}}'
+                question: '999 : 37 = {{27}}'
             }
         ],
     },
@@ -1595,16 +1594,16 @@ export default [
         text: `Množenje i dijeljenje proizvoda i količnika brojem`,
         questions: [
             {
-                question: '(6 3 45) ∙ 2 ={{1620}}'
+                question: '(6 3 45) ∙ 2 = {{1620}}'
             },
             {
-                question: '(72 15 4) : 8 ={{540}}'
+                question: '(72 15 4) : 8 = {{540}}'
             },
             {
-                question: '(25 8 3) 4 ={{2400}}'
+                question: '(25 8 3) 4 = {{2400}}'
             },
             {
-                question: '(49 35 4) : 7 ={{980}}'
+                question: '(49 35 4) : 7 = {{980}}'
             }
         ],
     },
@@ -1615,13 +1614,13 @@ export default [
         text: `Množenje i dijeljenje proizvoda i količnika brojem`,
         questions: [
             {
-                question: '(960:16) : 5 ={{12}}'
+                question: '(960:16) : 5 = {{12}}'
             },
             {
-                question: '(560:8) : 7 ={{10}}'
+                question: '(560:8) : 7 = {{10}}'
             },
             {
-                question: '(720:9) : 8 ={{10}}'
+                question: '(720:9) : 8 = {{10}}'
             }
         ],
     },
@@ -1632,10 +1631,10 @@ export default [
         text: `Množenje i dijeljenje proizvoda i količnika brojem`,
         questions: [
             {
-                question: '(828:6) 15 ={{2070}}'
+                question: '(828:6) 15 = {{2070}}'
             },
             {
-                question: '(1275:25) 45 ={{2295}}'
+                question: '(1275:25) 45 = {{2295}}'
             }
         ],
     },
@@ -1646,7 +1645,7 @@ export default [
         text: `Četiri radnika urade neki posao za 264 sata. Za koje vrijeme bi isti posao uradila 3 radnika?`,
         questions: [
             {
-                question: '{{198}}sati'
+                question:  '{{198}} sati'
             }
         ],
         left: `Rješenje:`
@@ -1658,7 +1657,7 @@ export default [
         text: `Ako 6 radnika zarade za jedan dan 708 KM. Koliko će zaraditi, za istu vrstu posla, jedan radnik za 24 dana?`,
         questions: [
             {
-                question: '{{2832}}KM'
+                question:  '{{2832}} KM'
             }
         ],
         left: `Rješenje:`
@@ -1670,7 +1669,7 @@ export default [
         text: `Tvornica je proizvela 3845 komada usisivača. Cijena jednog usisivača je 108 KM. Izračunaj vrijednost ukupne proizvodnje usisivača.`,
         questions: [
             {
-                question: '{{415260}}KM'
+                question:  '{{415260}} KM'
             }
         ],
         left: `Rješenje:`
@@ -1683,10 +1682,10 @@ export default [
         text: `Množenje i dijeljenje proizvoda i količnika brojem`,
         questions: [
             {
-                question: '423141 : 47 – 51471 : 57 ={{8100}}'
+                question: '423141 : 47 – 51471 : 57 = {{8100}}'
             },
             {
-                question: '(11016 : 27) : 408 + 259 ={{260}}'
+                question: '(11016 : 27) : 408 + 259 = {{260}}'
             }
         ],
     },
@@ -1697,7 +1696,7 @@ export default [
         text: `Zbir dva broja 56225, a jedan od njih je 25. Koliko je puta veći broj veći od manjeg?`,
         questions: [
             {
-                question: '{{2248}}'
+                question:  '{{2248}}'
             }
         ],
         left: `Rješenje:`
@@ -1709,7 +1708,7 @@ export default [
         text: `Izračunaj vrijednost izraza:(9072:x) 16, ako je x=28.`,
         questions: [
             {
-                question: '{{5184}}'
+                question:  '{{5184}}'
             }
         ],
         left: `Rješenje:`
@@ -1721,13 +1720,13 @@ export default [
         text: `Množenje i dijeljenje proizvoda i količnika brojem`,
         questions: [
             {
-                question: '(64 +{{136}}) : 8 = 25'
+                question: '(64 + {{136}} ) : 8 = 25'
             },
             {
-                question: '(42∙{{1034}}) : 14 = 3102'
+                question: '(42∙ {{1034}} ) : 14 = 3102'
             },
             {
-                question: '{{75168}}: 36 + 257 = 2345'
+                question:  '{{75168}} : 36 + 257 = 2345'
             }
         ],
     },
@@ -1738,7 +1737,7 @@ export default [
         text: `Iz dva grada međusobne udaljenosti 795 km krenula su istovremeno dva automobila jedan prema drugom. Jedan automobil je vozio 76 km na sat, a drugi 83 km na sat. Poslije koliko sati vožnje su se automobili susreli?`,
         questions: [
             {
-                question: '{{5}}sati'
+                question:  '{{5}} sati'
             }
         ],
         left: `Rješenje:`
@@ -1750,7 +1749,7 @@ export default [
         text: `U jednoj bačvi je bilo 3 puta više ulja nego u drugoj. Ako se iz prve bačve istoči 25 litara ulja u obje bačve ostaje zajedno 175 litara ulja. Koliko je litara ulja bilo u svakoj bačvi prije istakanja ulja iz prve bačve?`,
         questions: [
             {
-                question: '{{150}}litara i{{50}}litara'
+                question:  '{{150}} litara i {{50}} litara'
             }
         ],
         left: `Rješenje:`
@@ -1763,7 +1762,7 @@ export default [
         text: `Zapremina kvadra je 1440 cm3. Izračunaj njegovu visinu ako mu je dužina 12 cm, a širina 8 cm.`,
         questions: [
             {
-                question: '{{15}}cm'
+                question:  '{{15}} cm'
             }
         ],
         left: `Rješenje:`
@@ -1775,7 +1774,7 @@ export default [
         text: `Akvarijum oblika kocke ivice 60 cm, napunjen je vodom visine 40 cm. Koliko litara vode ima u akvarijumu?`,
         questions: [
             {
-                question: '{{144}}litra'
+                question:  '{{144}} litra'
             }
         ],
         left: `Rješenje:`
@@ -1787,7 +1786,7 @@ export default [
         text: `Zapremina kocke i kvadra zajedno iznosi 980 m3. Jednake su im površine osnovica i iznose 49 M2. Kolika je visina kvadra?`,
         questions: [
             {
-                question: '{{13}}m'
+                question:  '{{13}} m'
             }
         ],
         left: `Rješenje:`
@@ -1799,7 +1798,7 @@ export default [
         text: `Dno bunara ima oblik kvadrata ivice 15 dm. Visina bunara je 2 m. Koliko vode stane u bunar kad je pun?`,
         questions: [
             {
-                question: '{{4500}}litara'
+                question:  '{{4500}} litara'
             }
         ],
         left: `Rješenje:`
@@ -1811,10 +1810,10 @@ export default [
         text: `Zbir svih ivica kocke je 108 m. Izračunaj površinu i zapreminu te kocke.`,
         questions: [
             {
-                question: 'P ={{486}}m2'
+                question: 'P = {{486}} m2'
             },
             {
-                question: 'V ={{729}}m3'
+                question: 'V = {{729}} m3'
             }
         ],
     },
@@ -1825,7 +1824,7 @@ export default [
         text: `Visina kvadra je 32 cm. Ako se površina osnove poveća tri puta, zapremina se poveća za 6080 cm3. Odredi površinu osnove tog kvadra.`,
         questions: [
             {
-                question: '{{95}}cm2'
+                question:  '{{95}} cm2'
             }
         ],
         left: `Rješenje:`
@@ -1837,7 +1836,7 @@ export default [
         title: 'Izračunaj',
         questions: [
             {
-                question: '756322 7 + 1856787 ={{6580000}}'
+                question: '756322 7 + 1856787 = {{6580000}}'
             }
         ],
     },
@@ -1848,7 +1847,7 @@ export default [
         text: `Broj 2347 saberi 10 puta sa samim sobom pa od dobivenog zbira oduzmi 124 i dobivenu razliku podijeli sa 6. Kolika je vrijednost dobivenog izraza ?`,
         questions: [
             {
-                question: '{{3891}}'
+                question:  '{{3891}}'
             }
         ],
         left: `Rješenje:`
@@ -1859,7 +1858,7 @@ export default [
         title: 'Izračunaj',
         questions: [
             {
-                question: '2780–(5350:5–873) ={{1971}}'
+                question: '2780–(5350:5–873) = {{1971}}'
             }
         ],
     },
@@ -1869,7 +1868,7 @@ export default [
         title: 'Izračunaj',
         questions: [
             {
-                question: '(6225–225) (2664:24) 15 ={{9990000}}'
+                question: '(6225–225) (2664:24) 15 = {{9990000}}'
             }
         ],
     },
@@ -1880,10 +1879,10 @@ export default [
         text: `Ciframa: 2, 3, 4, 1, 7, 0, 8, 6 napiši najmanji i najveći prirodan broj tako da se svaka cifra u broju pojavi samo jedanput.`,
         questions: [
             {
-                question: '{{10234678}}'
+                question:  '{{10234678}}'
             },
             {
-                question: '{{87643201}}'
+                question:  '{{87643201}}'
             }
         ],
     },
@@ -1894,10 +1893,10 @@ export default [
         text: `Upiši ciframa brojeve`,
         questions: [
             {
-                question: '5 miliona 4 hiljade 37 –{{5004037}}'
+                question: '5 miliona 4 hiljade 37 – {{5004037}}'
             },
             {
-                question: '13 miliona 84 –{{13000084}}'
+                question: '13 miliona 84 – {{13000084}}'
             }
         ],
     }

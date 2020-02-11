@@ -24,7 +24,7 @@ const Wrapper = styled.div`
     padding: 2rem;
     padding-bottom: 4rem;
     z-index: 300;
-    font-family: 'Boogaloo', cursive;
+    font-family: 'Mali', cursive;
     font-size: 1.5rem;
     color:#523217;
     border-radius: 10px;
