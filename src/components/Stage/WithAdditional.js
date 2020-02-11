@@ -26,7 +26,7 @@ const Title = styled.div`
 
 const Paragraph = styled.p`
     font-family: 'Mali', cursive;
-    font-size: 2rem;
+    font-size: 1.6rem;
     text-align: center;
     max-width: 60%;
     color: white;
