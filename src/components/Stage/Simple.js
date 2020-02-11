@@ -162,7 +162,7 @@ const SepatatorWrapper = styled.div`
   }
 `;
 
-const InputWithState = React.memo(({separator, edit, val, solo, question, answer, handler, direction, color, disabled, placeholder, theme, layout}) => {
+const InputWithState = React.memo(({widthimportant,separator, edit, val, solo, question, answer, handler, direction, color, disabled, placeholder, theme, layout}) => {
     const [id] = React.useState(nanoid)
     const {dispatch, help} = useStoreon('help');
     const [right, setRight] = useState(null);
@@ -243,7 +243,7 @@ const InputWithState = React.memo(({separator, edit, val, solo, question, answer
 
     if (!question) {
         return (
-            <InputWrapper theme={theme} width={width} height={height}>
+            <InputWrapper theme={theme} width={widthimportant || width} height={height}>
                 {!placeholder || edit &&
                 <HiddenAnswer edit={edit} show={help}
                               ref={ref}>{Array.isArray(answer) ? answer[0] : answer}</HiddenAnswer>}
@@ -281,7 +281,7 @@ const InputWithState = React.memo(({separator, edit, val, solo, question, answer
                                     <img src={separator.src} alt=""/>
                                 </SepatatorWrapper>
                                 }
-                                <InputWrapper layout={layout} separator={separator && separator.width} width={width}
+                                <InputWrapper layout={layout} separator={separator && separator.width} width={widthimportant || width}
                                               height={height} key={i}>
                                     <HiddenAnswer show={help}
                                                   ref={ref}>{Array.isArray(answer) ? answer[0] : answer}</HiddenAnswer>
@@ -308,7 +308,7 @@ const InputWithState = React.memo(({separator, edit, val, solo, question, answer
 });
 
 
-export const Simple = ({children, separator, edit, value, solo, question, img, handlerInput, answer, direction, layout, placeholder, disabled, theme}) => {
+export const Simple = ({size, children, separator, edit, value, solo, question, img, handlerInput, answer, direction, layout, placeholder, disabled, theme}) => {
     const props = {
         size: layout === 'simple' ? 2 : 2,
         color: layout === 'simple' ? '#000' : '#7b4728'
@@ -326,6 +326,7 @@ export const Simple = ({children, separator, edit, value, solo, question, img, h
                 }
 
                 <InputWithState
+                    widthimportant={size}
                     direction={direction}
                     separator={separator}
                     val={value}

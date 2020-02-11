@@ -212,7 +212,7 @@ export function GameView({handlerFullscreen}) {
                 <Blur bgNone={false} zIndex={2} blur={false}>
                     <Intro/>
                     <Kviz/>
-                    <Tutorial handler={handlerNextTutorial} active={showTutorial}
+                    <Tutorial handler={handlerNextTutorial} active={showTutorial && !kviz.show}
                               data={tutorialData[tutorialCount]}/>
                     {/*<Owl active={showStage && !showTutorial && !kviz.show}
                          data={stageData.hasOwnProperty('speech') && stageData.speech}/>*/}

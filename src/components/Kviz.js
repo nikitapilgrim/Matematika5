@@ -24,6 +24,10 @@ const SlideVert = props => css`
   animation: ${props.show ? SlideTop : SlideBottom} 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 `;
 
+const Title = styled.div`
+      font-family: 'Mali', cursive;
+      font-size: 6rem;
+`;
 
 const Wrapper = styled.div`
   position: fixed;
@@ -91,10 +95,10 @@ export const Kviz = ({order}) => {
             setShow(true);
             setTimeout(() => {
                 dispatch('kviz/hide');
-            }, 800);
+            }, 1900);
             setTimeout(() => {
                 dispatch('stage/next');
-            }, 1000)
+            }, 2000)
         } else {
             setShow(false)
         }
@@ -109,15 +113,14 @@ export const Kviz = ({order}) => {
     return (
         <>
             <Wrapper show={show}>
+                {/*
                 <ImgWrapper>
                     <img src={title} alt={kviz.order}/>
                 </ImgWrapper>
-                {/*<TextWithBorders
-                strokeColor={'#ffd2ba'}
-                strokeWidth={'0.1em'}
-                size={6}
-                color="#662c0c"
-                text={`Kviz ${number || 1}`}/>*/}
+                */}
+                <Title>
+                    Kviz {number || 1}
+                </Title>
             </Wrapper>
         </>
     )

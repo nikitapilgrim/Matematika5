@@ -1,10 +1,11 @@
-import React, {useEffect, useMemo, useRef, useState} from 'react';
+import React, {useEffect,useLayoutEffect, useMemo, useRef, useState} from 'react';
+import {useRafState, useMount} from 'react-use';
 import styled from 'styled-components';
 import useStoreon from "storeon/react";
 import {Simple} from "./Simple";
 import reactStringReplace from 'react-string-replace';
 
-const nanoid = require('nanoid')
+const nanoid = require('nanoid');
 
 const Inputs = styled.div`
   display: flex;
@@ -48,9 +49,13 @@ const Left = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 900;
+  font-weight: 400;
   font-size: 2em;
   margin-right: 1rem;
+`;
+
+const SizeContainer = styled.span`
+
 `;
 
 const parseQuestions = (questions) => {
@@ -58,7 +63,11 @@ const parseQuestions = (questions) => {
     const reg = /{{([^}]+)}}/i;
     return questions.reduce((acc, item, i) => {
         const data = {
-            answers: item.question.match(regexp).map((item, i) => ({answer: item.match(reg)[1],id: i, key: nanoid(2)})),
+            answers: item.question.match(regexp).map((item, i) => ({
+                answer: item.match(reg)[1],
+                id: i,
+                key: nanoid(2)
+            })),
             question: item.question,
             key: nanoid(5),
             img: item.img,
@@ -69,18 +78,34 @@ const parseQuestions = (questions) => {
 
 };
 
-export const ManyInputs = React.memo(({data, handler, layout}) => {
+export const ManyInputs = ({data, handler, layout}) => {
     const [inputs, setInputs] = useState({});
-    const ref = useRef();
+    const ref = useRef(null);
     const {dispatch, stage, help} = useStoreon('help', 'stage');
     const questions = useMemo(() => parseQuestions(data.questions), [data.questions]);
     const simpleDirection = data.direction === 'row' ? 'column' : 'row';
+    const [size, setSize] = useRafState(null);
+
+    useLayoutEffect(() => {
+        setTimeout(() => {
+            if (ref.current) {
+                const nodes = ref.current.querySelectorAll('input');
+                if (nodes) {
+                    const sizes = [...nodes].map(elem => elem.offsetWidth);
+                    const max = Math.max(...sizes);
+                    if (size !== max) setSize(max)
+                }
+            }
+        },0)
+    }, [data, ref]);
 
     const inputHandler = (i, pos) => (value) => {
-        setInputs({...inputs, [`${pos.row}_${pos.col}`]: {
+        setInputs({
+            ...inputs, [`${pos.row}_${pos.col}`]: {
                 value,
                 answer: i
-            }})
+            }
+        })
     };
 
     useEffect(() => {
@@ -93,15 +118,14 @@ export const ManyInputs = React.memo(({data, handler, layout}) => {
             const right = Object.entries(inputs).every((pair, i) => {
                 const [key, value] = pair;
                 const check = value.value === value.answer;
-                if (check === true) nodes[i + 1] && nodes[i + 1].focus()
+                if (check === true) nodes[i + 1] && nodes[i + 1].focus();
                 return check
             });
             if (nodes.length && Object.values(inputs).length === nodes.length) {
                 if (right) handler(true)
             }
         }
-    }, [inputs,ref]);
-
+    }, [inputs, ref]);
 
 
     return (
@@ -109,15 +133,16 @@ export const ManyInputs = React.memo(({data, handler, layout}) => {
             <Left>{data.left}</Left>
             {questions.map((item, row) => {
                 return (
-                    <Row key={item.key+row}>
+                    <Row key={item.key + row}>
                         {reactStringReplace(item.question, /{{([^}]+)}}/g, (match, col) => {
                             return (
                                 <Simple
+                                    size={size}
                                     layout={layout}
                                     img={data.img}
                                     direction={'row'}
-                                    handlerInput={inputHandler(match, {row,col})}
-                                    key={item.key+col}
+                                    handlerInput={inputHandler(match, {row, col})}
+                                    key={item.key + col}
                                     answer={match}
                                 />
                             )
@@ -128,4 +153,4 @@ export const ManyInputs = React.memo(({data, handler, layout}) => {
 
         </Inputs>
     )
-});
+};
