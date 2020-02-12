@@ -7,21 +7,20 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
   position: relative;
   top: 7rem;
   height: 50%;
+  width: 80%;
 `;
 
 const Title = styled.div`
   position: absolute;
-  top: -1rem;
   width: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  margin-top: 3rem;
+  top: 0;
 `;
 
 const Paragraph = styled.p`
@@ -60,7 +59,7 @@ export function WithAdditional({children, data}) {
     const {text, title, layout, img, key} = data;
     const isTitleImage = title && title.includes('.png');
 
-    useEffect(()=> {
+    useEffect(() => {
         const nodes = document.querySelectorAll('input')
         if (nodes[0]) {
             nodes[0].focus();
@@ -70,7 +69,7 @@ export function WithAdditional({children, data}) {
     return (
         <Wrapper>
             {title && <Title>
-                {isTitleImage ? <Image><img src={title} alt=""/></Image>:
+                {isTitleImage ? <Image><img src={title} alt=""/></Image> :
                     <TextWithBorders strokeWidth={'0'} strokeColor={"#FFF"} color={"#FFF"} size={2} text={title}/>}
             </Title>}
             {img && <Image size={img.width}><img src={img.src} alt=""/></Image>}
