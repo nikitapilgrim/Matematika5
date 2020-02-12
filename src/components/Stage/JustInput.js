@@ -17,7 +17,7 @@ const parseQuestions = (questions) => {
 const Text = styled.span`
     font-family: 'Mali', cursive;
     font-weight: normal;
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: #fff;
     margin-right: 0.3em;
 `;

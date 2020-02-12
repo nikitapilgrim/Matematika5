@@ -11,6 +11,7 @@ const Wrapper = styled.div`
   top: 7rem;
   height: 50%;
   width: 80%;
+  padding: 0 1rem;
 `;
 
 const Title = styled.div`
@@ -20,7 +21,7 @@ const Title = styled.div`
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  top: 0;
+  top: 1rem;
 `;
 
 const Paragraph = styled.p`
