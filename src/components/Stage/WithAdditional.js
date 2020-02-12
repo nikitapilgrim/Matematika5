@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.div`
-  position: relative;
+  position: absolute;
   top: -1rem;
   width: 90%;
   display: flex;
@@ -34,8 +34,6 @@ const Paragraph = styled.p`
 `;
 
 const WrapperQuestion = styled.div`
-    padding-bottom: 3rem;
-    height: 100%;
     display: flex;
     align-items: center;
 `;

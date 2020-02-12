@@ -14,7 +14,7 @@ const Inputs = styled.div`
   color: white;
   & > div {
      margin-top: 0.1em;
-     word-spacing: 0.3em;
+     word-spacing: 0em;
      
     }
      & > div {
