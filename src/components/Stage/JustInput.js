@@ -1,6 +1,7 @@
 import React, {useEffect, useMemo, useState} from "react";
 import {Simple} from "./Simple";
 import useStoreon from "storeon/react";
+import styled from 'styled-components';
 
 
 const parseQuestions = (questions) => {
@@ -12,6 +13,14 @@ const parseQuestions = (questions) => {
         key: 0,
     };
 };
+
+const Text = styled.span`
+    font-family: 'Mali', cursive;
+    font-weight: normal;
+    font-size: 2rem;
+    color: #fff;
+    margin-right: 0.3em;
+`;
 
 export const JustInput = ({data}) => {
     const questions = useMemo(() => parseQuestions(data.questions), [data.questions]);
@@ -32,10 +41,12 @@ export const JustInput = ({data}) => {
     };
 
     return (
-        <Simple
-            answer={questions.answer}
-            question={questions.question}
-            handlerInput={inputHandler}
-        />
+        <>
+            <Text>{data.textInput}</Text>
+            <Simple
+                answer={questions.answer}
+                handlerInput={inputHandler}
+            />
+        </>
     )
 };
