@@ -99,6 +99,9 @@ const Input = styled.input`
     border: solid #FFF 0.02em;
     outline: none;
     padding: 0 ${props => props.layout === `columnCalculation` ? `` : '0.2rem'};
+    ${props => props.focused && `box-shadow: 0 0 0 5px #5D8247`};
+    ${props => props.right !== null && !props.right && `box-shadow: 0 0 0 5px #ec060c`};
+    ${props => props.right && `box-shadow: 0 0 0 5px #32B40F`}; 
     color: ${props => {
     if (props.help) {
         return 'transparent'
