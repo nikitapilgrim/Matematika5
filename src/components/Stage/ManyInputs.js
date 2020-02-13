@@ -1,17 +1,30 @@
-import React, {useEffect,useLayoutEffect, useMemo, useRef, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useMemo, useRef, useState} from 'react';
 import {useRafState, useMount} from 'react-use';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import useStoreon from "storeon/react";
 import {Simple} from "./Simple";
 import reactStringReplace from 'react-string-replace';
 
 const nanoid = require('nanoid');
 
+const justify = css`
+    text-align: justify;
+    text-align-last: justify;
+    vertical-align: middle;
+`;
+
+
 const Inputs = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: ${props => props.direction === 'row' ? 'row' : 'column'};
   justify-content: flex-start;
   color: white;
+  font-size: ${props => {
+      if (!props.left) return '2em';
+      if (props.lenght > 50) return '120%';
+      return '1.5em';
+  }};
   & > div {
      margin-top: 0.1em;
      word-spacing: 0em;
@@ -19,9 +32,7 @@ const Inputs = styled.div`
     }
      & > div {
       display: block;
-      text-align: justify;
-     text-align-last: justify;
-     vertical-align: middle;
+      ${props => props.justify && justify}
        
        & > div {
           display: inline-flex;
@@ -37,7 +48,6 @@ const Row = styled.div`
   justify-content: space-between;
   align-items: center;
   font-family: 'Mali', cursive;
-  font-size: 2rem;
   
   
 `;
@@ -50,7 +60,6 @@ const Left = styled.div`
   align-items: center;
   justify-content: center;
   font-weight: 400;
-  font-size: 2em;
   margin-right: 1rem;
 `;
 
@@ -61,7 +70,7 @@ const SizeContainer = styled.span`
 const parseQuestions = (questions) => {
     const regexp = /{{([^}]+)}}/ig;
     const reg = /{{([^}]+)}}/i;
-    return questions.reduce((acc, item, i) => {
+    return questions.reduce((acc, item, i, array) => {
         const data = {
             answers: item.question.match(regexp).map((item, i) => ({
                 answer: item.match(reg)[1],
@@ -71,20 +80,29 @@ const parseQuestions = (questions) => {
             question: item.question,
             key: nanoid(5),
             img: item.img,
-            separator: item.separator
+            separator: item.separator,
+            length: array.length
         };
         return [...acc, data]
     }, [])
 
 };
 
-export const ManyInputs = ({data, handler, layout}) => {
+export const ManyInputs = React.memo(({data, handler, layout}) => {
     const [inputs, setInputs] = useState({});
     const ref = useRef(null);
     const {dispatch, stage, help} = useStoreon('help', 'stage');
     const questions = useMemo(() => parseQuestions(data.questions), [data.questions]);
     const simpleDirection = data.direction === 'row' ? 'column' : 'row';
     const [size, setSize] = useRafState(null);
+
+    const questionLength = useMemo(() => {
+
+        if (questions && questions[0].question) {
+            return questions[0].question.length;
+        }
+        return null
+    }, [questions]);
 
     useLayoutEffect(() => {
         setTimeout(() => {
@@ -96,7 +114,7 @@ export const ManyInputs = ({data, handler, layout}) => {
                     if (size !== max) setSize(max)
                 }
             }
-        },0)
+        }, 0)
     }, [data, ref]);
 
     const inputHandler = (i, pos) => (value) => {
@@ -129,15 +147,15 @@ export const ManyInputs = ({data, handler, layout}) => {
 
 
     return (
-        <Inputs ref={ref} direction={data.direction}>
-            <Left>{data.left}</Left>
-            {questions.map((item, row) => {
+        <Inputs lenght={questionLength} left={data.left} justify={!data.left} ref={ref} direction={(Boolean(data.left) ? 'row' : 'column')  || data.direction}>
+            {data.left && <Left>{data.left}</Left>}
+            {questions.map((item, row, length) => {
                 return (
                     <Row key={item.key + row}>
                         {reactStringReplace(item.question, /{{([^}]+)}}/g, (match, col) => {
                             return (
                                 <Simple
-                                    size={size}
+                                    size={!data.left && size}
                                     layout={layout}
                                     img={data.img}
                                     direction={'row'}
@@ -153,4 +171,4 @@ export const ManyInputs = ({data, handler, layout}) => {
 
         </Inputs>
     )
-};
+});

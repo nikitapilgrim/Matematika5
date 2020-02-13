@@ -132,10 +132,10 @@ const Blur = styled.div`
     transform: translateZ(0);
 `;
 
-export const Intro = () => {
+export const Intro = React.memo(() => {
     const [isShow, setIsShow] = useState(false);
     const [blured, setBlured] = useState(false);
-    const {dispatch, preloader, music} = useStoreon('start', 'preloader', 'music' );
+    const {dispatch, preloader} = useStoreon('start', 'preloader');
 
     const handlerStart = (e) => {
         sounds.mouseclick.play();
@@ -179,4 +179,4 @@ export const Intro = () => {
             </Wrapper>
         </>
     )
-};
+});

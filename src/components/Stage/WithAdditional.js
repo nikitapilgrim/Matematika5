@@ -26,9 +26,9 @@ const Title = styled.div`
 
 const Paragraph = styled.p`
     font-family: 'Mali', cursive;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     text-align: center;
-    max-width: 60%;
+    max-width: 100%;
     color: white;
 
 `;
@@ -36,6 +36,8 @@ const Paragraph = styled.p`
 const WrapperQuestion = styled.div`
     display: flex;
     align-items: center;
+    justify-content: center;
+    max-width: 100%;
 `;
 
 const MedalContainer = styled.div`

@@ -7,6 +7,7 @@ const nanoid = require('nanoid');
 
 const Wrapper = styled.div`
   color: #fff;
+  font-size: 2rem;
 `;
 
 
@@ -22,7 +23,6 @@ const Top = styled.div`
 
 const Answer = styled.div`
   margin-top: 1rem;
-  font-size: 2rem;
   font-family: Boogaloo;
   text-align: center;
 `;
@@ -31,7 +31,6 @@ const Sign = styled.div`
   font-family: Boogaloo;
   position: absolute;
   left: -1.5rem;
-  font-size: 2rem;
 `;
 
 const parseQuestions = (questions) => {

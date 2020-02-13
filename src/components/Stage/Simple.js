@@ -41,7 +41,7 @@ const Question = styled.div`
     font-family: 'Mali', cursive;
     flex-direction: ${props => props.direction};
     font-weight: normal;
-    font-size: ${props => props.size}rem;
+    font-size: ${props => props.size}em;
     color: #fff;
     text-align: ${props => props.layout === 'manyInputs' ? 'justify' : ''};
     //text-shadow: 1px 1px 1px #000;
@@ -54,8 +54,8 @@ const InputWrapper = styled.span`
     position: relative;
     font-size: 1em;
     white-space: nowrap;
-    width: ${props => props.width ? `${props.width}px` : '3rem'};
-    height: ${props => props.height ? `${props.height}px` : '3rem'};
+    width: ${props => props.width ? `${props.width+1}px` : '3em'};
+    height: ${props => props.height ? `${props.height+1}px` : '3em'};
     padding: 0px ${props => props.layout === `columnCalculation` ? `` : '10px'};
     margin: 0;
     min-width: ${props => props.layout === `columnCalculation` ? `1em` : '2em'};
@@ -88,8 +88,8 @@ const Input = styled.input`
     width: 100%;
     height: 100%;
     font-family: 'Mali', cursive;
-    font-weight: normal;
-    font-size: 1em;
+    font-weight: 600;
+    font-size: 0.9em;
     display: inline-block;
     padding: 0px 0px;
     vertical-align: middle;
@@ -98,7 +98,7 @@ const Input = styled.input`
     background-color: #FFF;
     border: solid #FFF 0.02em;
     outline: none;
-    padding: 0 ${props => props.layout === `columnCalculation` ? `` : '0.2rem'};
+    padding: 0 ${props => props.layout === `columnCalculation` ? `` : '0.2em'};
     ${props => props.focused && `box-shadow: 0 0 0 5px #5D8247`};
     ${props => props.right !== null && !props.right && `box-shadow: 0 0 0 5px #ec060c`};
     ${props => props.right && `box-shadow: 0 0 0 5px #32B40F`}; 
@@ -144,7 +144,7 @@ const HiddenAnswer = styled.div`
   pointer-events: none;
   z-index: 1;
   ${props => props.edit && 'padding: 0 0.3em'};
-  color: black;
+  color: #ccc;
 `;
 
 const ImgWrapper = styled.div`
@@ -158,15 +158,14 @@ const SepatatorWrapper = styled.div`
   width: ${props => props.width};
   height: ${props => props.width};
   transform: rotate(-90deg);
-  margin: 0 2rem;
-  margin-right: 4rem;
+  margin: 0 2em;
+  margin-right: 4em;
   img {
     max-width: 100%;
   }
 `;
 
 const InputWithState = React.memo(({widthimportant,separator, edit, val, solo, question, answer, handler, direction, color, disabled, placeholder, theme, layout}) => {
-    const [id] = React.useState(nanoid)
     const {dispatch, help} = useStoreon('help');
     const [right, setRight] = useState(null);
     const [focused, setFocused] = useState(null);
@@ -254,6 +253,7 @@ const InputWithState = React.memo(({widthimportant,separator, edit, val, solo, q
                 <HiddenAnswer show={help} ref={ref}>{Array.isArray(answer) ? answer[0] : answer}</HiddenAnswer>}
 
                 <Input
+                    focused={focused}
                     onFocus={handlerOnFocus}
                     onBlur={handlerOnBlur}
                     help={help && !placeholder || help && edit}
@@ -290,6 +290,7 @@ const InputWithState = React.memo(({widthimportant,separator, edit, val, solo, q
                                                   ref={ref}>{Array.isArray(answer) ? answer[0] : answer}</HiddenAnswer>
 
                                     <Input
+                                        focused={focused}
                                         layout={layout}
                                         onFocus={handlerOnFocus}
                                         onBlur={handlerOnBlur}
@@ -311,9 +312,9 @@ const InputWithState = React.memo(({widthimportant,separator, edit, val, solo, q
 });
 
 
-export const Simple = ({size, children, separator, edit, value, solo, question, img, handlerInput, answer, direction, layout, placeholder, disabled, theme}) => {
+export const Simple = React.memo(({size, children, separator, edit, value, solo, question, img, handlerInput, answer, direction, layout, placeholder, disabled, theme}) => {
     const props = {
-        size: layout === 'simple' ? 2 : 2,
+        size: layout === 'simple' ? 1 : 1,
         color: layout === 'simple' ? '#000' : '#7b4728'
     };
 
@@ -347,4 +348,4 @@ export const Simple = ({size, children, separator, edit, value, solo, question, 
             </Question>
         </Wrapper>
     )
-};
+});

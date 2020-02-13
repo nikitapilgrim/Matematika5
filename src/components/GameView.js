@@ -31,6 +31,7 @@ const DeskWrapper = styled.div`
   height: 100%;
   position: relative;
   pointer-events: auto;
+  top: -3.5rem;
   img {
     display: inline-block;
     //filter: drop-shadow(0 0 3px);

@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from "react";
-import styled from "styled-components";
+import styled, {keyframes, css} from "styled-components";
 import {Sound} from "./Sound";
 import {Menu} from "./Menu";
 import {Help} from "./Help";
@@ -8,6 +8,33 @@ import useStoreon from "storeon/react";
 import mitt from 'mitt'
 
 export const eventTopPanel = mitt();
+
+const pulse = keyframes`
+   0% {
+    transform: scale(0.2);
+    opacity: 0.0;
+ }
+ 25% {
+    transform: scale(0.5);
+    opacity: 0.1;
+ }
+ 50% {
+    transform: scale(0.8);
+    opacity: 0.3;
+ }
+ 75% {
+    transform: scale(1);
+    opacity: 0.5;
+ }
+ 100% {
+    transform: scale(1.2);
+    opacity: 0.0;
+ }
+`;
+
+const Pulse = props => css`
+    animation: ${pulse} 3s ease-out infinite;
+`;
 
 const Wrapper = styled.div`
   position: absolute;
@@ -38,6 +65,25 @@ const HiddenWrapper = styled.div`
     padding: 0.5em;
     transition: filter 1s;
     ${props => props.hide ? 'filter: blur(10px)' : ''};
+   &:before {
+      content: '';
+      position: absolute;
+      height: 200%;
+      width: 200%;
+      border-radius: 50% 50%;
+    
+      ${props => props.round && Pulse};
+      ${props => props.round ? 'border: solid 0.6em red' : ''};
+    }
+     &:after {
+      content: '';
+      position: absolute;
+      height: 200%;
+      width: 200%;
+      border-radius: 50% 50%;
+      transform: scale(0.8);
+      ${props => props.round ? 'border: solid 0.3em red' : ''};
+    }
 `;
 const HiddenWrapp = React.forwardRef(({children, hide, round}, ref) => {
     return (
@@ -73,7 +119,7 @@ export function TopPanel({data, show}) {
             <HiddenWrapp ref={menuRef} round={data.elem === 'menu'} hide={false}>
                 <Menu color={'#FFF'}/>
             </HiddenWrapp>
-            <HiddenWrapp ref={soundRef} round={data.elem === 'music'} hide={false}>
+            <HiddenWrapp ref={soundRef} round={data.elem === 'sound'} hide={false}>
                 <Sound color={'#FFF'}/>
             </HiddenWrapp>
             <HiddenWrapp ref={helpRef} round={data.elem === 'help'} hide={false}>
