@@ -85,6 +85,7 @@ const Input = styled.input`
     background-color:transparent;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
+    text-align-last: center;
     box-shadow: none;
     position: absolute;
     left: ${props => props.inputOffset || 0};
@@ -96,7 +97,6 @@ const Input = styled.input`
     font-size: 0.9em;
     padding: 0px 0px;
     vertical-align: middle;
-    -moz-appearance: textfield;
     background-color: #FFF;
     border: solid #FFF 0.02em;
     outline: none;
@@ -105,20 +105,31 @@ const Input = styled.input`
     ${props => props.right !== null && !props.right && `box-shadow: 0 0 0 5px #ec060c`};
     ${props => props.right && `box-shadow: 0 0 0 5px #32B40F`}; 
     color: ${props => {
-    if (props.help) {
-        return 'transparent'
+        if (props.help) {
+            return 'transparent'
+        }
+        if (!props.help && props.color) {
+            return `black`
+        } else {
+            return 'black'
+        }
+    }};
+    &::-webkit-input-placeholder {
+      text-align: center;
     }
-    if (!props.help && props.color) {
-        return `black`
-    } else {
-        return 'black'
-    }
-}};
 
-   
-    //border: solid black 2px;
-   
-      //text-shadow: 1px 1px 1px #000;
+    &:-moz-placeholder { /* Firefox 18- */
+       text-align: center;  
+    }
+
+    &::-moz-placeholder {  /* Firefox 19+ */
+       text-align: center;  
+    }
+    
+    &:-ms-input-placeholder {  
+       text-align: center; 
+    }
+    
     &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
       -webkit-appearance: none;
     };
@@ -194,7 +205,7 @@ const InputWithState = React.memo(({inputOffset,widthimportant,separator, edit, 
     const handlerInput = (e) => {
         const value = e.target.value;
         if (romanRegexp.test(answer)) {
-            const convertValue = value.toUpperCase()
+            const convertValue = value.toUpperCase();
             if (romanRegexp.test(convertValue)) {
                 setValue(convertValue);
             }
