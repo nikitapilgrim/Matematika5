@@ -23,7 +23,8 @@ const Inputs = styled.div`
   font-size: ${props => {
       if (!props.left) return '2em';
       if (props.lenght > 50) return '120%';
-      return '1.7em';
+      if (props.lenght > 40) return '150%';
+      return '2em';
   }};
   & > div {
      margin-top: 0.1em;

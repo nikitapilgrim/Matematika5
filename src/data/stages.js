@@ -316,6 +316,7 @@ export default [
         id: 20,
         layout: LAYOUTS.manyInputs,
         title: `Napiši brojeve za 1000 veće od brojeva`,
+        sizeTitle: '1.6',
         direction: `column`,
         questions: [
             {
@@ -387,6 +388,7 @@ export default [
     {
         id: 22,
         layout: LAYOUTS.sortable,
+        sizeTitle: '1.6',
         title: `Poredaj po veličini brojeve počevši od najmanjeg`,
         items: [
             {value: 409899, id: 1},
@@ -750,6 +752,7 @@ export default [
         layout: LAYOUTS.manyInputs,
         title: 'Računaj',
         text: `Koliko treba dodati broju 7184 da se dobije 10000?`,
+        sizeText: '2.3rem',
         direction: `row`,
         questions: [
             {

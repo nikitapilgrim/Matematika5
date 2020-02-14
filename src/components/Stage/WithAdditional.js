@@ -69,7 +69,7 @@ export function WithAdditional({children, data}) {
         <Wrapper>
             {title && <Title>
                 {isTitleImage ? <Image><img src={title} alt=""/></Image> :
-                    <TextWithBorders strokeWidth={'0'} strokeColor={"#FFF"} color={"#FFF"} size={2} text={title}/>}
+                    <TextWithBorders strokeWidth={'0'} strokeColor={"#FFF"} color={"#FFF"} size={data.sizeTitle || 2} text={title}/>}
             </Title>}
             {img && <Image size={img.width}><img src={img.src} alt=""/></Image>}
             {text && <Paragraph textsize={data.sizeText}>{text.split('\n').map((item, i) => {

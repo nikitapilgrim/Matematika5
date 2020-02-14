@@ -3,6 +3,15 @@ import {Simple} from "./Simple";
 import useStoreon from "storeon/react";
 import styled from 'styled-components';
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const WrapperInput = styled.div`
+    font-size: 2rem;
+    margin-top: 0.5rem;
+`;
 
 const parseQuestions = (questions) => {
     const regexp = /{{([^}]+)}}/i;
@@ -17,7 +26,7 @@ const parseQuestions = (questions) => {
 const Text = styled.span`
     font-family: 'Mali', cursive;
     font-weight: normal;
-    font-size: 1.6rem;
+    font-size: 2rem;
     color: #fff;
     margin-right: 0.3em;
 `;
@@ -40,12 +49,14 @@ export const JustInput = ({data}) => {
     };
 
     return (
-        <>
+        <Wrapper>
             <Text>{data.textInput}</Text>
-            <Simple
-                answer={questions.answer}
-                handlerInput={inputHandler}
-            />
-        </>
+            <WrapperInput>
+                <Simple
+                    answer={questions.answer}
+                    handlerInput={inputHandler}
+                />
+            </WrapperInput>
+        </Wrapper>
     )
 };
