@@ -15,7 +15,7 @@ const justify = css`
 
 
 const Inputs = styled.div`
-  width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: ${props => props.direction === 'row' ? 'row' : 'column'};
   justify-content: flex-start;
@@ -23,7 +23,7 @@ const Inputs = styled.div`
   font-size: ${props => {
       if (!props.left) return '2em';
       if (props.lenght > 50) return '120%';
-      return '1.5em';
+      return '1.7em';
   }};
   & > div {
      margin-top: 0.1em;
@@ -44,12 +44,10 @@ const Inputs = styled.div`
 `;
 
 const Row = styled.div`
-  display: flex;
-  justify-content: space-between;
+  display: ${props => props.beetween ? 'flex !important' : 'flex'};;
+  justify-content: ${props => props.beetween ? 'space-between !important' : 'space-between'};
   align-items: center;
   font-family: 'Mali', cursive;
-  
-  
 `;
 
 const Left = styled.div`
@@ -61,6 +59,18 @@ const Left = styled.div`
   justify-content: center;
   font-weight: 400;
   margin-right: 1rem;
+`;
+
+const Label = styled.div`
+  position: relative;
+  font-family: 'Mali', cursive;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 400;
+  margin-right: 1rem;
+  top: 0 !important;
+  margin-top: 0.6em;
 `;
 
 const SizeContainer = styled.span`
@@ -81,7 +91,9 @@ const parseQuestions = (questions) => {
             key: nanoid(5),
             img: item.img,
             separator: item.separator,
-            length: array.length
+            length: array.length,
+            label: item.label,
+            offset: item.offset
         };
         return [...acc, data]
     }, [])
@@ -151,10 +163,12 @@ export const ManyInputs = React.memo(({data, handler, layout}) => {
             {data.left && <Left>{data.left}</Left>}
             {questions.map((item, row, length) => {
                 return (
-                    <Row key={item.key + row}>
+                    <Row beetween={item.label} key={item.key + row}>
+                        {item.label && <Label>{item.label}</Label>}
                         {reactStringReplace(item.question, /{{([^}]+)}}/g, (match, col) => {
                             return (
                                 <Simple
+                                    inputOffset={item.offset}
                                     size={!data.left && size}
                                     layout={layout}
                                     img={data.img}

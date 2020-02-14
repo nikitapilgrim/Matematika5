@@ -48,7 +48,6 @@ const Teacher = styled.div`
   bottom: -1rem;
   z-index: 3;
   width: 52vh;
-  transition: transform 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940);
   transform: translateX(${props => props.left});
   user-select: none;
   pointer-events: none;

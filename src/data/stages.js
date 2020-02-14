@@ -458,6 +458,7 @@ export default [
         id: 26,
         layout: LAYOUTS.manyInputs,
         title: 'Razmisli!',
+        sizeText: '2rem',
         text: `Napiši najmanji šesterocifren broj`,
         direction: `row`,
         questions: [
@@ -475,10 +476,14 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{102567}}  {{765210}}'
+                question: '{{102567}}',
+                label: 'Najmanji'
+            },
+            {
+                question: '{{102567}}',
+                label: 'Najveći'
             }
         ],
-        left: `Odgovor:`
     },
     {
         id: 28,
@@ -522,7 +527,7 @@ export default [
                 question: '4577 + 3208 = {{7785}}'
             },
             {
-                question: '7304  -5 229 = {{2075}}'
+                question: '7304 - 5229 = {{2075}}'
             },
         ],
     },
@@ -541,7 +546,8 @@ export default [
                 question: '3825 + {{5175}} = 9000'
             },
             {
-                question: '7000 - {{5103}} = 1897'
+                question: '7000 - {{5103}} = 1897',
+                offset: '-0.1em'
             },
         ],
     }, {
@@ -623,14 +629,23 @@ export default [
         id: 39,
         layout: LAYOUTS.manyInputs,
         title: 'Odgovori!',
+        sizeText: '1.4em',
         text: `Jedna firma je prva tri mjeseca u godini za nabavku robe potrošila 387214 KM. Za prvi i drugi mjesec je potrošila 228779 KM, za drugi i treći mjesec je potrošila 255372 KM. Koliko novca je firma potrošila svakog mjeseca pojedinačno?`,
-        direction: `row`,
         questions: [
             {
-                question: '1. mjesec {{131842}} , 2. mjesec {{96937}} i 3. mjesec {{158435}}'
-            }
+                question: '{{131842}}',
+                label: '1. mjesec'
+            },
+            {
+                question: '{{96937}}',
+                label: '2. mjesec'
+            },
+            {
+                question: '{{158435}}',
+                label: '3. mjesec'
+
+            },
         ],
-        left: `Rješenje:`
     },
     {layout: LAYOUTS.quiz},
     {

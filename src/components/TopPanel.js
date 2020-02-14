@@ -73,16 +73,17 @@ const HiddenWrapper = styled.div`
       border-radius: 50% 50%;
     
       ${props => props.round && Pulse};
-      ${props => props.round ? 'border: solid 0.6em red' : ''};
+      ${props => props.round ? 'border: solid 1em red' : ''};
     }
+    
      &:after {
       content: '';
       position: absolute;
-      height: 200%;
-      width: 200%;
+      height: 150%;
+      width: 150%;
       border-radius: 50% 50%;
       transform: scale(0.8);
-      ${props => props.round ? 'border: solid 0.3em red' : ''};
+      ${props => props.round ? 'border: solid 0.4em red' : ''};
     }
 `;
 const HiddenWrapp = React.forwardRef(({children, hide, round}, ref) => {

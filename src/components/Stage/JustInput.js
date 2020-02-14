@@ -27,7 +27,6 @@ export const JustInput = ({data}) => {
     const [input, setInput] = useState("");
     const {dispatch, stage, help} = useStoreon('help', 'stage');
 
-
     useEffect(() => {
         setInput("")
     }, [data]);

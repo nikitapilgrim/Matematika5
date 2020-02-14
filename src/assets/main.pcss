@@ -6,9 +6,11 @@ html {
     touch-action: manipulation;
 
 }
+
 html {
     font-size: calc(0.5vw + 0.5vh + 0.5vmin);
 }
+
 @media only screen and (min-width: 960px) {
     html {
         font-size: 14px;
@@ -18,8 +20,7 @@ html {
 html, body {
     height: 100vh;
     min-width: 100%;
-    //overflow-x: hidden;
-    overflow: hidden !important;
+//overflow-x: hidden; overflow: hidden !important;
 
 }
 
@@ -44,6 +45,7 @@ body {
     background-position: 50% 50%;
     transition: 0.5s;
 }
+
 #preload__inner {
     display: flex;
     justify-content: center;
@@ -59,12 +61,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+
     img {
         position: absolute;
         top: 0;
         width: 280px;
     }
 }
+
 #preload__progress-wrapper {
     display: flex;
     justify-content: center;
@@ -104,35 +108,19 @@ body {
 }
 
 
-
 #preload__percent {
     position: relative;
     z-index: 1;
-    //left: 15px;
-    color: #FFF;
+//left: 15px; color: #FFF;
     font-size: 6rem;
-    //filter: drop-shadow(0px 0px 1px black);
+//filter: drop-shadow(0px 0px 1px black);
 }
 
 #root {
     position: relative;
     height: 100vh;
     min-height: inherit;
-    transition: filter 1s;
     overflow: hidden;
-    &:before {
-        position: fixed;
-        //top: 50%; right: 50%;
-        top: 0;
-        left: 0;
-        //transform: translate(50%,-50%);
-        height: 100vh;
-        width: 100vw;
-        z-index: -1;
-        content: '';
-        background-size: cover;
-        background-position: 50% 50%;
-    }
 }
 
 .react-responsive-spritesheet-container__move {
@@ -141,4 +129,36 @@ body {
 
 .react-reveal {
     will-change: transform, opacity;
+}
+
+.bg.with-blur {
+    position: fixed;
+    height: 110vh;
+    width: 110vw;
+    top: -5vh;
+    left: -5vw;
+    z-index: -1;
+    transition: filter 1s;
+    filter: blur(10px);
+}
+
+.bg {
+    position: fixed;
+    height: 110vh;
+    width: 110vw;
+    top: -5vh;
+    left: -5vw;
+    z-index: -1;
+    transition: filter 1s;
+    &:before {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        content: '';
+        background: url('./background-image.jpg');
+        background-size: cover;
+        background-position: 50% 50%;
+    }
 }

@@ -8,6 +8,7 @@ import useStoreon from "storeon/react";
 import menuobjects from '../assets/image/intro/Frontelements.png'
 import kids from '../assets/image/intro/kids-rotation.png'
 import bg from "../assets/background-image.jpg";
+import nanoid from "nanoid";
 
 const rotate = keyframes`
   from {
@@ -111,39 +112,16 @@ const Pos = styled.div`
   top: 0.1em;
 `;
 
-const Blur = styled.div`
-    ${props => props.blur ? 'filter: blur(10px)' : ''}; //brightness(0.70) saturate(130%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    z-index: ${props => props.zIndex || '-1'};
-    top: 0;
-    left: -5vw;   
-    height: 110vh;
-    width: 110vw;
-    transition: filter 1s;
-    ${props => !props.bgNone && `background: url(${bg});`};
-    background-size: cover;
-    background-position: 50% 50%;
-    backface-visibility: hidden;
-    perspective: 1000;
-    transform: translate3d(0,0,0);
-    transform: translateZ(0);
-`;
-
-export const Intro = React.memo(() => {
+export const Intro = React.memo(({show}) => {
+    const [id] = useState(nanoid(20));
     const [isShow, setIsShow] = useState(false);
-    const [blured, setBlured] = useState(false);
-    const {dispatch, preloader} = useStoreon('start', 'preloader');
+    const {dispatch} = useStoreon();
 
     const handlerStart = (e) => {
         sounds.mouseclick.play();
         const target = e.target;
         setTimeout(() => {
             setIsShow(false);
-            // setBlured(false);
-            target.style.top = '0';
             setTimeout(() => {
                 dispatch('game/start')
             }, 500)
@@ -151,32 +129,22 @@ export const Intro = React.memo(() => {
     };
 
     useEffect(() => {
-        if (preloader.count === 100) {
-            setTimeout(() => {
-                setBlured(true);
-                setTimeout(() => {
-                    setIsShow(true)
-                }, 1000)
-            }, 1000);
-        }
-    }, [preloader.count]);
+        if (show) setIsShow(true)
+    }, [show]);
 
     return (
-        <>
-            <Blur className={'intro-blur'} bgNone={false} zIndex={1} blur={blured}/>
-            <Wrapper show={isShow}>
-                <MenuObjectsWrapper>
-                    <ChildrenRotateBG/>
-                    <Buttons>
-                        <Button>
-                            <Sound color={'#FFF'} size={{width: '80%', height: '80%'}}/>
-                        </Button>
-                    </Buttons>
-                    <FakeButton onClick={handlerStart}>
-                        <img src={menuobjects} alt=""/>
-                    </FakeButton>
-                </MenuObjectsWrapper>
-            </Wrapper>
-        </>
+        <Wrapper key={id} show={isShow}>
+            <MenuObjectsWrapper>
+                <ChildrenRotateBG/>
+                <Buttons>
+                    <Button>
+                        <Sound color={'#FFF'} size={{width: '80%', height: '80%'}}/>
+                    </Button>
+                </Buttons>
+                <FakeButton onClick={handlerStart}>
+                    <img src={menuobjects} alt=""/>
+                </FakeButton>
+            </MenuObjectsWrapper>
+        </Wrapper>
     )
 });

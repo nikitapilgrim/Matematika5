@@ -7,6 +7,7 @@ import useStoreon from "storeon/react";
 const nanoid = require('nanoid');
 
 const Wrapper = styled.div`
+   max-width: 100%;
   position: relative;
   display: flex;
   justify-content: center;
@@ -34,7 +35,7 @@ const TabbleInput = css`
 
 
 const Question = styled.div`
-    width: 100%;
+    max-width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -50,6 +51,7 @@ const Question = styled.div`
 const InputWrapper = styled.span`
     display: flex;
     align-items: center;
+    text-align: center;
     justify-content: center;
     position: relative;
     font-size: 1em;
@@ -76,6 +78,8 @@ const InputWrapper = styled.span`
 `;
 
 const Input = styled.input`
+    display:inline-block;
+    text-align: center;
     border:none;
     background-image:none;
     background-color:transparent;
@@ -83,18 +87,16 @@ const Input = styled.input`
     -moz-box-shadow: none;
     box-shadow: none;
     position: absolute;
-    left: 0;
+    left: ${props => props.inputOffset || 0};
     top: 0;
     width: 100%;
     height: 100%;
     font-family: 'Mali', cursive;
     font-weight: 600;
     font-size: 0.9em;
-    display: inline-block;
     padding: 0px 0px;
     vertical-align: middle;
     -moz-appearance: textfield;
-    text-align: center;
     background-color: #FFF;
     border: solid #FFF 0.02em;
     outline: none;
@@ -165,7 +167,7 @@ const SepatatorWrapper = styled.div`
   }
 `;
 
-const InputWithState = React.memo(({widthimportant,separator, edit, val, solo, question, answer, handler, direction, color, disabled, placeholder, theme, layout}) => {
+const InputWithState = React.memo(({inputOffset,widthimportant,separator, edit, val, solo, question, answer, handler, direction, color, disabled, placeholder, theme, layout}) => {
     const {dispatch, help} = useStoreon('help');
     const [right, setRight] = useState(null);
     const [focused, setFocused] = useState(null);
@@ -253,6 +255,7 @@ const InputWithState = React.memo(({widthimportant,separator, edit, val, solo, q
                 <HiddenAnswer show={help} ref={ref}>{Array.isArray(answer) ? answer[0] : answer}</HiddenAnswer>}
 
                 <Input
+                    inputOffset={inputOffset}
                     focused={focused}
                     onFocus={handlerOnFocus}
                     onBlur={handlerOnBlur}
@@ -312,7 +315,7 @@ const InputWithState = React.memo(({widthimportant,separator, edit, val, solo, q
 });
 
 
-export const Simple = React.memo(({size, children, separator, edit, value, solo, question, img, handlerInput, answer, direction, layout, placeholder, disabled, theme}) => {
+export const Simple = React.memo(({inputOffset,size, children, separator, edit, value, solo, question, img, handlerInput, answer, direction, layout, placeholder, disabled, theme}) => {
     const props = {
         size: layout === 'simple' ? 1 : 1,
         color: layout === 'simple' ? '#000' : '#7b4728'
@@ -330,6 +333,7 @@ export const Simple = React.memo(({size, children, separator, edit, value, solo,
                 }
 
                 <InputWithState
+                    inputOffset={inputOffset}
                     widthimportant={size}
                     direction={direction}
                     separator={separator}

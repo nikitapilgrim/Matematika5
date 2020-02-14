@@ -8,8 +8,12 @@ const nanoid = require('nanoid');
 const Wrapper = styled.div`
   color: #fff;
   font-size: 2rem;
+  font-family: 'Mali', cursive;
 `;
 
+const Row = styled.div`
+    margin-top: 0.3em;
+`;
 
 const Top = styled.div`
   position: relative;
@@ -23,12 +27,10 @@ const Top = styled.div`
 
 const Answer = styled.div`
   margin-top: 1rem;
-  font-family: Boogaloo;
   text-align: center;
 `;
 
 const Sign = styled.div`
-  font-family: Boogaloo;
   position: absolute;
   left: -1.5rem;
 `;
@@ -110,15 +112,17 @@ export const ColumnCalculations = React.memo(({data, handler, layout}) => {
         <Wrapper ref={ref}>
             <Top direction={data.direction}>
                 {questions.map(((data, i, arr) => (
-                    <Simple
-                        key={data.key}
-                        answer={data.answer}
-                        question={data.question}
-                        handlerInput={inputHandler(data.key)}
-                        layout={layout}
-                    >
-                        {i === arr.length - 1 && <Sign>{sign}</Sign>}
-                    </Simple>
+                    <Row>
+                        <Simple
+                            key={data.key}
+                            answer={data.answer}
+                            question={data.question}
+                            handlerInput={inputHandler(data.key)}
+                            layout={layout}
+                        >
+                            {i === arr.length - 1 && <Sign>{sign}</Sign>}
+                        </Simple>
+                    </Row>
                 )))}
             </Top>
             <Answer>

@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import StoreContext from 'storeon/react/context';
 import {GameView} from "./components/GameView";
 import {store} from "./store/store";
-import Fullscreen from "react-full-screen";
 import {useLoader} from "./lib/loader/useLoader";
 import resources from "./assets";
+import nanoid from "nanoid";
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -18,6 +18,7 @@ const Wrapper = styled.div`
 `;
 
 const WithStore = ({children}) => {
+    const [id] = useState(nanoid(10));
     const {progress} = useLoader({resources});
     const {dispatch} = useStoreon(
         'preloader',
@@ -27,9 +28,9 @@ const WithStore = ({children}) => {
     }, [progress]);
 
     return (
-        <>
+        <React.Fragment key={id}>
             {children}
-        </>
+        </React.Fragment>
     )
 };
 
@@ -44,14 +45,7 @@ const WithProviders = () => {
     return (
         <StoreContext.Provider value={store}>
             <WithStore>
-                <Fullscreen
-                    enabled={isFull}
-                    onChange={isFull => setIsFull(isFull)}
-                >
-                    <Wrapper>
-                        <GameView handlerFullscreen={goFullScreen}/>
-                    </Wrapper>
-                </Fullscreen>
+                <GameView/>
             </WithStore>
         </StoreContext.Provider>
     );

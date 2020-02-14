@@ -3,34 +3,30 @@ import styled from "styled-components";
 import {TextWithBorders} from "../TextWithBorders";
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: grid;
   align-items: center;
   position: relative;
   top: 7rem;
   height: 50%;
   width: 80%;
   padding: 0 1rem;
+  padding-bottom: 3rem;
 `;
 
 const Title = styled.div`
-  position: absolute;
-  width: 90%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  top: 1rem;
 `;
 
 const Paragraph = styled.p`
     font-family: 'Mali', cursive;
-    font-size: 1.5rem;
+    font-size: ${props => props.textsize || '1.7rem'};
     text-align: center;
     max-width: 100%;
     color: white;
-
 `;
 
 const WrapperQuestion = styled.div`
@@ -76,7 +72,7 @@ export function WithAdditional({children, data}) {
                     <TextWithBorders strokeWidth={'0'} strokeColor={"#FFF"} color={"#FFF"} size={2} text={title}/>}
             </Title>}
             {img && <Image size={img.width}><img src={img.src} alt=""/></Image>}
-            {text && <Paragraph>{text.split('\n').map((item, i) => {
+            {text && <Paragraph textsize={data.sizeText}>{text.split('\n').map((item, i) => {
                 return (
                     <React.Fragment key={key + i}>
                         {item && item}
