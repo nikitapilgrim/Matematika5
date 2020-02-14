@@ -9,6 +9,34 @@ import menuobjects from '../assets/image/intro/Frontelements.png'
 import kids from '../assets/image/intro/kids-rotation.png'
 import bg from "../assets/background-image.jpg";
 import nanoid from "nanoid";
+import soundhint from '../assets/image/sound-hint.png';
+
+const pulse = keyframes`
+  0% {
+      transform: scale(1) rotate(25deg) translate(0%, 0%);
+  }
+  80% {
+      transform: scale(1.2) rotate(25deg) translate(5%, -5%);
+  }
+  100% {
+      transform: scale(1) rotate(25deg) translate(0%, 0%);
+  }
+`;
+
+const SoundHint = styled.div`
+  position: absolute;
+  width: 10rem;
+  right: -11rem;
+  top: -6rem;
+  animation: ${pulse} 2s ease 0s infinite;
+  
+  img {
+    height: auto;
+    max-width: 100%;
+    user-select: none;
+    pointer-events: none;
+  }
+`;
 
 const rotate = keyframes`
   from {
@@ -24,7 +52,7 @@ const ChildrenRotateBG = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  animation: ${rotate} 10s linear infinite;
+  animation: ${rotate} 40s linear infinite;
   background: url(${kids});
   background-size: cover;
   width: 50rem;
@@ -139,6 +167,9 @@ export const Intro = React.memo(({show}) => {
                 <Buttons>
                     <Button>
                         <Sound color={'#FFF'} size={{width: '80%', height: '80%'}}/>
+                        <SoundHint>
+                            <img src={soundhint} alt=" "/>
+                        </SoundHint>
                     </Button>
                 </Buttons>
                 <FakeButton onClick={handlerStart}>
