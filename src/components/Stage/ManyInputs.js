@@ -21,10 +21,10 @@ const Inputs = styled.div`
   justify-content: flex-start;
   color: white;
   font-size: ${props => {
-      if (!props.left) return '2em';
+      if (!props.left) return '1.9em';
       if (props.lenght > 50) return '120%';
       if (props.lenght > 40) return '150%';
-      return '2em';
+      return '1.9em';
   }};
   & > div {
      margin-top: 0.1em;
@@ -46,7 +46,7 @@ const Inputs = styled.div`
 
 const Row = styled.div`
   display: ${props => props.beetween ? 'flex !important' : 'flex'};;
-  justify-content: ${props => props.beetween ? 'space-between !important' : 'space-between'};
+  justify-content: ${props => props.beetween ? 'flex-end !important' : 'space-between'};
   align-items: center;
   font-family: 'Mali', cursive;
 `;

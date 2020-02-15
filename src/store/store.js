@@ -108,4 +108,5 @@ const stage = store => {
 };
 
 
-export const store = createStore([stage, persistState(['stage', 'medals' ])]);
+export const store = createStore([stage]);
+//persistState(['stage', 'medals' ])

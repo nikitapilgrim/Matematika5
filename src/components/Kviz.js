@@ -27,6 +27,7 @@ const SlideVert = props => css`
 const Title = styled.div`
       font-family: 'Mali', cursive;
       font-size: 6rem;
+      display: none;
 `;
 
 const Wrapper = styled.div`
@@ -53,40 +54,33 @@ const ImgWrapper = styled.div`
 `;
 
 const quizTitles = {
-    1: require('../assets/image/quiz/kviz_1.png'),
-    2: require('../assets/image/quiz/kviz_2.png'),
-    3: require('../assets/image/quiz/kviz_3.png'),
-    4: require('../assets/image/quiz/kviz_4.png'),
-    5: require('../assets/image/quiz/kviz_5.png'),
-    6: require('../assets/image/quiz/kviz_6.png'),
-    7: require('../assets/image/quiz/kviz_7.png'),
-    8: require('../assets/image/quiz/kviz_8.png'),
-    9: require('../assets/image/quiz/kviz_9.png'),
-    10: require('../assets/image/quiz/kviz_10.png'),
-    11: require('../assets/image/quiz/kviz_11.png'),
-    12: require('../assets/image/quiz/kviz_12.png'),
-    13: require('../assets/image/quiz/kviz_13.png'),
-    14: require('../assets/image/quiz/kviz_14.png'),
-    15: require('../assets/image/quiz/kviz_15.png'),
-    16: require('../assets/image/quiz/kviz_16.png'),
-    17: require('../assets/image/quiz/kviz_17.png'),
-    18: require('../assets/image/quiz/kviz_18.png'),
-    19: require('../assets/image/quiz/kviz_19.png'),
-    20: require('../assets/image/quiz/kviz_20.png'),
-    21: require('../assets/image/quiz/kviz_21.png'),
+    1: require('../assets/image/quiz/01.png'),
+    2: require('../assets/image/quiz/02.png'),
+    3: require('../assets/image/quiz/03.png'),
+    4: require('../assets/image/quiz/04.png'),
+    5: require('../assets/image/quiz/05.png'),
+    6: require('../assets/image/quiz/06.png'),
+    7: require('../assets/image/quiz/07.png'),
+    8: require('../assets/image/quiz/08.png'),
+    9: require('../assets/image/quiz/09.png'),
+    10: require('../assets/image/quiz/10.png'),
+    11: require('../assets/image/quiz/11.png'),
+    12: require('../assets/image/quiz/12.png'),
+    13: require('../assets/image/quiz/13.png'),
+    14: require('../assets/image/quiz/14.png'),
+    15: require('../assets/image/quiz/15.png'),
+    16: require('../assets/image/quiz/16.png'),
+    17: require('../assets/image/quiz/17.png'),
 };
 
 
 export const Kviz = ({order}) => {
     const [show, setShow] = useState(null);
     const [number, setNumber] = useState(1);
-    const {dispatch, start, kviz, final} = useStoreon(
+    const {dispatch, start, kviz} = useStoreon(
         'stage',
         'start',
-        'kviz',
-        'modal',
-        'preloader',
-        'final'
+        'kviz'
     );
     const [title, setTitle] = useState(null);
 
@@ -111,17 +105,13 @@ export const Kviz = ({order}) => {
     }, [kviz.order]);
 
     return (
-        <>
-            <Wrapper show={show}>
-                {/*
-                <ImgWrapper>
-                    <img src={title} alt={kviz.order}/>
-                </ImgWrapper>
-                */}
-                <Title>
-                    Kviz {number || 1}
-                </Title>
-            </Wrapper>
-        </>
+        <Wrapper show={show}>
+            <ImgWrapper>
+                <img src={title} alt={kviz.order}/>
+            </ImgWrapper>
+            <Title>
+                Kviz {number || 1}
+            </Title>
+        </Wrapper>
     )
 };

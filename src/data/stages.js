@@ -262,7 +262,8 @@ export default [
                 question: '8 ∙ {{125}} = 1000'
             },
             {
-                question: '6 ∙ {{146}} = 876'
+                question: '6 ∙ {{146}} = 876',
+                offset: '-0.3em'
             },
             {
                 question: '{{748}} : 4 = 187'
@@ -738,7 +739,8 @@ export default [
                 question: '{{797}} + 1784 = 2581'
             },
             {
-                question: '637 + {{1349}} = 1986'
+                question: '637 + {{1349}} = 1986',
+                offset: '0.2em'
             },
             {
                 question: '3485 - {{1550}} = 1935'
@@ -764,6 +766,7 @@ export default [
         id: 48,
         layout: LAYOUTS.manyInputs,
         title: 'Računaj',
+        sizeText: '2rem',
         text: `Za koliko treba umanjiti 20000 da se dobije 12560?`,
         direction: `row`,
         questions: [
@@ -1378,19 +1381,6 @@ export default [
         ],
         left: `Rješenje:`
     },
-    {
-        id: 75,
-        layout: LAYOUTS.manyInputs,
-        title: 'Množi',
-        text: `U tvornici čarapa proizvede se za 8 sati 2104 pari čarapa. Koliko se proizvede za 15 sati?`,
-        direction: `row`,
-        questions: [
-            {
-                question: '{{3945}} pari'
-            }
-        ],
-        left: `Rješenje:`
-    },
     {layout: LAYOUTS.quiz},
     {
         id: 76,
@@ -1766,7 +1756,8 @@ export default [
                 question: '(64 + {{136}} ) : 8 = 25'
             },
             {
-                question: '(42 ∙ {{1034}} ) : 14 = 3102'
+                question: '(42 ∙ {{1034}} ) : 14 = 3102',
+                offset: '-0.4em'
             },
             {
                 question: '{{75168}} : 36 + 257 = 2345'
@@ -1879,7 +1870,7 @@ export default [
         title: 'Izračunaj',
         questions: [
             {
-                question: '756322 7 + 1856787 = {{6580000}}'
+                question: '7563227 + 1856787 = {{6580000}}'
             }
         ],
     },
@@ -1934,12 +1925,15 @@ export default [
         layout: LAYOUTS.manyInputs,
         title: 'Izračunaj',
         text: `Upiši ciframa brojeve`,
+        size: `0.9rem`,
         questions: [
             {
-                question: '5 miliona 4 hiljade 37 - {{5004037}}'
+                question: '{{5004037}}',
+                label: '5 miliona 4 hiljade 37 - '
             },
             {
-                question: '13 miliona 84 - {{13000084}}'
+                question: '{{13000084}}',
+                label: '13 miliona 84 - '
             }
         ],
     }

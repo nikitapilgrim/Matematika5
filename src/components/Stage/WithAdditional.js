@@ -3,14 +3,24 @@ import styled from "styled-components";
 import {TextWithBorders} from "../TextWithBorders";
 
 const Wrapper = styled.div`
-  display: grid;
-  align-items: center;
-  position: relative;
-  top: 7rem;
-  height: 50%;
-  width: 80%;
-  padding: 0 1rem;
-  padding-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 7rem;
+    height: 50%;
+    width: 80%;
+    padding: 0 1rem;
+    padding-bottom: 3rem;
+    font-size: ${props => props.size || `1rem`};
+`;
+const Other = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 2rem;
 `;
 
 const Title = styled.div`
@@ -26,6 +36,8 @@ const Paragraph = styled.p`
     font-size: ${props => props.textsize || '1.7rem'};
     text-align: center;
     max-width: 100%;
+    margin-top: 0;
+    padding-top: 0;
     color: white;
 `;
 
@@ -71,26 +83,29 @@ export function WithAdditional({children, data}) {
                 {isTitleImage ? <Image><img src={title} alt=""/></Image> :
                     <TextWithBorders strokeWidth={'0'} strokeColor={"#FFF"} color={"#FFF"} size={data.sizeTitle || 2} text={title}/>}
             </Title>}
-            {img && <Image size={img.width}><img src={img.src} alt=""/></Image>}
-            {text && <Paragraph textsize={data.sizeText}>{text.split('\n').map((item, i) => {
-                return (
-                    <React.Fragment key={key + i}>
-                        {item && item}
-                        <br/>
-                    </React.Fragment>);
-            })}</Paragraph>}
-            <WrapperQuestion>
-                {React.Children.map(children, child => {
+            <Other>
+                {img && <Image size={img.width}><img src={img.src} alt=""/></Image>}
+                {text && <Paragraph textsize={data.sizeText}>{text.split('\n').map((item, i) => {
                     return (
-                        <React.Fragment key={key}>
-                            {isReactElement(child) && <>
-                                {React.cloneElement(child, {layout})}
-                            </>}
+                        <React.Fragment key={key + i}>
+                            {item && item}
+                            <br/>
+                        </React.Fragment>);
+                })}</Paragraph>}
+                <WrapperQuestion>
+                    {React.Children.map(children, child => {
+                        return (
+                            <React.Fragment key={key}>
+                                {isReactElement(child) && <>
+                                    {React.cloneElement(child, {layout})}
+                                </>}
 
-                        </React.Fragment>
-                    )
-                })}
-            </WrapperQuestion>
+                            </React.Fragment>
+                        )
+                    })}
+                </WrapperQuestion>
+            </Other>
+
         </Wrapper>
     )
 }

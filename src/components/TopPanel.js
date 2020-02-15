@@ -65,6 +65,7 @@ const HiddenWrapper = styled.div`
     padding: 0.5em;
     transition: filter 1s;
     ${props => props.hide ? 'filter: blur(10px)' : ''};
+    filter: drop-shadow(1px 1px #000);
    &:before {
       content: '';
       position: absolute;

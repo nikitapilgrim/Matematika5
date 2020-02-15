@@ -36,6 +36,12 @@ export const Loader = ({resources, onProgress}) => {
                         setTimeout(() => {
                             next();
                         },  1000)
+                    },
+                    onloaderror: () => {
+                        setTimeout(() => {
+                            console.log(resource.url, 'ERROR: not loaded');
+                            next();
+                        },  1000)
                     }
                 });
             }
@@ -44,21 +50,33 @@ export const Loader = ({resources, onProgress}) => {
                     const objUrl = URL.createObjectURL(blob);
                     const image = document.createElementNS('http://www.w3.org/1999/xhtml', 'img');
 
-                    image.onload = ()=> {
+                    image.onload = () => {
                         cache.add([resource.url], image);
                         URL.revokeObjectURL(objUrl);
                         document.body.removeChild(image);
+                        next();
+                    };
+                    image.onerror = () => {
+                        setTimeout(() => {
+                            console.log(resource.url, 'ERROR: not loaded');
+                            next();
+                        }, 1000)
                     };
 
                     image.src = objUrl;
                     image.style.visibility = 'hidden';
                     document.body.appendChild(image);
-                    next();
                 }
-                fileLoader.load([resource.url], cacheImage, () => void(0), () => console.log(false));
+                fileLoader.load([resource.url], cacheImage, () => void(0), (e) => {
+                    console.log(resource.url, 'ERROR: not loaded', e);
+                    next();
+                });
             }
             else {
-                fileLoader.load([resource.url], next, () => void(0), () => console.log(false));
+                fileLoader.load([resource.url], next, () => void(0), (e) => {
+                    console.log(resource.url, 'ERROR: not loaded', e);
+                    next();
+                });
             }
         })
 
