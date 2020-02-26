@@ -47,7 +47,7 @@ const Wrapper = styled.div`
 `;
 
 const ImgWrapper = styled.div`
-  width: 15rem;
+  width: 30rem;
   img {
     max-width: 100%;
   }

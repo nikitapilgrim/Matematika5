@@ -137,7 +137,7 @@ export function Tutorial({active, data, handler}) {
         }
         return null;
     }, [buttons, width, height]);
-    
+
 
     useEffect(() => {
         if (sizes && sizes[data.elem]) {
