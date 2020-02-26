@@ -71,6 +71,7 @@ const quizTitles = {
     15: require('../assets/image/quiz/15.png'),
     16: require('../assets/image/quiz/16.png'),
     17: require('../assets/image/quiz/17.png'),
+    18: ''
 };
 
 
@@ -101,8 +102,13 @@ export const Kviz = ({order}) => {
 
     useEffect(() => {
         setNumber(kviz.order);
-        setTitle(quizTitles[kviz.order])
     }, [kviz.order]);
+    useEffect(() => {
+        if (number === 0) setTitle(quizTitles[17]);
+        else {
+            setTitle(quizTitles[number])
+        }
+    }, [number]);
 
     return (
         <Wrapper show={show}>
