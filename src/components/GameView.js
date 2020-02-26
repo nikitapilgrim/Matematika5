@@ -2,9 +2,9 @@ import React, {useEffect, useState, useCallback} from "react";
 import useStoreon from 'storeon/react';
 import tutorialData from "../data/tutorial";
 import nanoid from "nanoid";
-import notebook from '../assets/image/blackboard.png'
+import {sounds} from "../sounds";
 import bg from '../assets/background-image.jpg'
-import styled, {createGlobalStyle} from "styled-components";
+import styled from "styled-components";
 import {Intro} from './Intro'
 import stagesData from "../data/stages";
 import {Tutorial} from "./Tutorial";
@@ -92,11 +92,6 @@ const Blur = styled.div`
     background-position: 50% 50%;   
 `;
 
-const BlurGlobal = createGlobalStyle`
-#root {
- 
-`;
-
 export function GameView() {
     const {dispatch, stage, start, kviz, preloader} = useStoreon(
         'stage',
@@ -110,6 +105,7 @@ export function GameView() {
     const [showStage, setShowStage] = useState(null);
     const [id] = useState(nanoid(20));
     const [showIntro, setShowIntro] = useState(false);
+    const [correctAnswer, setCorrectAnswer] = useState(false);
 
     useEffect(() => {
         if (preloader.count === 100) {
@@ -164,6 +160,11 @@ export function GameView() {
         if (right) {
             dispatch('medal/set', {type: 'gold', id: stage});
             dispatch('stage/next');
+            sounds.success.play()
+            setCorrectAnswer(true);
+            setTimeout(() =>{
+                setCorrectAnswer(false)
+            }, 1000)
         }
     }, []);
 
@@ -177,7 +178,9 @@ export function GameView() {
             <Desk handlerNext={handlerNext}
                   tutorialData={tutorialData[tutorialCount]}
                   stageData={stageData}
-                  showStage={showStage}/>
+                  showStage={showStage}
+                  shake={correctAnswer}
+            />
             <Debugg/>
         </WrapperApp>
     )

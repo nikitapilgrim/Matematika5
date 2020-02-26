@@ -10,6 +10,10 @@ const assets = [
         url: require('./sound/mouseclick.mp3')
     },
     {
+        name: 'successSound',
+        url: require('./sound/cowbell.aac')
+    },
+    {
         name: 'background',
         url: require('./background-image.jpg')
     },

@@ -4,9 +4,27 @@ import notebook from "../assets/image/blackboard.png";
 import {TopPanel} from "./TopPanel";
 import tutorialData from "../data/tutorial";
 import {Stage} from "./Stage";
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import {SlideVert} from "./Animate/Slide";
 import useStoreon from "storeon/react";
+
+const shake = keyframes`
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+`;
 
 const Wrapper = styled.div`
     width: 55rem;
@@ -22,6 +40,10 @@ const Wrapper = styled.div`
 
 
 const DeskWrapper = styled.div`
+  transform: translate3d(0, 0, 0);
+  animation: ${props => props.shake && shake} 0.82s cubic-bezier(.36,.07,.19,.97) both infinite;
+  backface-visibility: hidden;
+  perspective: 1000px;
   width: 100%;
   height: 100%;
   position: relative;
@@ -37,6 +59,7 @@ const DeskWrapper = styled.div`
     user-select: none;
   }
 `;
+
 
 const Bg = styled.div`
     display: flex;
@@ -82,7 +105,7 @@ const Inner = styled.div`
 `;
 
 
-export const Desk = React.memo(({tutorialData, showStage, stageData, handlerNext}) => {
+export const Desk = React.memo(({tutorialData, showStage, stageData, handlerNext, shake}) => {
     const [id] = useState(nanoid(20));
     const {dispatch, start, kviz, modal} = useStoreon(
         'start',
@@ -92,7 +115,7 @@ export const Desk = React.memo(({tutorialData, showStage, stageData, handlerNext
 
     return (
         <Wrapper key={id} show={start && !kviz.show}>
-            <DeskWrapper className="desk-wrapper">
+            <DeskWrapper shake={shake} className="desk-wrapper">
                 <WrapperImg>
                     <img src={notebook} alt="notebook"/>
                     {/*<Medal/>*/}
