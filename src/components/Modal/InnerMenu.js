@@ -17,6 +17,8 @@ const Buttons = styled.div`
     grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 1rem;
+    font-size: 2.5rem;
+    transform: scale(0.8);
 `;
 
 const Medal = styled.div`
@@ -52,10 +54,10 @@ const Button = styled.div`
   align-items: center;
   position: relative;
   z-index: 1;
-  padding: 0.5rem 0;
+  padding: 0.4em 0;
   background-color: ${props => props.current ? stagesColor.current : stagesColor.some};
   border-radius: 0.3em;
-  font-size: 2.5rem;
+  font-size: 0.8em;
   color: ${props => props.current ? `#374F48` : `#FFF`};
   font-weight: 900;
   transition: background-color 0.3s ease;

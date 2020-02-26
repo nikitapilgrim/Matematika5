@@ -35,7 +35,7 @@ const Debugg = () => {
     const {dispatch, stage, tutorial, kviz, start} = useStoreon(
         'stage', 'tutorial', 'kviz', 'start'
     );
-    
+
     const ClickHandler = useCallback(() => {
         dispatch('stage/to', stage + 1);
     }, [stage]);
