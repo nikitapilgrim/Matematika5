@@ -3,7 +3,7 @@ import {LAYOUTS} from "./stages";
 export default [
     {
         layout: LAYOUTS.speech,
-        teacher: require('../assets/image/tutorial/teacher-1.png'),
+        teacher: require('../assets/image/tutorial/floating-teacher-1.png'),
         bubble: {
             src: require('../assets/image/tutorial/bubble-1.png'),
             position: 'left'
@@ -13,17 +13,18 @@ export default [
     },
     {
         layout: LAYOUTS.speech,
-        teacher: require('../assets/image/tutorial/teacher-1.png'),
+        teacher: require('../assets/image/tutorial/floating-teacher-3.png'),
         bubble: {
             src: require('../assets/image/tutorial/bubble-2.png'),
             position: 'right'
         },
+        revert: true,
         type: 'tutorial',
         elem: 'menu'
     },
     {
         layout: LAYOUTS.speech,
-        teacher: require('../assets/image/tutorial/teacher-1.png'),
+        teacher: require('../assets/image/tutorial/floating-teacher-1.png'),
         bubble: {
             src: require('../assets/image/tutorial/bubble-3.png'),
             position: 'right'
@@ -33,7 +34,7 @@ export default [
     },
     {
         layout: LAYOUTS.speech,
-        teacher: require('../assets/image/tutorial/teacher-2.png'),
+        teacher: require('../assets/image/tutorial/floating-teacher-2.png'),
         bubble: {
             src: require('../assets/image/tutorial/bubble-4.png'),
             position: 'right'
@@ -43,7 +44,7 @@ export default [
     },
     {
         layout: LAYOUTS.speech,
-        teacher: require('../assets/image/tutorial/teacher-1.png'),
+        teacher: require('../assets/image/tutorial/floating-teacher-1.png'),
         bubble: {
             src: require('../assets/image/tutorial/bubble-5.png'),
             position: 'right'

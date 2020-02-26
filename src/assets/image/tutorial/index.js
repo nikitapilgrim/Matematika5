@@ -21,11 +21,15 @@ const tutorialAssets = [
     },
     {
         name: 'teacher',
-        url: require('./teacher-1.png')
+        url: require('./floating-teacher-1.png')
+    },
+    {
+        name: 'teacher1',
+        url: require('./floating-teacher-2.png')
     },
     {
         name: 'teacher2',
-        url: require('./teacher-2.png')
+        url: require('./floating-teacher-3.png')
     },
 ];
 export default tutorialAssets;

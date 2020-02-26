@@ -1,5 +1,7 @@
 import React, {useEffect, useRef, useState, useCallback, useMemo} from 'react';
 import useMount from 'react-use/lib/useMount';
+import useDeepCompareEffect from 'react-use/lib/useDeepCompareEffect';
+import useComponentSize from '@rehooks/component-size'
 import styled from "styled-components";
 import {Speech} from "./Speech";
 import useClickAway from "react-use/lib/useClickAway";
@@ -47,7 +49,7 @@ const Teacher = styled.div`
   position: fixed;
   bottom: -1rem;
   z-index: 3;
-  width: 52vh;
+  width: ${props => props.height ? `${props.height}px` : `60vh`};
   transform: translateX(${props => props.left});
   transition-duration: 0.25s;
   user-select: none;
@@ -84,6 +86,8 @@ export function Tutorial({active, data, handler}) {
     const {width, height} = useWindowSize();
     const [init, setInit] = useState(false);
     const [end, setEnd] = useState(false);
+    const teacherSize = useComponentSize(ref);
+    const [heightTeacher, setHeightTeacher] = useState(null);
     useClickAway(ref, () => {
         handler()
     });
@@ -120,25 +124,34 @@ export function Tutorial({active, data, handler}) {
                 const [key, node] = pair;
                 return {
                     ...acc,
+                    top: height - (node.getBoundingClientRect().top),
                     [key]: {
                         top: node.getBoundingClientRect().top + document.body.scrollTop,
-                        left: node.getBoundingClientRect().x
+                        left: node.getBoundingClientRect().x,
+                        width: node.getBoundingClientRect().width,
+                        bottom: node.getBoundingClientRect().bottom,
+
                     }
                 };
             }, {});
         }
         return null;
     }, [buttons, width, height]);
-
+    
 
     useEffect(() => {
         if (sizes && sizes[data.elem]) {
-            setTeacherOffset(`${(sizes[data.elem].left + 20)}px`)
+            setHeightTeacher(sizes.top * 0.81)
+            if (data.revert) {
+                setTeacherOffset(`${(sizes[data.elem].left + sizes[data.elem].width / 2) - teacherSize.width}px`)
+            } else {
+                setTeacherOffset(`${(sizes[data.elem].left + sizes[data.elem].width / 2)}px`)
+            }
         }
         if (data.offset) {
             setTeacherOffset(data.offset);
         }
-    }, [data, sizes, width]);
+    }, [data, sizes, width, teacherSize]);
 
     useEffect(() => {
         if (show) {
@@ -152,7 +165,7 @@ export function Tutorial({active, data, handler}) {
     return (
         <>
             {!end && <Wrapper show={show}>
-                <Teacher left={teacherOffset} ref={ref}>
+                <Teacher height={heightTeacher} left={teacherOffset} ref={ref}>
                     <img src={data.teacher} alt="teacher"/>
                     <Bubble position={data.bubble.position}>
                         {bubble !== null && <img src={bubble} alt="text"/>}

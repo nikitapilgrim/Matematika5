@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import styled, {css} from 'styled-components';
+import styled, {css,keyframes} from 'styled-components';
 import useComponentSize from '@rehooks/component-size'
 import reactStringReplace from 'react-string-replace';
 import useStoreon from "storeon/react";
@@ -77,6 +77,25 @@ const InputWrapper = styled.span`
     }*/
 `;
 
+const pulse = props => keyframes`
+    0% {
+        ${props.right !== null && !props.right && `box-shadow: 0 0 0 5px rgba(236, 6, 12, 0.5)`};
+        ${props.focused && `box-shadow: 0 0 0 5px rgba(93, 130, 71, 0.5)`};
+        ${props.right && `box-shadow: 0 0 0 5px rgba(50, 180, 15, 0.5)`};
+      }
+    50% { 
+        ${props.right !== null && !props.right && `box-shadow: 0 0 0 5px rgba(236, 6, 12, 1)`};
+        ${props.focused && `box-shadow: 0 0 0 5px rgba(93, 130, 71, 1)`};
+        ${props.right && `box-shadow: 0 0 0 5px rgba(50, 180, 15, 1)`};
+     }
+    100% { 
+    
+        ${props.right !== null && !props.right && `box-shadow: 0 0 0 5px rgba(236, 6, 12, 0.5)`};
+        ${props.focused && `box-shadow: 0 0 0 5px rgba(93, 130, 71, 0.5)`};
+        ${props.right && `box-shadow: 0 0 0 5px rgba(50, 180, 15, 0.5)`};
+    }
+`;
+
 const Input = styled.input`
     display:inline-block;
     text-align: center;
@@ -101,9 +120,10 @@ const Input = styled.input`
     border: solid #FFF 0.02em;
     outline: none;
     padding: 0 ${props => props.layout === `columnCalculation` ? `` : '0.2em'};
-    ${props => props.focused && `box-shadow: 0 0 0 5px #5D8247`};
-    ${props => props.right !== null && !props.right && `box-shadow: 0 0 0 5px #ec060c`};
-    ${props => props.right && `box-shadow: 0 0 0 5px #32B40F`}; 
+    ${props => props.focused && `box-shadow: 0 0 0 5px rgba(93, 130, 71, 1)`};
+    ${props => props.right !== null && !props.right && `box-shadow: 0 0 0 5px rgba(236, 6, 12, 1)`};
+    ${props => props.right && `box-shadow: 0 0 0 5px rgba(50, 180, 15, 1)`}; 
+    animation: ${pulse} 3s infinite ease-in-out;
     color: ${props => {
         if (props.help) {
             return 'transparent'
