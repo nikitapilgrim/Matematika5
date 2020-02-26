@@ -1,6 +1,7 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 import styled from "styled-components";
 import {TextWithBorders} from "../TextWithBorders";
+import useStoreon from 'storeon/react';
 
 const Wrapper = styled.div`
     display: flex;
@@ -68,14 +69,27 @@ const isReactElement = (obj) => {
 
 export function WithAdditional({children, data}) {
     const {text, title, layout, img, key} = data;
+    const {help, tutorial} = useStoreon(
+        'help', 'tutorial'
+    );
     const isTitleImage = title && title.includes('.png');
+    const ref = useRef(null);
 
     useEffect(() => {
-        const nodes = document.querySelectorAll('input')
-        if (nodes[0]) {
-            nodes[0].focus();
+        if (ref && ref.current) {
+            const nodes = ref.current.querySelectorAll('input');
+            if (!tutorial) {
+                setTimeout(()=> {
+                    nodes[0].focus();
+
+                },0)
+            }
+
+            if (nodes[0]) {
+                nodes[0].focus();
+            }
         }
-    }, [data]);
+    }, [data, ref, help, tutorial]);
 
     return (
         <Wrapper>
@@ -92,7 +106,7 @@ export function WithAdditional({children, data}) {
                             <br/>
                         </React.Fragment>);
                 })}</Paragraph>}
-                <WrapperQuestion>
+                <WrapperQuestion ref={ref}>
                     {React.Children.map(children, child => {
                         return (
                             <React.Fragment key={key}>

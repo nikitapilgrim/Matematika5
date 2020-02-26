@@ -20,7 +20,7 @@ export default [
     {
         id: 1,
         layout: LAYOUTS.manyInputs,
-        title: 'Dopuni koliko ti nedostaje do 1000',
+        title: `Dopuni koliko ti nedostaje do 1000`,
         questions: [
             {
                 question: '256 + {{744}} = 1000'
