@@ -35,9 +35,7 @@ const Debugg = () => {
     const {dispatch, stage, tutorial, kviz, start} = useStoreon(
         'stage', 'tutorial', 'kviz', 'start'
     );
-
-    console.log(tutorial, kviz,start)
-
+    
     const ClickHandler = useCallback(() => {
         dispatch('stage/to', stage + 1);
     }, [stage]);
@@ -164,7 +162,7 @@ export function GameView() {
         if (right) {
             dispatch('medal/set', {type: 'gold', id: stage});
             dispatch('stage/next');
-            sounds.success.play()
+            sounds.success.play();
             setCorrectAnswer(true);
             setTimeout(() =>{
                 setCorrectAnswer(false)
