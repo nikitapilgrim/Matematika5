@@ -21,7 +21,7 @@ const SlideBottom = keyframes`
   }
 `;
 const SlideVert = props => css`
-  animation: ${props.show ? SlideTop : SlideBottom} 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: ${props.show ? SlideTop : SlideBottom} 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 `;
 
 const Title = styled.div`

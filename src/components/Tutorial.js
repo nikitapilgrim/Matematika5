@@ -141,7 +141,6 @@ export function Tutorial({active, data, handler}) {
 
     useEffect(() => {
         if (sizes && sizes[data.elem]) {
-            setHeightTeacher(sizes.top * 0.81)
             if (data.revert) {
                 setTeacherOffset(`${(sizes[data.elem].left + sizes[data.elem].width / 2) - teacherSize.width}px`)
             } else {
@@ -165,7 +164,7 @@ export function Tutorial({active, data, handler}) {
     return (
         <>
             {!end && <Wrapper show={show}>
-                <Teacher height={heightTeacher} left={teacherOffset} ref={ref}>
+                <Teacher height={sizes&&sizes.top * 0.81} left={teacherOffset} ref={ref}>
                     <img src={data.teacher} alt="teacher"/>
                     <Bubble position={data.bubble.position}>
                         {bubble !== null && <img src={bubble} alt="text"/>}
