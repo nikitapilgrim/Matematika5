@@ -10,7 +10,7 @@ const Wrapper = styled.div`
 
 const WrapperInput = styled.div`
     font-size: 2rem;
-    margin-top: 0.5rem;
+    margin-top: 2rem;
 `;
 
 const parseQuestions = (questions) => {
