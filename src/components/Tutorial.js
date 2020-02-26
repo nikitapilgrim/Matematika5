@@ -49,6 +49,7 @@ const Teacher = styled.div`
   z-index: 3;
   width: 52vh;
   transform: translateX(${props => props.left});
+  transition-duration: 0.25s;
   user-select: none;
   pointer-events: none;
   img {
