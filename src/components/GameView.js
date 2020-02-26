@@ -32,9 +32,11 @@ const CurrentStage = styled.div`
 `;
 
 const Debugg = () => {
-    const {dispatch, stage} = useStoreon(
-        'stage'
+    const {dispatch, stage, tutorial, kviz, start} = useStoreon(
+        'stage', 'tutorial', 'kviz', 'start'
     );
+
+    console.log(tutorial, kviz,start)
 
     const ClickHandler = useCallback(() => {
         dispatch('stage/to', stage + 1);
@@ -54,15 +56,15 @@ const Debugg = () => {
 
 
     return (
-        <div>
-            <button style={{
+        <div style={{position: "relative"}}>
+            <button disabled={tutorial || kviz.show || !start}  style={{
                 position: 'fixed',
                 zIndex: '999',
                 top: '2rem',
                 right: '2rem'
             }} onClick={ClickHandler}>next
             </button>
-            <input value={stage}
+            <input disabled={tutorial || kviz.show || !start}  value={stage}
                    style={{
                        position: 'fixed',
                        zIndex: '999',
@@ -128,6 +130,7 @@ export function GameView() {
 
     useEffect(() => {
         if (start) {
+            dispatch('tutorial', true);
             setShowTutorial(true);
         }
     }, [start]);
@@ -150,6 +153,7 @@ export function GameView() {
             if (tutorialData[tutorialCount + 1]) {
                 setTutorialCount((prev) => prev + 1);
             } else {
+                dispatch('tutorial', false);
                 setShowTutorial(false)
             }
         }

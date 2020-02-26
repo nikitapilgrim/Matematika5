@@ -35,8 +35,8 @@ const stage = store => {
           }}});
     });
 
-    store.on('tutorial', () => {
-        return ({start: true});
+    store.on('tutorial', ({tutorial}, state) => {
+        return ({tutorial: state});
     });
     store.on('music/change', ({music}) => {
         return ({music: !music});
