@@ -23,7 +23,7 @@ const stage = store => {
             show: false,
         },
         help: false,
-        tutorial: true,
+        tutorial: false,
         medals: {}
     }));
 

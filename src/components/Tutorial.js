@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState, useCallback, useMemo} from 'react';
 import useMount from 'react-use/lib/useMount';
-import useDeepCompareEffect from 'react-use/lib/useDeepCompareEffect';
+import useRafState from 'react-use/lib/useRafState';
+import useRafLoop from 'react-use/lib/useRafLoop';
 import useComponentSize from '@rehooks/component-size'
 import styled from "styled-components";
 import {Speech} from "./Speech";
@@ -9,6 +10,8 @@ import {useWindowSize} from 'react-use';
 import {eventTopPanel} from "./TopPanel";
 
 import {css, keyframes} from "styled-components";
+import useStoreon from "storeon/react";
+import {set} from "ramda";
 
 const SlideTop = keyframes`
   0% {
@@ -49,7 +52,7 @@ const Teacher = styled.div`
   position: fixed;
   bottom: -1rem;
   z-index: 3;
-  width: ${props => props.height ? `${props.height}px` : `60vh`};
+  width: ${props => props.height ? `${props.height}px` : `0`};
   transform: translateX(${props => props.left});
   transition-duration: 0.25s;
   user-select: none;
@@ -78,19 +81,36 @@ const Bubble = styled.div`
 
 
 export function Tutorial({active, data, handler}) {
+    const {dispatch, tutorial, kviz} = useStoreon(
+        'tutorial',
+        'kviz'
+    );
     const ref = useRef(null);
     const [show, setShow] = useState(false);
     const [buttons, setButtons] = useState(null);
-    const [teacherOffset, setTeacherOffset] = useState(null);
+    const [teacherOffset, setTeacherOffset] = useRafState(null);
     const [bubble, setBubble] = useState(null);
     const {width, height} = useWindowSize();
     const [init, setInit] = useState(false);
     const [end, setEnd] = useState(false);
     const teacherSize = useComponentSize(ref);
+    const [sizes, setSizes] = useRafState(null);
     const [heightTeacher, setHeightTeacher] = useState(null);
+    const [start,setStart] = useState(false);
     useClickAway(ref, () => {
         handler()
     });
+
+    useEffect(() => {
+        if (tutorial && !kviz.show) {
+            setTimeout(() =>{
+                setStart(true)
+            }, 1000)
+        }
+        if (tutorial) {
+            setStart(false)
+        }
+    }, [tutorial, kviz.show]);
 
     useEffect(() => {
         if (active) {
@@ -118,25 +138,35 @@ export function Tutorial({active, data, handler}) {
         return () => eventTopPanel.off('refs', onRefs)
     }, []);
 
-    const sizes = useMemo(() => {
-        if (buttons !== null) {
-            return Object.entries(buttons).reduce((acc, pair) => {
+    const [loopStop, isActive, loopStart] = useRafLoop(() => {
+        if (buttons !== null && start && tutorial) {
+            const r = Object.entries(buttons).reduce((acc, pair) => {
                 const [key, node] = pair;
+                const size = node.getBoundingClientRect();
                 return {
                     ...acc,
-                    top: height - (node.getBoundingClientRect().top),
+                    top: height - (size.top),
                     [key]: {
-                        top: node.getBoundingClientRect().top + document.body.scrollTop,
-                        left: node.getBoundingClientRect().x,
-                        width: node.getBoundingClientRect().width,
-                        bottom: node.getBoundingClientRect().bottom,
+                        top: size.top + document.body.scrollTop,
+                        left: size.x,
+                        width: size.width,
+                        bottom: size.bottom,
 
                     }
                 };
             }, {});
+            setSizes(r);
         }
-        return null;
-    }, [buttons, width, height]);
+    }, [buttons, width, height, start]);
+
+    useEffect(() =>{
+        if (start) {
+            loopStart();
+        }
+        else {
+            loopStop()
+        }
+    },[start]);
 
 
     useEffect(() => {
