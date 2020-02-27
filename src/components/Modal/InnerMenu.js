@@ -130,14 +130,18 @@ export const InnerMenu = (props) => {
                 const nextKviz = buttonsWithMedals.findIndex((item) => {
                     return item.range.includes(stage + 1)
                 });
-                dispatch('kviz/set',nextKviz + 1);
+
             }
         }
     }, [stage, buttonsWithMedals]);
 
     const handlerStage = (next, number) => () => {
         sounds.mouseclick.play();
-        dispatch('kviz/set', number === 1 ? number : number - 1);
+        const state = {
+            current: number === 1 ? -number : -(number - 1),
+            prev: kviz.prev,
+        };
+        dispatch('kviz/set', state);
         dispatch('kviz/show');
         dispatch('stage/to', next);
         dispatch('modal/hide');

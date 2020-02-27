@@ -78,7 +78,7 @@ const quizTitles = {
 export const Kviz = ({order}) => {
     const [show, setShow] = useState(null);
     const [number, setNumber] = useState(1);
-    const {dispatch, start, kviz} = useStoreon(
+    const {dispatch, start, kviz, stage} = useStoreon(
         'stage',
         'start',
         'kviz'
@@ -89,20 +89,32 @@ export const Kviz = ({order}) => {
         if (start && kviz.show) {
             setShow(true);
             setTimeout(() => {
-                dispatch('kviz/hide');
-            }, 1900);
-            setTimeout(() => {
-                dispatch('stage/next');
-            }, 2000)
+                const important = !Math.sign(kviz.order);
+                const abs = Math.abs(kviz.order);
+                const order = important ? abs : stage !== 0 ? abs + 1: abs;
+
+                const state = {
+                    current: order,
+                    prev: kviz.prev || number
+                };
+                console.log(state, stage);
+                dispatch('kviz/set', state);
+                setNumber(order);
+
+                setTimeout(() => {
+                    dispatch('kviz/hide');
+                }, 1000);
+                setTimeout(() => {
+                    dispatch('stage/next');
+                }, 2000)
+            }, 1300);
         } else {
             setShow(false)
         }
 
-    }, [kviz.show, start]);
+    }, [kviz.show, start, stage]);
 
-    useEffect(() => {
-        setNumber(kviz.order);
-    }, [kviz.order]);
+
     useEffect(() => {
         if (number === 0) setTitle(quizTitles[17]);
         else {
@@ -113,7 +125,7 @@ export const Kviz = ({order}) => {
     return (
         <Wrapper show={show}>
             <ImgWrapper>
-                <img src={title} alt={kviz.order}/>
+                <img src={title} alt={Math.abs(number)}/>
             </ImgWrapper>
             <Title>
                 Kviz {number || 1}

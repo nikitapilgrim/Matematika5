@@ -20,7 +20,9 @@ const stage = store => {
         countCorrectAnswers: 0,
         kviz: {
             order: 1,
+            prev: 1,
             show: false,
+            wait: false,
         },
         help: false,
         tutorial: false,
@@ -52,7 +54,10 @@ const stage = store => {
         return ({modal: false});
     });
     store.on('kviz/set', ({kviz}, state) => {
-        return ({kviz: {...kviz, order: state}});
+        return ({kviz: {...kviz,
+                order: state.current || kviz.order,
+                prev: state.prev || kviz.prev,
+        }});
     });
 
     store.on('preload/set', ({preloader}, state) => {

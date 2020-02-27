@@ -96,14 +96,14 @@ export function Tutorial({active, data, handler}) {
     const teacherSize = useComponentSize(ref);
     const [sizes, setSizes] = useRafState(null);
     const [heightTeacher, setHeightTeacher] = useState(null);
-    const [start,setStart] = useState(false);
+    const [start, setStart] = useState(false);
     useClickAway(ref, () => {
         handler()
     });
 
     useEffect(() => {
         if (tutorial && !kviz.show) {
-            setTimeout(() =>{
+            setTimeout(() => {
                 setStart(true)
             }, 1000)
         }
@@ -159,14 +159,14 @@ export function Tutorial({active, data, handler}) {
         }
     }, [buttons, width, height, start]);
 
-    useEffect(() =>{
+    useEffect(() => {
         if (start) {
-            loopStart();
+            loopStart()
         }
-        else {
+        if (end) {
             loopStop()
         }
-    },[start]);
+    }, [start, end]);
 
 
     useEffect(() => {
@@ -192,16 +192,14 @@ export function Tutorial({active, data, handler}) {
     }, [data, show]);
 
     return (
-        <>
-            {!end && <Wrapper show={show}>
-                <Teacher height={sizes&&sizes.top * 0.81} left={teacherOffset} ref={ref}>
-                    <img src={data.teacher} alt="teacher"/>
-                    <Bubble position={data.bubble.position}>
-                        {bubble !== null && <img src={bubble} alt="text"/>}
-                    </Bubble>
-                </Teacher>
-                {/*<Speech onClick={handler} data={data}/>*/}
-            </Wrapper>}
-        </>
+        <Wrapper show={show}>
+            <Teacher height={sizes && sizes.top * 0.81} left={teacherOffset} ref={ref}>
+                <img src={data.teacher} alt="teacher"/>
+                <Bubble position={data.bubble.position}>
+                    {bubble !== null && <img src={bubble} alt="text"/>}
+                </Bubble>
+            </Teacher>
+            {/*<Speech onClick={handler} data={data}/>*/}
+        </Wrapper>
     )
 }
