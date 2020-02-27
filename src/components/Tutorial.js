@@ -50,10 +50,11 @@ const Wrapper = styled.div`
 
 const Teacher = styled.div`
   position: fixed;
-  bottom: -1rem;
+  top: 0;
   z-index: 3;
-  width: 26rem;
-  transform: translateX(${props => props.left});
+  width: 23rem;
+  transform: translate(${props => Number(props.left) ? `${props.left}px`: props.left}, ${props => props.top}px);
+  
   transition-duration: 0.25s;
   user-select: none;
   pointer-events: none;
@@ -95,7 +96,6 @@ export function Tutorial({active, data, handler}) {
     const [end, setEnd] = useState(false);
     const teacherSize = useComponentSize(ref);
     const [sizes, setSizes] = useRafState(null);
-    const [heightTeacher, setHeightTeacher] = useState(null);
     const [start, setStart] = useState(false);
     useClickAway(ref, () => {
         handler()
@@ -145,7 +145,7 @@ export function Tutorial({active, data, handler}) {
                 const size = node.getBoundingClientRect();
                 return {
                     ...acc,
-                    top: height - (size.top),
+                    top: size.top,
                     [key]: {
                         top: size.top + document.body.scrollTop,
                         left: size.x,
@@ -169,17 +169,32 @@ export function Tutorial({active, data, handler}) {
     }, [start, end]);
 
 
-
     useEffect(() => {
+        if (sizes) {
+            setTeacherOffset(prev => ({
+                ...prev, ...{y:  (sizes.top + teacherSize.height) * 0.48
+            }}));
+        }
+
         if (sizes && sizes[data.elem]) {
             if (data.revert) {
-                setTeacherOffset(`${(sizes[data.elem].left + sizes[data.elem].width / 2) - teacherSize.width}px`)
+                setTeacherOffset(prev => ({
+                    ...prev, ...{
+                        x: (sizes[data.elem].left + sizes[data.elem].width / 2) - teacherSize.width,
+                        y: (sizes.top + teacherSize.height)* 0.48
+                    }
+                }))
             } else {
-                setTeacherOffset(`${(sizes[data.elem].left + sizes[data.elem].width / 2)}px`)
+                setTeacherOffset(prev => ({
+                    ...prev, ...{
+                        x: (sizes[data.elem].left + sizes[data.elem].width / 2),
+                        y: (sizes.top + teacherSize.height) * 0.48
+                    }
+                }))
             }
         }
         if (data.offset) {
-            setTeacherOffset(data.offset);
+            setTeacherOffset(prev => ({...prev, ...{x: data.offset}}));
         }
     }, [data, sizes, width, teacherSize]);
 
@@ -194,7 +209,7 @@ export function Tutorial({active, data, handler}) {
 
     return (
         <Wrapper show={show}>
-            <Teacher  left={teacherOffset} ref={ref}>
+            <Teacher top={teacherOffset && teacherOffset.y} left={teacherOffset && teacherOffset.x} ref={ref}>
                 <img src={data.teacher} alt="teacher"/>
                 <Bubble position={data.bubble.position}>
                     {bubble !== null && <img src={bubble} alt="text"/>}

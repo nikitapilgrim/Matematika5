@@ -43,13 +43,16 @@ const MenuObjectsWrapper = styled.div`
 `;
 
 const Buttons = styled.div`
-
+      height: 100%;
+      width: 100%;
+     position: absolute;
+     z-index: 999;
 `
 
 
 const ButtonSound = styled.div`
-  top: 2rem;
-  right: 3rem;
+  top: 5rem;
+  right: 12rem;
   position: absolute;
   display: flex;
   justify-content: center;

@@ -175,6 +175,9 @@ export function GameView() {
             }, 1000)
         }
     }, []);
+    useEffect(()=> {
+
+    }, [final])
 
     return (
         <WrapperApp key={id}>
@@ -189,7 +192,7 @@ export function GameView() {
                   showStage={showStage}
                   shake={correctAnswer}
             />
-            <Final/>
+
 
             <Debugg/>
         </WrapperApp>
