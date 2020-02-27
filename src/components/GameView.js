@@ -176,12 +176,6 @@ export function GameView() {
         }
     }, []);
 
-    useEffect(() => {
-        if (final) {
-            console.log(final)
-        }
-    }, [final]);
-
     return (
         <WrapperApp key={id}>
             <Intro show={showIntro}/>
@@ -195,6 +189,7 @@ export function GameView() {
                   showStage={showStage}
                   shake={correctAnswer}
             />
+            <Final/>
 
             <Debugg/>
         </WrapperApp>

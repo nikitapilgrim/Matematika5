@@ -9,6 +9,9 @@ const data = {
     ],
     mouseclick: [
         require('./assets/sound/mouseclick.mp3'),
+    ],
+    final: [
+        require('./assets/sound/final-stage-music.aac'),
     ]
 };
 
@@ -31,6 +34,10 @@ export const sounds = {
     }),
     success: new Howl({
         src: data.success,
+        preload: true
+    }),
+    final: new Howl({
+        src: data.final,
         preload: true
     }),
 };

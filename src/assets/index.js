@@ -30,6 +30,17 @@ const assets = [
         url: require('./image/intro/kids-rotation.png')
     },
     {
+        name: 'final',
+        url: require('./image/final/final-stage-background.png')
+    },
+    {
+        name: 'finalbutton',
+        url: require('./image/final/final-stage-button.png')
+    },{
+        name: 'finalnusic',
+        url: require('./sound/final-stage-music.aac')
+    },
+    {
         name: 'font',
         url: require('./font/Boogaloo-Regular.woff2')
     },

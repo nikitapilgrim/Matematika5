@@ -4,30 +4,32 @@ import stages from '../data/stages'
 
 const preloader = document.querySelector('#preload__percent');
 
-const stage = store => {
-    store.on('@init', () => ({
-        stage: 0,
-        final: false,
-        modal: false,
-        start: false,
-        music: false,
-        preloader: {
-            container: preloader,
-            count: 0,
-            show: true,
-        },
-        countQuestions: 0,
-        countCorrectAnswers: 0,
-        kviz: {
-            order: 1,
-            prev: 1,
-            show: false,
-            wait: false,
-        },
-        help: false,
-        tutorial: false,
-        medals: {}
-    }));
+const initState = {
+    stage: 0,
+    final: false,
+    modal: false,
+    start: false,
+    music: false,
+    preloader: {
+        container: preloader,
+        count: 0,
+        show: true,
+    },
+    countQuestions: 0,
+    countCorrectAnswers: 0,
+    kviz: {
+        order: 1,
+        prev: 1,
+        show: false,
+        wait: false,
+    },
+    help: false,
+    tutorial: false,
+    medals: {}
+};
+
+const app = store => {
+    store.on('@init', () => (initState));
 
 
     store.on('medal/set', ({medals}, state) => {
@@ -79,6 +81,10 @@ const stage = store => {
     store.on('stage/final', ({final}, state) => {
         return ({final: state});
     });
+    store.on('reset', (state) => {
+        console.log(state)
+        return (initState);
+    });
     store.on('stage/to', ({stage}, number) => {
         if (number === 0 || number) {
             return ({stage: number});
@@ -113,5 +119,5 @@ const stage = store => {
 };
 
 
-export const store = createStore([stage]);
+export const store = createStore([app, persistState(['stage'])]);
 //persistState(['stage', 'medals' ])
