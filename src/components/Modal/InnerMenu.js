@@ -142,7 +142,9 @@ export const InnerMenu = (props) => {
             prev: kviz.prev,
         };
         dispatch('kviz/set', state);
-        dispatch('kviz/show');
+        setTimeout(() => {
+            dispatch('kviz/show');
+        }, 50);
         dispatch('stage/to', next);
         dispatch('modal/hide');
     };
