@@ -10,6 +10,7 @@ import stagesData from "../data/stages";
 import {Tutorial} from "./Tutorial";
 import {Desk} from "./Desk";
 import {Kviz} from "./Kviz";
+import {Final} from "./Final";
 
 const WrapperApp = styled.div`
     display: flex;
@@ -93,11 +94,12 @@ const Blur = styled.div`
 `;
 
 export function GameView() {
-    const {dispatch, stage, start, kviz, preloader} = useStoreon(
+    const {dispatch, stage, start, kviz, preloader, final} = useStoreon(
         'stage',
         'start',
         'kviz',
         'preloader',
+        'final'
     );
     const [stageData, setStageData] = useState(stagesData[stage]);
     const [tutorialCount, setTutorialCount] = useState(0);
@@ -134,7 +136,11 @@ export function GameView() {
     }, [start]);
 
     useEffect(() => {
-        setStageData(stagesData[stage]);
+        if (stagesData[stage] + 1) {
+            setStageData(stagesData[stage]);
+        } else {
+            dispatch('stage/final', true);
+        }
     }, [stage]);
 
 
@@ -170,6 +176,12 @@ export function GameView() {
         }
     }, []);
 
+    useEffect(() => {
+        if (final) {
+            console.log(final)
+        }
+    }, [final]);
+
     return (
         <WrapperApp key={id}>
             <Intro show={showIntro}/>
@@ -183,6 +195,7 @@ export function GameView() {
                   showStage={showStage}
                   shake={correctAnswer}
             />
+
             <Debugg/>
         </WrapperApp>
     )

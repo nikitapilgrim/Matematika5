@@ -54,7 +54,7 @@ const DeskWrapper = styled.div`
     align-items: center;
   img {
     display: inline-block;
-    filter:  ${props => props.shake && `drop-shadow(0mm 5mm 5mm rgba(3, 252, 48, 0.9))`};
+    filter:  ${props => props.shake && `drop-shadow(0 0 50px rgba(43,255,0,1))`};
     //filter: drop-shadow(0 0 3px);
     max-width: 100%;
     user-select: none;

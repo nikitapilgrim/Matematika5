@@ -52,7 +52,7 @@ const Teacher = styled.div`
   position: fixed;
   bottom: -1rem;
   z-index: 3;
-  width: ${props => props.height ? `${props.height}px` : `0`};
+  width: 26rem;
   transform: translateX(${props => props.left});
   transition-duration: 0.25s;
   user-select: none;
@@ -169,6 +169,7 @@ export function Tutorial({active, data, handler}) {
     }, [start, end]);
 
 
+
     useEffect(() => {
         if (sizes && sizes[data.elem]) {
             if (data.revert) {
@@ -193,7 +194,7 @@ export function Tutorial({active, data, handler}) {
 
     return (
         <Wrapper show={show}>
-            <Teacher height={sizes && sizes.top * 0.81} left={teacherOffset} ref={ref}>
+            <Teacher  left={teacherOffset} ref={ref}>
                 <img src={data.teacher} alt="teacher"/>
                 <Bubble position={data.bubble.position}>
                     {bubble !== null && <img src={bubble} alt="text"/>}

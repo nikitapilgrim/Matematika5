@@ -138,7 +138,7 @@ export const InnerMenu = (props) => {
     const handlerStage = (next, number) => () => {
         sounds.mouseclick.play();
         const state = {
-            current: number === 1 ? -number : -(number - 1),
+            current: -number,
             prev: kviz.prev,
         };
         dispatch('kviz/set', state);

@@ -88,26 +88,41 @@ export const Kviz = ({order}) => {
     useEffect(() => {
         if (start && kviz.show) {
             setShow(true);
-            setTimeout(() => {
-                const important = !Math.sign(kviz.order);
-                const abs = Math.abs(kviz.order);
-                const order = important ? abs : stage !== 0 ? abs + 1: abs;
+            const important = Math.sign(kviz.order) === -1;
+            const abs = Math.abs(kviz.order);
 
-                const state = {
-                    current: order,
-                    prev: kviz.prev || number
-                };
-                console.log(state, stage);
-                dispatch('kviz/set', state);
-                setNumber(order);
-
+            if (important) {
+                setNumber(abs);
                 setTimeout(() => {
                     dispatch('kviz/hide');
-                }, 1000);
-                setTimeout(() => {
                     dispatch('stage/next');
-                }, 2000)
-            }, 1300);
+                    const state = {
+                        current: abs,
+                        prev: kviz.prev || number
+                    };
+                    dispatch('kviz/set', state);
+                }, 1000);
+            }
+            if (!important) {
+                setTimeout(() => {
+                    const order = important ? abs : stage !== 0 ? abs + 1: abs;
+
+                    const state = {
+                        current: order,
+                        prev: kviz.prev || number
+                    };
+                    dispatch('kviz/set', state);
+                    setNumber(order);
+
+                    setTimeout(() => {
+                        dispatch('kviz/hide');
+                    }, 1000);
+                    setTimeout(() => {
+                        dispatch('stage/next');
+                    }, 2000)
+                }, 1300);
+            }
+
         } else {
             setShow(false)
         }
