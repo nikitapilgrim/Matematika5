@@ -79,9 +79,9 @@ const InputWrapper = styled.span`
 
 const pulse = props => keyframes`
     0% {
-        ${props.right !== null && !props.right && `box-shadow: 0 0 0 5px rgba(236, 6, 12, 0.5)`};
-        ${props.focused && `box-shadow: 0 0 0 5px rgba(93, 130, 71, 0.5)`};
-        ${props.right && `box-shadow: 0 0 0 5px rgba(50, 180, 15, 0.5)`};
+        ${props.right !== null && !props.right && `box-shadow: 0 0 0 5px rgba(236, 6, 12, 0.0)`};
+        ${props.focused && `box-shadow: 0 0 0 5px rgba(93, 130, 71, 0.0)`};
+        ${props.right && `box-shadow: 0 0 0 5px rgba(50, 180, 15, 0.0)`};
       }
     50% { 
         ${props.right !== null && !props.right && `box-shadow: 0 0 0 5px rgba(236, 6, 12, 1)`};
@@ -90,9 +90,9 @@ const pulse = props => keyframes`
      }
     100% { 
     
-        ${props.right !== null && !props.right && `box-shadow: 0 0 0 5px rgba(236, 6, 12, 0.5)`};
-        ${props.focused && `box-shadow: 0 0 0 5px rgba(93, 130, 71, 0.5)`};
-        ${props.right && `box-shadow: 0 0 0 5px rgba(50, 180, 15, 0.5)`};
+        ${props.right !== null && !props.right && `box-shadow: 0 0 0 5px rgba(236, 6, 12, 0.0)`};
+        ${props.focused && `box-shadow: 0 0 0 5px rgba(93, 130, 71, 0.0)`};
+        ${props.right && `box-shadow: 0 0 0 5px rgba(50, 180, 15, 0.0)`};
     }
 `;
 
