@@ -9,7 +9,7 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     position: relative;
-    top: 7rem;
+    top: 6rem;
     height: 50%;
     width: 80%;
     padding: 0 1rem;
