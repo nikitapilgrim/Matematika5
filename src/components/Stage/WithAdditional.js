@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import styled from "styled-components";
 import {TextWithBorders} from "../TextWithBorders";
 import useStoreon from 'storeon/react';
@@ -72,30 +72,38 @@ export function WithAdditional({children, data}) {
     const {help, tutorial} = useStoreon(
         'help', 'tutorial'
     );
+    const [lastInutFocus, setLastInputFocus] = useState();
     const isTitleImage = title && title.includes('.png');
     const ref = useRef(null);
+
+    const handlerOnBlur = (e) => {
+        setLastInputFocus(e.target)
+    };
 
     useEffect(() => {
         if (ref && ref.current) {
             const nodes = ref.current.querySelectorAll('input');
             if (!tutorial) {
-                setTimeout(()=> {
+                setTimeout(() => {
                     nodes[0].focus();
 
-                },0)
-            }
-
-            if (nodes[0]) {
-                nodes[0].focus();
+                }, 0)
             }
         }
-    }, [data, ref, help, tutorial]);
+    }, [data, ref, tutorial]);
+
+    useEffect(() => {
+        if (!help && lastInutFocus) {
+            lastInutFocus.focus();
+        }
+    }, [help, lastInutFocus]);
 
     return (
         <Wrapper>
             {title && <Title>
                 {isTitleImage ? <Image><img src={title} alt=""/></Image> :
-                    <TextWithBorders strokeWidth={'0'} strokeColor={"#FFF"} color={"#FFF"} size={data.sizeTitle || 2} text={title}/>}
+                    <TextWithBorders strokeWidth={'0'} strokeColor={"#FFF"} color={"#FFF"} size={data.sizeTitle || 2}
+                                     text={title}/>}
             </Title>}
             <Other>
                 {img && <Image size={img.width}><img src={img.src} alt=""/></Image>}
@@ -106,7 +114,7 @@ export function WithAdditional({children, data}) {
                             <br/>
                         </React.Fragment>);
                 })}</Paragraph>}
-                <WrapperQuestion ref={ref}>
+                <WrapperQuestion ref={ref} onBlur={handlerOnBlur}>
                     {React.Children.map(children, child => {
                         return (
                             <React.Fragment key={key}>
