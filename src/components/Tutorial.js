@@ -145,7 +145,7 @@ export function Tutorial({active, data, handler}) {
                 const size = node.getBoundingClientRect();
                 return {
                     ...acc,
-                    top: size.top,
+                    top: size.top + document.body.scrollTop,
                     [key]: {
                         top: size.top + document.body.scrollTop,
                         left: size.x,
@@ -168,35 +168,21 @@ export function Tutorial({active, data, handler}) {
         }
     }, [start, end]);
 
-
     useEffect(() => {
         if (sizes) {
+            let x;
+            if (sizes[data.elem]) {
+                x = data.revert ? (sizes[data.elem].left + sizes[data.elem].width / 2) - teacherSize.width : (sizes[data.elem].left + sizes[data.elem].width / 2)
+            }
+            if (data.offset) {
+                x = data.offset
+            }
             setTeacherOffset(prev => ({
-                ...prev, ...{y:  (sizes.top + teacherSize.height) * 0.48
+                ...prev, ...{y:  (sizes.top),
+                    x: x,
             }}));
         }
-
-        if (sizes && sizes[data.elem]) {
-            if (data.revert) {
-                setTeacherOffset(prev => ({
-                    ...prev, ...{
-                        x: (sizes[data.elem].left + sizes[data.elem].width / 2) - teacherSize.width,
-                        y: (sizes.top + teacherSize.height)* 0.48
-                    }
-                }))
-            } else {
-                setTeacherOffset(prev => ({
-                    ...prev, ...{
-                        x: (sizes[data.elem].left + sizes[data.elem].width / 2),
-                        y: (sizes.top + teacherSize.height) * 0.48
-                    }
-                }))
-            }
-        }
-        if (data.offset) {
-            setTeacherOffset(prev => ({...prev, ...{x: data.offset}}));
-        }
-    }, [data, sizes, width, teacherSize]);
+    }, [data, sizes, width, teacherSize, height]);
 
     useEffect(() => {
         if (show) {
