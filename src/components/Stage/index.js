@@ -48,7 +48,6 @@ const NextButton = styled.button`
 `;
 
 export const Stage = ({data, onNext}) => {
-    const {dispatch, modal, kviz, preloader} = useStoreon('modal', 'kviz', 'preloader');
     const dataWithKey = useMemo(() => {
         return {key: nanoid(5), ...data}
     }, [data]);

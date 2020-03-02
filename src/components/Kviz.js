@@ -113,7 +113,6 @@ export const Kviz = ({order}) => {
                     };
                     dispatch('kviz/set', state);
                     setNumber(order);
-
                     setTimeout(() => {
                         dispatch('kviz/hide');
                     }, 1000);

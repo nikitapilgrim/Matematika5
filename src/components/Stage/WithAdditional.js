@@ -72,31 +72,32 @@ export function WithAdditional({children, data}) {
     const {help, tutorial} = useStoreon(
         'help', 'tutorial'
     );
-    const [lastInutFocus, setLastInputFocus] = useState();
+    const lastInputFocus = useRef();
     const isTitleImage = title && title.includes('.png');
     const ref = useRef(null);
 
     const handlerOnBlur = (e) => {
-        setLastInputFocus(e.target)
+        lastInputFocus.current = e.target;
     };
 
     useEffect(() => {
         if (ref && ref.current) {
             const nodes = ref.current.querySelectorAll('input');
-            if (!tutorial) {
+            if (!tutorial ) {
                 setTimeout(() => {
-                    nodes[0].focus();
-
+                    if (nodes[0]) {
+                        nodes[0].focus();
+                    }
                 }, 0)
             }
         }
     }, [data, ref, tutorial]);
 
     useEffect(() => {
-        if (!help && lastInutFocus) {
-            lastInutFocus.focus();
+        if (!help && lastInputFocus && lastInputFocus.current) {
+            lastInputFocus.current.focus();
         }
-    }, [help, lastInutFocus]);
+    }, [help]);
 
     return (
         <Wrapper>

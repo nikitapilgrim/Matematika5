@@ -116,7 +116,7 @@ export const Desk = React.memo(({tutorialData, showStage, stageData, handlerNext
     );
 
     return (
-        <Wrapper key={id} show={start && !kviz.show && !final}>
+        <Wrapper key={id} show={start && !kviz.show}>
             <DeskWrapper shake={shake} className="desk-wrapper">
                 <WrapperImg>
                     <img src={notebook} alt="notebook"/>

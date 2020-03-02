@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled, {keyframes} from "styled-components";
 import useStoreon from "storeon/react";
 import {Scale} from "./Animate/Slide";
@@ -91,6 +91,10 @@ const FakeButton = styled.button`
 `;
 export const Final = () => {
     const {dispatch, countCorrectAnswers, countQuestions, final} = useStoreon('countCorrectAnswers', 'countQuestions', 'final');
+
+    useEffect(() => {
+        dispatch('game/start')
+    }, [])
 
     const handlerPlayAgain = () => {
         dispatch('stage/final', false);

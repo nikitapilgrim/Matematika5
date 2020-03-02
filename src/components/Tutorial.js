@@ -116,7 +116,7 @@ export function Tutorial({active, data, handler}) {
         if (active) {
             setTimeout(() => {
                 setShow(true)
-            }, 1000)
+            }, 2000)
         } else {
             setShow(false);
             if (init) {
@@ -161,7 +161,10 @@ export function Tutorial({active, data, handler}) {
 
     useEffect(() => {
         if (start) {
-            loopStart()
+            setTimeout(() => {
+                loopStart()
+            }, 1000);
+
         }
         if (end) {
             loopStop()
@@ -169,7 +172,7 @@ export function Tutorial({active, data, handler}) {
     }, [start, end]);
 
     useEffect(() => {
-        if (sizes) {
+        if (sizes && isActive) {
             let x;
             if (sizes[data.elem]) {
                 x = data.revert ? (sizes[data.elem].left + sizes[data.elem].width / 2) - teacherSize.width : (sizes[data.elem].left + sizes[data.elem].width / 2)
@@ -182,7 +185,7 @@ export function Tutorial({active, data, handler}) {
                     x: x,
             }}));
         }
-    }, [data, sizes, width, teacherSize, height]);
+    }, [data, sizes, width, teacherSize, height,isActive]);
 
     useEffect(() => {
         if (show) {
