@@ -25,6 +25,7 @@ const initState = {
     },
     help: false,
     tutorial: false,
+    waitDesk: false,
     medals: {}
 };
 
@@ -54,6 +55,9 @@ const app = store => {
     });
     store.on('modal/hide', ({quiz}, state) => {
         return ({modal: false});
+    });
+    store.on('waitDesk', ({quiz}, state) => {
+        return ({waitDesk: false});
     });
     store.on('kviz/set', ({kviz}, state) => {
         return ({kviz: {...kviz,

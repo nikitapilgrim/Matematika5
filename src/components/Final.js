@@ -111,14 +111,18 @@ const FakeButton = styled.button`
 export const Final = () => {
     const {dispatch, countCorrectAnswers, countQuestions, final} = useStoreon('countCorrectAnswers', 'countQuestions', 'final');
 
-
     const handlerPlayAgain = () => {
         dispatch('stage/final', false);
         dispatch('stage/to', 0)
     };
 
     const handlerShowMenu = () => {
-
+        setTimeout(() => {
+            dispatch('waitDesk', false);
+        }, 1000);
+        dispatch('modal/show');
+        dispatch('stage/final', false);
+        dispatch('waitDesk', true);
     };
 
     return (
@@ -129,7 +133,7 @@ export const Final = () => {
             <Buttons>
 
                 <HiddenWrapp hide={false}>
-                    <MenuSound>
+                    <MenuSound onClick={handlerShowMenu}>
                         <MenuWithouModal color={'#FFF'}/>
                     </MenuSound>
                 </HiddenWrapp>
