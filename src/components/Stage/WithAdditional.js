@@ -95,7 +95,9 @@ export function WithAdditional({children, data}) {
 
     useEffect(() => {
         if (!help && lastInputFocus && lastInputFocus.current) {
-            lastInputFocus.current.focus();
+            setTimeout(() => {
+                lastInputFocus.current.focus();
+            },4)
         }
     }, [help]);
 

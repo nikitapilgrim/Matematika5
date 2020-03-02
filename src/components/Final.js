@@ -5,7 +5,8 @@ import {Scale} from "./Animate/Slide";
 import menuobjects from "../assets/image/final/final-stage-background.png";
 import button from "../assets/image/final/final-stage-button.png";
 import {Sound} from "./Sound";
-import {Menu} from "./Menu";
+import {MenuWithouModal} from "./Menu";
+import {sounds} from "../sounds";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -43,30 +44,47 @@ const MenuObjectsWrapper = styled.div`
 `;
 
 const Buttons = styled.div`
-      height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    top: 3rem;
+      height: 20%;
       width: 100%;
      position: absolute;
      z-index: 999;
 `
 
 
+const HiddenWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position:relative;
+    padding: 0.5em;
+    transition: filter 1s;
+  
+`;
+const HiddenWrapp = React.forwardRef(({children, hide, round}, ref) => {
+    return (
+        <HiddenWrapper ref={ref} round={round} onClick={e => {
+            sounds.mouseclick.play()
+        }} hide={hide}>
+            {children}
+        </HiddenWrapper>
+    )
+});
+
+
 const ButtonSound = styled.div`
-  top: 5rem;
+  top: -0.2rem;
   right: 12rem;
   position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 4.2rem; height: 4.2rem;
-  border: 0.1em solid #000;
-  border-radius: 50% 50%;
-  background-color: #B12A17;
-  cursor: pointer;
-  transform: rotate(-25deg);
-  &:not(:first-child) {
-    margin-left: 1rem;
-  }
-  filter: drop-shadow(0 0 10px #FFF)
+`;
+const MenuSound = styled.div`
+  transform: rotate(-8deg);
+  top: -0.2rem;
+  left: 12rem;
+  position: absolute;
 `;
 
 const FakeButton = styled.button` 
@@ -89,16 +107,18 @@ const FakeButton = styled.button`
     max-width: 100%;
   }
 `;
+
 export const Final = () => {
     const {dispatch, countCorrectAnswers, countQuestions, final} = useStoreon('countCorrectAnswers', 'countQuestions', 'final');
 
-    useEffect(() => {
-        dispatch('game/start')
-    }, [])
 
     const handlerPlayAgain = () => {
         dispatch('stage/final', false);
         dispatch('stage/to', 0)
+    };
+
+    const handlerShowMenu = () => {
+
     };
 
     return (
@@ -108,9 +128,19 @@ export const Final = () => {
             </MenuObjectsWrapper>
             <Buttons>
 
-                <ButtonSound>
-                    <Sound/>
-                </ButtonSound>
+                <HiddenWrapp hide={false}>
+                    <MenuSound>
+                        <MenuWithouModal color={'#FFF'}/>
+                    </MenuSound>
+                </HiddenWrapp>
+
+                <HiddenWrapp hide={false}>
+                    <ButtonSound>
+                        <Sound color={'#FFF'}/>
+                    </ButtonSound>
+                </HiddenWrapp>
+
+
             </Buttons>
             <FakeButton onClick={handlerPlayAgain}>
                 <img src={button} alt=""/>

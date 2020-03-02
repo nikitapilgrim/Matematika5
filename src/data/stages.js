@@ -1929,11 +1929,11 @@ export default [
         questions: [
             {
                 question: '{{5004037}}',
-                label: '5 miliona 4 hiljade 37 - '
+                label: '5 miliona + 4 hiljade 37 = '
             },
             {
                 question: '{{13000084}}',
-                label: '13 miliona 84 - '
+                label: '13 miliona + 84 = '
             }
         ],
     }

@@ -195,6 +195,7 @@ export function GameView() {
 
 
             <Debugg/>
+            <Final></Final>
         </WrapperApp>
     )
 }

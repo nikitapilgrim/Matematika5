@@ -43,3 +43,11 @@ export const Menu = ({color, size = {width: '2.5rem', height: '2.5rem'}}) => {
         </Wrapper>
     )
 };
+
+ export const MenuWithouModal = ({color, size = {width: '2.5rem', height: '2.5rem'}}) => {
+    return (
+        <Wrapper color={color} size={size}>
+            <MenuIcon/>
+        </Wrapper>
+    )
+};

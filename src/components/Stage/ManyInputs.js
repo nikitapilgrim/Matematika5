@@ -104,9 +104,7 @@ const parseQuestions = (questions) => {
 export const ManyInputs = React.memo(({data, handler, layout}) => {
     const [inputs, setInputs] = useState({});
     const ref = useRef(null);
-    const {dispatch, stage, help} = useStoreon('help', 'stage');
     const questions = useMemo(() => parseQuestions(data.questions), [data.questions]);
-    const simpleDirection = data.direction === 'row' ? 'column' : 'row';
     const [size, setSize] = useRafState(null);
 
     const questionLength = useMemo(() => {
