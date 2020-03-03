@@ -93,8 +93,16 @@ export const Kviz = ({order}) => {
             const important = Math.sign(kviz.order) === -1;
             const abs = Math.abs(kviz.order);
 
-            if (!important){
-
+            if (important){
+                setNumber(abs)
+                const state = {
+                    current: abs,
+                    prev: kviz.prev || number
+                };
+                dispatch('kviz/set', state);
+                setTimeout(() => {
+                    dispatch('kviz/hide');
+                }, 1000);
             }
             /*
                 if (important) {
@@ -114,29 +122,26 @@ export const Kviz = ({order}) => {
                 }
 
              */
-
-            setTimeout(() => {
-                const order = important ? abs : stage !== 0 ? abs + 1 : abs;
-                if (important) {
-                    dispatch('resetDone', true);
-                }
-
-
-
-                const state = {
-                    current: order,
-                    prev: kviz.prev || number
-                };
-                dispatch('kviz/set', state);
-                setNumber(abs);
+            if (!important) {
                 setTimeout(() => {
-                    dispatch('kviz/hide');
-                }, 1000);
-                setTimeout(() => {
-                }, 2000)
-            }, 1300);
+                    const order = important ? abs : stage !== 0 ? abs + 1 : abs;
+                    if (important) {
+                        dispatch('resetDone', true);
+                    }
 
-
+                    const state = {
+                        current: order,
+                        prev: kviz.prev || number
+                    };
+                    dispatch('kviz/set', state);
+                    setNumber(abs);
+                    setTimeout(() => {
+                        dispatch('kviz/hide');
+                    }, 1000);
+                    setTimeout(() => {
+                    }, 2000)
+                }, 1300);
+            }
         } else {
             setShow(false)
         }

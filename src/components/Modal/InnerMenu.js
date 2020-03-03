@@ -86,7 +86,7 @@ const ImgWrapper = styled.div`
 `;
 
 export const InnerMenu = (props) => {
-    const {dispatch, modal, kviz, stage, medals} = useStoreon('stage', 'kviz', 'modal', 'medals');
+    const {dispatch, modal, kviz, stage, medals, final} = useStoreon('stage', 'kviz', 'modal', 'medals', 'final');
     const [buttons, setButtons] = useState(null);
     const ref = useRef(null);
 
@@ -148,8 +148,8 @@ export const InnerMenu = (props) => {
         }
 
         const state = {
-            current: -number,
-            prev: kviz.prev,
+            current: final ? -number : number,
+            prev: final ? -number : kviz.prev,
         };
 
         setTimeout(() => {
@@ -159,7 +159,7 @@ export const InnerMenu = (props) => {
         setTimeout(() => {
             dispatch('kviz/show');
         }, 50);
-        dispatch('stage/to', next === 0 ? 1: next+1);
+        dispatch('stage/to', next === 0 ? 1 : next + 1);
         dispatch('modal/hide');
     };
 
