@@ -120,6 +120,7 @@ export const Final = () => {
 
     const handlerPlayAgain = () => {
         setShow(false);
+        dispatch('kviz/set', -1);
         setTimeout(() => {
             dispatch('reset');
         }, 500)
