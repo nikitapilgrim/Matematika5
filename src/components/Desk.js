@@ -108,16 +108,17 @@ const Inner = styled.div`
 
 export const Desk = React.memo(({tutorialData, showStage, stageData, handlerNext, shake}) => {
     const [id] = useState(nanoid(20));
-    const {dispatch, start, kviz, modal,final, waitDesk, showDesk} = useStoreon(
+    const {dispatch, start, kviz, modal,final, resetDone, showDesk} = useStoreon(
         'start',
         'kviz',
         'modal',
         'final',
         'showDesk',
+        'resetDone',
     );
 
     return (
-        <Wrapper key={id} show={showDesk || (start && !kviz.show && !final)}>
+        <Wrapper key={id} show={showDesk || (start && !kviz.show && !final && resetDone)}>
             <DeskWrapper shake={shake} className="desk-wrapper">
                 <WrapperImg>
                     <img src={notebook} alt="notebook"/>

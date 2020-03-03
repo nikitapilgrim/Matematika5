@@ -27,19 +27,29 @@ const initState = {
     tutorial: false,
     waitDesk: false,
     showDesk: false,
-    medals: {}
+    medals: {},
+    reset: false,
+    resetDone: true,
 };
 const reset = {
-    stage: 0,
+    resetDone: false,
+    reset: true,
+    stage: 1,
     final: false,
     modal: false,
-    start: false,
+    start: true,
     countQuestions: 0,
     countCorrectAnswers: 0,
-    kviz: {
-        order: 1,
-        prev: 1,
+    tutorial: false,
+    preloader: {
+        container: preloader,
+        count: 100,
         show: false,
+    },
+    kviz: {
+        order: -1,
+        prev: -1,
+        show: true,
         wait: false,
     },
     help: false,
@@ -116,6 +126,9 @@ const app = store => {
     });
     store.on('reset', (state) => {
         return (reset);
+    });
+    store.on('resetDone', (state) => {
+        return ({resetDone: state});
     });
     store.on('stage/to', ({stage}, number) => {
         if (number === 0 || number) {

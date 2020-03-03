@@ -120,8 +120,9 @@ export const Final = () => {
 
     const handlerPlayAgain = () => {
         setShow(false);
-        dispatch('stage/final', false);
-        dispatch('stage/to', 0)
+        setTimeout(() => {
+            dispatch('reset');
+        }, 500)
     };
 
     const handlerShowMenu = () => {

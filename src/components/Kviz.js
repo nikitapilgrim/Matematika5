@@ -78,12 +78,14 @@ const quizTitles = {
 export const Kviz = ({order}) => {
     const [show, setShow] = useState(null);
     const [number, setNumber] = useState(1);
-    const {dispatch, start, kviz, stage} = useStoreon(
+    const {dispatch, start, kviz, reset, stage} = useStoreon(
         'stage',
         'start',
-        'kviz'
+        'kviz',
+        'reset'
     );
     const [title, setTitle] = useState(null);
+
 
     useEffect(() => {
         if (start && kviz.show) {
@@ -96,17 +98,22 @@ export const Kviz = ({order}) => {
                 setNumber(abs);
                 setTimeout(() => {
                     dispatch('kviz/hide');
-                    dispatch('stage/next');
+                    if (!reset) {
+                        dispatch('stage/next');
+
+                    }
                     const state = {
                         current: abs,
                         prev: kviz.prev || number
                     };
+
                     dispatch('kviz/set', state);
+                    dispatch('resetDone', true);
                 }, 1000);
             }
             if (!important) {
                 setTimeout(() => {
-                    const order = important ? abs : stage !== 0 ? abs + 1: abs;
+                    const order = important ? abs : stage !== 0 ? abs + 1 : abs;
 
                     const state = {
                         current: order,
@@ -127,7 +134,8 @@ export const Kviz = ({order}) => {
             setShow(false)
         }
 
-    }, [kviz.show, start, stage]);
+
+    }, [kviz.show, start, stage, reset]);
 
 
     useEffect(() => {
