@@ -145,13 +145,13 @@ export const InnerMenu = (props) => {
         }
         if (!stage === 0) {
             dispatch('tutorialDone');
-            dispatch('stage/to', next);
         }
 
         const state = {
             current: -number,
             prev: kviz.prev,
         };
+        console.log(next)
 
         setTimeout(() => {
             dispatch('stage/final', false);

@@ -166,6 +166,7 @@ export function Tutorial({active, data, handler}) {
 
         }
         if (end) {
+            dispatch('tutorialDone');
             loopStop()
         }
     }, [start, end]);
