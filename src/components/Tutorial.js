@@ -11,7 +11,6 @@ import {eventTopPanel} from "./TopPanel";
 
 import {css, keyframes} from "styled-components";
 import useStoreon from "storeon/react";
-import {set} from "ramda";
 
 const SlideTop = keyframes`
   0% {
@@ -69,13 +68,13 @@ const left = css`
 `;
 
 const right = css`
-  right: -20rem;
+  right: -23rem;
 `;
 
 const Bubble = styled.div`
-    position: relative;
+    position: absolute;
+    top: 25%;
     width: 30rem;
-    transform: translateY(-${props => props.teacherHeight*0.55}px);
     ${props => props.position === 'right' ? right : left}
 `;
 
