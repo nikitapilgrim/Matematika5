@@ -92,40 +92,43 @@ export const Kviz = ({order}) => {
             setShow(true);
             const important = Math.sign(kviz.order) === -1;
             const abs = Math.abs(kviz.order);
-
-            if (important) {
-                dispatch('showDesk', false);
-                setNumber(abs);
-                setTimeout(() => {
-                    dispatch('kviz/hide');
-                    if (!reset) {}
-                    const state = {
-                        current: abs,
-                        prev: kviz.prev || number
-                    };
-
-                    dispatch('kviz/set', state);
-                    dispatch('resetDone', true);
-                }, 1000);
-            }
-            if (!important) {
-                setTimeout(() => {
-                    const order = important ? abs : stage !== 0 ? abs + 1 : abs;
-
-                    const state = {
-                        current: order,
-                        prev: kviz.prev || number
-                    };
-                    dispatch('kviz/set', state);
-                    setNumber(order);
+            /*
+                if (important) {
+                    dispatch('showDesk', false);
+                    setNumber(abs);
                     setTimeout(() => {
                         dispatch('kviz/hide');
+                        if (!reset) {}
+                        const state = {
+                            current: abs,
+                            prev: kviz.prev || number
+                        };
+
+                        dispatch('kviz/set', state);
+                        dispatch('resetDone', true);
                     }, 1000);
-                    setTimeout(() => {
-                        dispatch('stage/next');
-                    }, 2000)
-                }, 1300);
-            }
+                }
+
+             */
+
+            setTimeout(() => {
+                const order = important ? abs : stage !== 0 ? abs + 1 : abs;
+                if (important) {
+                    dispatch('resetDone', true);
+                }
+                const state = {
+                    current: order,
+                    prev: kviz.prev || number
+                };
+                dispatch('kviz/set', state);
+                setNumber(order);
+                setTimeout(() => {
+                    dispatch('kviz/hide');
+                }, 1000);
+                setTimeout(() => {
+                }, 2000)
+            }, 1300);
+
 
         } else {
             setShow(false)
