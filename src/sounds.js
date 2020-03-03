@@ -38,6 +38,7 @@ export const sounds = {
     }),
     final: new Howl({
         src: data.final,
-        preload: true
+        preload: true,
+        loop: true,
     }),
 };
