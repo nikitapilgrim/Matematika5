@@ -23,7 +23,13 @@ const assets = [
     },
     {
         name: 'into',
-        url: require('./image/intro/Frontelements.png')
+        url: require('./image/intro/frontelements.png')
+    },{
+        name: 'hintm',
+        url: require('./image/intro/menu-hint.png')
+    },{
+        name: 'hints',
+        url: require('./image/sound-hint.png')
     },
     {
         name: 'kids',

@@ -25,6 +25,17 @@ const pulse = keyframes`
       transform: scale(1) rotate(25deg) translate(0%, 0%);
   }
 `;
+const pulseMenu = keyframes`
+  0% {
+      transform: scale(1)  translate(0%, 0%);
+  }
+  80% {
+      transform: scale(1.2) translate(5%, -5%);
+  }
+  100% {
+      transform: scale(1)  translate(0%, 0%);
+  }
+`;
 
 const SoundHint = styled.div`
   position: absolute;
@@ -45,9 +56,10 @@ const MenuHint = styled.div`
   position: absolute;
  width: 10rem;
 
-right: 1rem;
-top: -10rem;
-  animation: ${pulse} 2s ease 0s infinite;
+right: 5rem;
+
+top: -8rem;
+  animation: ${pulseMenu} 2s ease 0s infinite;
   
   img {
     height: auto;
