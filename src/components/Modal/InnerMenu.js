@@ -122,7 +122,7 @@ export const InnerMenu = (props) => {
         }
     };
 
-   const buttonsWithMedals = useMemo(() => setMedals(medals, buttons), [medals, buttons]);
+    const buttonsWithMedals = useMemo(() => setMedals(medals, buttons), [medals, buttons]);
 
     useEffect(() => {
         if (stagesData[stage] && buttonsWithMedals) {
@@ -141,6 +141,9 @@ export const InnerMenu = (props) => {
             current: -number,
             prev: kviz.prev,
         };
+        setTimeout(() => {
+            dispatch('stage/final', false);
+        }, 500);
         dispatch('kviz/set', state);
         setTimeout(() => {
             dispatch('kviz/show');
@@ -159,7 +162,8 @@ export const InnerMenu = (props) => {
                         <img src={izaberiKviz} alt=""/>
                     </ImgWrapper>
                     */}
-                    <TextWithBorders size={4} strokeWidth={"0"} strokeColor={"#896549"} color='#FFFFFF' text="Izaberi test!"/>
+                    <TextWithBorders size={4} strokeWidth={"0"} strokeColor={"#896549"} color='#FFFFFF'
+                                     text="Izaberi test!"/>
                 </Title>
                 <Buttons>
                     {

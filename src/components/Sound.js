@@ -18,18 +18,21 @@ const Wrapper = styled.div`
     }
 `;
 
+
 export const Sound = ({color, size = {width: '2.5rem', height: '2.5rem'}}) => {
-    const [state, setState] = useState(false);
-    const {dispatch, preloader, music} = useStoreon('start', 'preloader', 'music');
+    const {dispatch, music, final} = useStoreon('start', 'preloader', 'music', 'final');
 
     useEffect(() => {
+        if (!final) sounds.final.pause();
+        const m = final ? sounds.final : sounds.background;
         if (music) {
-            sounds.background.play();
+            m.play();
         }
         if (!music) {
-            sounds.background.pause();
+            m.pause();
         }
-    }, [music]);
+    }, [music, final]);
+
 
     const handlerClick = () => dispatch('music/change');
 

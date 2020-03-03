@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import styled, {keyframes} from "styled-components";
 import useStoreon from "storeon/react";
 import {Scale} from "./Animate/Slide";
@@ -7,6 +7,7 @@ import button from "../assets/image/final/final-stage-button.png";
 import {Sound} from "./Sound";
 import {MenuWithouModal} from "./Menu";
 import {sounds} from "../sounds";
+import useKeyPressEvent from "react-use/lib/useKeyPressEvent";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -18,14 +19,12 @@ const Wrapper = styled.div`
   ${props => props.show !== null && Scale};
 `;
 
+
 const pulse = keyframes`
+
   0% { transform: scale(1) translateY(50%);}
-    30% { transform: scale(1) translateY(50%); }
-    40% { transform: scale(1.08) translateY(50%); }
-    50% { transform: scale(1) translateY(50%); }
-    60% { transform: scale(1) translateY(50%); }
-    70% { transform: scale(1.05) translateY(50%); }
-    80% { transform: scale(1) translateY(50%); }
+   
+    80% { transform: scale(1.2)   translateY(50%); }
     100% { transform: scale(1)   translateY(50%); }
 `;
 
@@ -99,9 +98,9 @@ const FakeButton = styled.button`
   outline: none;
   user-select: none;      
   animation-name: ${pulse};
-  animation-duration: 5000ms;
+  animation-duration: 2s;
   animation-iteration-count: infinite;
-  animation-timing-function: linear;
+  animation-timing-function: ease;
   img {
     position: relative;
     max-width: 100%;
@@ -109,24 +108,47 @@ const FakeButton = styled.button`
 `;
 
 export const Final = () => {
-    const {dispatch, countCorrectAnswers, countQuestions, final} = useStoreon('countCorrectAnswers', 'countQuestions', 'final');
+    const {dispatch, countCorrectAnswers, countQuestions, final, showDesk, modal} = useStoreon('countCorrectAnswers', 'countQuestions', 'showDesk', 'final', 'modal');
+    const [show, setShow] = useState(final);
+
+    useEffect(() => {
+        if (final) {
+            setShow(true);
+        }
+    }, [final]);
+
 
     const handlerPlayAgain = () => {
+        setShow(false);
         dispatch('stage/final', false);
         dispatch('stage/to', 0)
     };
 
     const handlerShowMenu = () => {
+        setShow(false);
         setTimeout(() => {
-            dispatch('waitDesk', false);
-        }, 1000);
-        dispatch('modal/show');
-        dispatch('stage/final', false);
-        dispatch('waitDesk', true);
+            dispatch('showDesk', true);
+            setTimeout(() => {
+                dispatch('modal/show');
+            }, 500)
+        }, 300);
     };
 
+    const onCloseModal = () => {
+        if (modal) {
+            dispatch('modal/hide');
+            dispatch('showDesk', false);
+            setTimeout(() => {
+                setShow(true);
+            }, 300);
+        }
+    };
+
+    useKeyPressEvent('Escape', onCloseModal);
+
+
     return (
-        <Wrapper show={final}>
+        <Wrapper show={show}>
             <MenuObjectsWrapper>
                 <img src={menuobjects} alt=""/>
             </MenuObjectsWrapper>

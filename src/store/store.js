@@ -26,6 +26,25 @@ const initState = {
     help: false,
     tutorial: false,
     waitDesk: false,
+    showDesk: false,
+    medals: {}
+};
+const reset = {
+    stage: 0,
+    final: false,
+    modal: false,
+    start: false,
+    countQuestions: 0,
+    countCorrectAnswers: 0,
+    kviz: {
+        order: 1,
+        prev: 1,
+        show: false,
+        wait: false,
+    },
+    help: false,
+    waitDesk: false,
+    showDesk: false,
     medals: {}
 };
 
@@ -34,10 +53,13 @@ const app = store => {
 
 
     store.on('medal/set', ({medals}, state) => {
-        return ({medals: {
-          ...medals, [state.id]: {
-            type: state.type
-          }}});
+        return ({
+            medals: {
+                ...medals, [state.id]: {
+                    type: state.type
+                }
+            }
+        });
     });
 
     store.on('tutorial', ({tutorial}, state) => {
@@ -57,13 +79,20 @@ const app = store => {
         return ({modal: false});
     });
     store.on('waitDesk', ({quiz}, state) => {
-        return ({waitDesk: false});
+        return ({waitDesk: state});
     });
+    store.on('showDesk', ({quiz}, state) => {
+        return ({showDesk: state});
+    });
+
     store.on('kviz/set', ({kviz}, state) => {
-        return ({kviz: {...kviz,
+        return ({
+            kviz: {
+                ...kviz,
                 order: state.current || kviz.order,
                 prev: state.prev || kviz.prev,
-        }});
+            }
+        });
     });
 
     store.on('preload/set', ({preloader}, state) => {
@@ -86,8 +115,7 @@ const app = store => {
         return ({final: state});
     });
     store.on('reset', (state) => {
-        console.log(state)
-        return (initState);
+        return (reset);
     });
     store.on('stage/to', ({stage}, number) => {
         if (number === 0 || number) {

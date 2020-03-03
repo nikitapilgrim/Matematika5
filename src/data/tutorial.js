@@ -50,6 +50,6 @@ export default [
             position: 'right'
         },
         type: 'tutorial',
-        offset: '0vw'
+        offset: '50vw'
     }
 ]

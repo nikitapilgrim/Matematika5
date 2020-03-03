@@ -114,7 +114,8 @@ export function GameView() {
             setTimeout(() => {
                 document.querySelector('.bg').classList.add('with-blur');
                 setTimeout(() => {
-                    setShowIntro(true)
+                    dispatch('game/start')
+                    setShowIntro(false)
                 }, 1000)
             }, 1000);
         }
@@ -183,7 +184,7 @@ export function GameView() {
         <WrapperApp key={id}>
             <Intro show={showIntro}/>
             <Kviz/>
-            <Tutorial handler={handlerNextTutorial} active={showTutorial && !kviz.show}
+            <Tutorial handler={handlerNextTutorial} active={showTutorial && !kviz.show && !final}
                       data={tutorialData[tutorialCount]}/>
             <CurrentStage>{stageData.id && stageData.id}</CurrentStage>
             <Desk handlerNext={handlerNext}

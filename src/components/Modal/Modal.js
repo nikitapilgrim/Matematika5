@@ -44,7 +44,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 5;
-  ${ props => props.isOpen ? `` : close};
+  ${props => props.isOpen ? `` : close};
   top: 5%;
   left: 0;
   right: 0;
@@ -91,15 +91,21 @@ const Close = styled.button`
 `;
 
 export const Modal = React.memo((({children, style, inner}) => {
-    const {dispatch, modal} = useStoreon('modal');
+    const {dispatch, modal, final} = useStoreon('modal', 'final');
     const ref = useRef(null);
     const [animationEnd, setAnimationEnd] = useState(null);
 
     const onOpenModal = () => dispatch('modal/show');
-    const onCloseModal = () => dispatch('modal/hide');
+    const onCloseModal = () => {
+        if (!final) {
+            dispatch('modal/hide');
+        }
+    };
 
     useClickAway(ref, () => {
-        onCloseModal();
+        if (!final) {
+            onCloseModal();
+        }
     });
     useKeyPressEvent('Escape', onCloseModal);
 
@@ -114,15 +120,15 @@ export const Modal = React.memo((({children, style, inner}) => {
                 {children}
             </div>
             {createPortal(
-                    <Wrapper isOpen={modal}>
-                        <Inner ref={ref}>
-                            {/*<Close onClick={onCloseModal}><img src={closeIcon} alt="close"/></Close>*/}
-                            {inner}
-                        </Inner>
-                        {/* <Slide delay={modal ? 500 : 0} when={modal} onReveal={handlerAnimationEnd} top>
+                <Wrapper isOpen={modal}>
+                    <Inner ref={ref}>
+                        {/*<Close onClick={onCloseModal}><img src={closeIcon} alt="close"/></Close>*/}
+                        {inner}
+                    </Inner>
+                    {/* <Slide delay={modal ? 500 : 0} when={modal} onReveal={handlerAnimationEnd} top>
 
                     </Slide>*/}
-                    </Wrapper>
+                </Wrapper>
                 , document.querySelector('body'))}
         </>
     );

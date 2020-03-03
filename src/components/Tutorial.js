@@ -82,9 +82,10 @@ const Bubble = styled.div`
 
 
 export function Tutorial({active, data, handler}) {
-    const {dispatch, tutorial, kviz} = useStoreon(
+    const {dispatch, tutorial, kviz,final} = useStoreon(
         'tutorial',
-        'kviz'
+        'kviz',
+        'final',
     );
     const ref = useRef(null);
     const [show, setShow] = useState(false);
@@ -113,7 +114,7 @@ export function Tutorial({active, data, handler}) {
     }, [tutorial, kviz.show]);
 
     useEffect(() => {
-        if (active) {
+        if (active && !final) {
             setTimeout(() => {
                 setShow(true)
             }, 2000)
