@@ -171,7 +171,7 @@ export function Tutorial({active, data, handler}) {
             loopStop()
         }
     }, [start, end]);
-
+    
     useEffect(() => {
         if (sizes && isActive) {
             let x;
