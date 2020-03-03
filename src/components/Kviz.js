@@ -116,6 +116,9 @@ export const Kviz = ({order}) => {
                 if (important) {
                     dispatch('resetDone', true);
                 }
+                if (order === 1) {
+                    dispatch('stage/next');
+                }
                 const state = {
                     current: order,
                     prev: kviz.prev || number

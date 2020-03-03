@@ -110,7 +110,7 @@ const FakeButton = styled.button`
 `;
 
 export const Final = () => {
-    const {dispatch, countCorrectAnswers, deskRef, final, showDesk, modal} = useStoreon('countCorrectAnswers', 'countQuestions', 'showDesk', 'final', 'modal', 'deskRef');
+    const {dispatch, stage, deskRef, final, showDesk, modal, kviz} = useStoreon('stage', 'countQuestions', 'showDesk', 'final', 'modal', 'deskRef', 'kviz');
     const [show, setShow] = useState(final);
 
     useEffect(() => {
@@ -156,7 +156,7 @@ export const Final = () => {
 
 
     return (
-        <Wrapper show={show && final}>
+        <Wrapper show={show && final && !kviz.show}>
             <MenuObjectsWrapper>
                 <img src={menuobjects} alt=""/>
             </MenuObjectsWrapper>
