@@ -123,7 +123,7 @@ const Input = styled.input`
     ${props => props.focused && `box-shadow: 0 0 0 5px rgba(93, 130, 71, 1)`};
     ${props => props.right !== null && !props.right && `box-shadow: 0 0 0 5px rgba(236, 6, 12, 1)`};
     ${props => props.right && `box-shadow: 0 0 0 5px rgba(50, 180, 15, 1)`}; 
-    animation: ${pulse} 3s infinite ease-in-out;
+    animation: ${pulse} 1.5s infinite ease-in-out;
     color: ${props => {
         if (props.help) {
             return 'transparent'
