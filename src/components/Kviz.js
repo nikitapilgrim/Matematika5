@@ -102,7 +102,7 @@ export const Kviz = ({order}) => {
                 dispatch('kviz/set', state);
                 setTimeout(() => {
                     dispatch('kviz/hide');
-                }, 1000);
+                }, 2300);
             }
             /*
                 if (important) {

@@ -89,7 +89,7 @@ export default [
             '376',
         ],
         sign: '-',
-        answer: '{{466}}'
+        answer: '{{80}}'
     },
     {
         id: 6,
@@ -230,7 +230,7 @@ export default [
                 question: '834 : 3 = {{278}}'
             },
             {
-                question: '936 : 6 = {{15}}'
+                question: '936 : 6 = {{156}}'
             },
             {
                 question: '475 : 5 = {{95}}'
@@ -935,7 +935,7 @@ export default [
         direction: `column`,
         questions: [
             {
-                question: '324000 {{324}}',
+                question: '324 {{324000}}',
                 separator: {
                     src: require('../assets/image/11-08.png'),
                     width: '1rem'
@@ -964,7 +964,7 @@ export default [
         direction: `column`,
         questions: [
             {
-                question: '820000 {{820}}',
+                question: '820 {{820000}}',
                 separator: {
                     src: require('../assets/image/11-08.png'),
                     width: '1rem'
@@ -1028,7 +1028,7 @@ export default [
                 question: '40000 : 50  = {{800}}'
             },
             {
-                question: '3600 : 60 = {{6}}'
+                question: '3600 : 60 = {{60}}'
             },
         ],
     },
@@ -1094,7 +1094,7 @@ export default [
                 question: '(56 - 26) ∙ 9 = {{270}}'
             },
             {
-                question: '13417 - 134 ∙ 7 = {{1340}}'
+                question: '13417 - 134 ∙ 7 = {{1247}}'
             },
         ],
     },
@@ -1136,10 +1136,10 @@ export default [
         title: 'Računaj',
         questions: [
             {
-                question: '129 : 5 - 79: 5 = {{100}}'
+                question: '325 : 7 + 375 : 7 = {{10}}'
             },
             {
-                question: '325 : 7 + 375 : 7 = {{10}}'
+                question: '129 : 5 - 79: 5 = {{100}}'
             },
             {
                 question: '253 : 8 - 221 : 8 = {{4}}'
@@ -1249,7 +1249,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{972}} KM'
+                question: '{{729}} KM'
             }
         ],
         left: `Rješenje:`
@@ -1429,7 +1429,7 @@ export default [
         direction: `row`,
         questions: [
             {
-                question: '{{7660}} m2'
+                question: '{{7650}} m2'
             }
         ],
         left: `Rješenje:`
@@ -1817,7 +1817,7 @@ export default [
         id: 107,
         layout: LAYOUTS.manyInputs,
         title: 'Odgovori',
-        text: `Zapremina kocke i kvadra zajedno iznosi 980 m3. Jednake su im površine osnovica i iznose 49 M2. Kolika je visina kvadra?`,
+        text: `Zapremina kocke i kvadra zajedno iznosi 980 m3. Jednake su im površine osnovica i iznose 49 m2. Kolika je visina kvadra?`,
         questions: [
             {
                 question: '{{13}} m'
@@ -1870,7 +1870,7 @@ export default [
         title: 'Izračunaj',
         questions: [
             {
-                question: '7563227 + 1856787 = {{6580000}}'
+                question: '7563227 + 1856787 = {{9420014}}'
             }
         ],
     },
@@ -1892,7 +1892,7 @@ export default [
         title: 'Izračunaj',
         questions: [
             {
-                question: '2780-(5350:5-873) = {{1971}}'
+                question: '2780-(5350:5-873) = {{2583}}'
             }
         ],
     },
@@ -1916,7 +1916,7 @@ export default [
                 question: 'Najmanji {{10234678}}'
             },
             {
-                question: 'Najvenci {{87643201}}'
+                question: 'Najvenci {{87643210}}'
             }
         ],
     },

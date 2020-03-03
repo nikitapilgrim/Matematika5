@@ -278,7 +278,7 @@ const InputWithState = React.memo(({inputOffset,widthimportant,separator, edit, 
 
     if (!question) {
         return (
-            <InputWrapper theme={theme} width={widthimportant || width} height={height}>
+            <InputWrapper theme={theme} width={widthimportant || width + 2} height={height}>
                 {!placeholder || edit &&
                 <HiddenAnswer edit={edit} show={help && value !== answer.toString()}
                               ref={ref}>{Array.isArray(answer) ? answer[0] : answer}</HiddenAnswer>}
