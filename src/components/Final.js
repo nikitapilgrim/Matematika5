@@ -138,7 +138,7 @@ export const Final = () => {
     };
 
     const onCloseModal = () => {
-        if (modal) {
+        if (modal && final) {
             dispatch('modal/hide');
             dispatch('showDesk', false);
             setTimeout(() => {
