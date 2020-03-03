@@ -148,9 +148,15 @@ export function GameView() {
     // show kviz
     useEffect(() => {
         if (stageData.layout === 'quiz') {
-            dispatch('kviz/show')
+            dispatch('kviz/show');
+            if (start && stage === 0) {
+                dispatch('stage/to', 1)
+            }
+            if (start && stage >3) {
+                dispatch('stage/next');
+            }
         }
-    }, [stageData]);
+    }, [stageData, start, stage]);
 
 
     const handlerNextTutorial = useCallback(() => {

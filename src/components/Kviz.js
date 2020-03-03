@@ -92,6 +92,10 @@ export const Kviz = ({order}) => {
             setShow(true);
             const important = Math.sign(kviz.order) === -1;
             const abs = Math.abs(kviz.order);
+
+            if (!important){
+
+            }
             /*
                 if (important) {
                     dispatch('showDesk', false);
@@ -116,15 +120,15 @@ export const Kviz = ({order}) => {
                 if (important) {
                     dispatch('resetDone', true);
                 }
-                if (order === 1) {
-                    dispatch('stage/next');
-                }
+
+
+
                 const state = {
                     current: order,
                     prev: kviz.prev || number
                 };
                 dispatch('kviz/set', state);
-                setNumber(order);
+                setNumber(abs);
                 setTimeout(() => {
                     dispatch('kviz/hide');
                 }, 1000);
