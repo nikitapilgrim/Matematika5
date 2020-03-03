@@ -114,8 +114,7 @@ export function GameView() {
             setTimeout(() => {
                 document.querySelector('.bg').classList.add('with-blur');
                 setTimeout(() => {
-                    dispatch('game/start')
-                    setShowIntro(false)
+                    setShowIntro(true)
                 }, 1000)
             }, 1000);
         }

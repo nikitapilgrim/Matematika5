@@ -137,6 +137,7 @@ export const InnerMenu = (props) => {
 
     const handlerStage = (next, number) => () => {
         sounds.mouseclick.play();
+        dispatch('game/start');
         const state = {
             current: -number,
             prev: kviz.prev,

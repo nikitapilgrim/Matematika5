@@ -2,14 +2,17 @@ import React, {useState, useEffect} from 'react';
 import styled, {keyframes} from "styled-components";
 import {sounds} from "../sounds";
 import {Sound} from "./Sound";
-import {Menu} from "./Menu";
+import {MenuWithouModal} from "./Menu";
 import {Scale} from "./Animate/Slide";
 import useStoreon from "storeon/react";
-import menuobjects from '../assets/image/intro/Frontelements.png'
+import menuobjects from '../assets/image/intro/frontelements.png'
 import kids from '../assets/image/intro/kids-rotation.png'
 import bg from "../assets/background-image.jpg";
+
 import nanoid from "nanoid";
 import soundhint from '../assets/image/sound-hint.png';
+import menuhint from '../assets/image/intro/menu-hint.png';
+import useKeyPressEvent from "react-use/lib/useKeyPressEvent";
 
 const pulse = keyframes`
   0% {
@@ -28,6 +31,22 @@ const SoundHint = styled.div`
   width: 10rem;
   right: -11rem;
   top: -6rem;
+  animation: ${pulse} 2s ease 0s infinite;
+  
+  img {
+    height: auto;
+    max-width: 100%;
+    user-select: none;
+    pointer-events: none;
+  }
+`;
+
+const MenuHint = styled.div`
+  position: absolute;
+ width: 10rem;
+
+right: 1rem;
+top: -10rem;
   animation: ${pulse} 2s ease 0s infinite;
   
   img {
@@ -91,6 +110,9 @@ const ButtonWrapper = styled.div`
 const Button = styled.div`
   position: relative;
   display: flex;
+  left: -0.5rem;
+
+top: 1rem;
   justify-content: center;
   align-items: center;
   width: 4.2rem; height: 4.2rem;
@@ -99,6 +121,24 @@ const Button = styled.div`
   background-color: #B12A17;
   cursor: pointer;
   transform: rotate(-25deg);
+  &:not(:first-child) {
+    margin-left: 1rem;
+  }
+  filter: drop-shadow(0 0 10px #FFF)
+`;
+
+const ButtonMenu = styled.div`
+  position: absolute;
+  left: -14.5rem;
+  top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4.2rem; height: 4.2rem;
+  border: 0.1em solid #000;
+  border-radius: 50% 50%;
+  background-color: #B12A17;
+  cursor: pointer;
   &:not(:first-child) {
     margin-left: 1rem;
   }
@@ -141,9 +181,31 @@ const Pos = styled.div`
 `;
 
 export const Intro = React.memo(({show}) => {
+    const {dispatch, countCorrectAnswers, countQuestions, final, showDesk, modal} = useStoreon('countCorrectAnswers', 'countQuestions', 'showDesk', 'final', 'modal');
     const [id] = useState(nanoid(20));
     const [isShow, setIsShow] = useState(false);
-    const {dispatch} = useStoreon();
+
+    const handlerShowMenu = () => {
+        setIsShow(false);
+        setTimeout(() => {
+            dispatch('showDesk', true);
+            setTimeout(() => {
+                dispatch('modal/show');
+            }, 500)
+        }, 300);
+    };
+
+    const onCloseModal = () => {
+        if (modal) {
+            dispatch('modal/hide');
+            dispatch('showDesk', false);
+            setTimeout(() => {
+                setIsShow(true);
+            }, 300);
+        }
+    };
+
+    useKeyPressEvent('Escape', onCloseModal);
 
     const handlerStart = (e) => {
         sounds.mouseclick.play();
@@ -165,6 +227,12 @@ export const Intro = React.memo(({show}) => {
             <MenuObjectsWrapper>
                 <ChildrenRotateBG/>
                 <Buttons>
+                    <ButtonMenu onClick={handlerShowMenu}>
+                        <MenuWithouModal color={'#FFF'} size={{width: '80%', height: '80%'}}/>
+                        <MenuHint>
+                            <img src={menuhint} alt=" "/>
+                        </MenuHint>
+                    </ButtonMenu>
                     <Button>
                         <Sound color={'#FFF'} size={{width: '80%', height: '80%'}}/>
                         <SoundHint>
