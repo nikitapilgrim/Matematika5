@@ -100,7 +100,6 @@ export const Kviz = ({order}) => {
                     dispatch('kviz/hide');
                     if (!reset) {
                         dispatch('stage/next');
-
                     }
                     const state = {
                         current: abs,
