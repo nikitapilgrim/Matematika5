@@ -99,6 +99,7 @@ const HiddenWrapp = React.forwardRef(({children, hide, round}, ref) => {
 
 export function TopPanel({data, show}) {
     const [showElems, setShowElems] = useState([]);
+    const {dispatch, tutorialDone} = useStoreon('tutorialDone');
     const elems = ['music', 'menu', 'help'];
     const soundRef = useRef(null);
     const menuRef = useRef(null);
@@ -118,13 +119,13 @@ export function TopPanel({data, show}) {
 
     return (
         <Wrapper show={show} blur={false}>
-            <HiddenWrapp ref={menuRef} round={data.elem === 'menu'} hide={false}>
+            <HiddenWrapp ref={menuRef} round={data.elem === 'menu' && !tutorialDone} hide={false}>
                 <Menu color={'#FFF'}/>
             </HiddenWrapp>
-            <HiddenWrapp ref={soundRef} round={data.elem === 'sound'} hide={false}>
+            <HiddenWrapp ref={soundRef} round={data.elem === 'sound' && !tutorialDone} hide={false}>
                 <Sound color={'#FFF'}/>
             </HiddenWrapp>
-            <HiddenWrapp ref={helpRef} round={data.elem === 'help'} hide={false}>
+            <HiddenWrapp ref={helpRef} round={data.elem === 'help' && !tutorialDone} hide={false}>
                 <Help color={'#FFF'}/>
             </HiddenWrapp>
         </Wrapper>

@@ -91,7 +91,7 @@ const Close = styled.button`
 `;
 
 export const Modal = React.memo((({children, style, inner}) => {
-    const {dispatch, modal, final} = useStoreon('modal', 'final');
+    const {dispatch, modal, final, start} = useStoreon('modal', 'final', 'start');
     const ref = useRef(null);
     const [animationEnd, setAnimationEnd] = useState(null);
 
@@ -103,7 +103,7 @@ export const Modal = React.memo((({children, style, inner}) => {
     };
 
     useClickAway(ref, () => {
-        if (!final) {
+        if (!final && start) {
             onCloseModal();
         }
     });

@@ -98,9 +98,7 @@ export const Kviz = ({order}) => {
                 setNumber(abs);
                 setTimeout(() => {
                     dispatch('kviz/hide');
-                    if (!reset) {
-                        dispatch('stage/next');
-                    }
+                    if (!reset) {}
                     const state = {
                         current: abs,
                         prev: kviz.prev || number

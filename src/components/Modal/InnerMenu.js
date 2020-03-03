@@ -151,7 +151,6 @@ export const InnerMenu = (props) => {
             current: -number,
             prev: kviz.prev,
         };
-        console.log(next)
 
         setTimeout(() => {
             dispatch('stage/final', false);
@@ -160,7 +159,7 @@ export const InnerMenu = (props) => {
         setTimeout(() => {
             dispatch('kviz/show');
         }, 50);
-        dispatch('stage/to', next === 0 ? 1: next);
+        dispatch('stage/to', next === 0 ? 1: next+1);
         dispatch('modal/hide');
     };
 

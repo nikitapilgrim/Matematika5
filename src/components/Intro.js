@@ -200,6 +200,7 @@ export const Intro = React.memo(({show}) => {
     const {dispatch, countCorrectAnswers, countQuestions, final, showDesk, modal} = useStoreon('countCorrectAnswers', 'countQuestions', 'showDesk', 'final', 'modal');
     const [id] = useState(nanoid(20));
     const [isShow, setIsShow] = useState(false);
+    
 
     const handlerShowMenu = () => {
         setIsShow(false);
