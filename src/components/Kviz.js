@@ -137,6 +137,7 @@ export const Kviz = ({order}) => {
 
     useEffect(() => {
         if (number === 0) setTitle(quizTitles[17]);
+        if (number > 3) dispatch('tutorialDone');
         else {
             setTitle(quizTitles[number])
         }
