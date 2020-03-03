@@ -12,7 +12,7 @@ export default [
             position: 'left'
         },
         type: 'tutorial',
-        offset: document.documentElement.clientWidth < 500 ? '5vw' : '50vw'
+        offset: '50vw'
     },
     {
         layout: LAYOUTS.speech,
