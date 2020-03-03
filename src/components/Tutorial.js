@@ -65,18 +65,17 @@ const Teacher = styled.div`
 `;
 
 const left = css`
-  top: 30%;
   left: -20rem;
 `;
 
 const right = css`
-  top: 30%;
   right: -20rem;
 `;
 
 const Bubble = styled.div`
-    position: absolute;
+    position: relative;
     width: 30rem;
+    transform: translateY(-${props => props.teacherHeight*0.55}px);
     ${props => props.position === 'right' ? right : left}
 `;
 
@@ -171,7 +170,7 @@ export function Tutorial({active, data, handler}) {
             loopStop()
         }
     }, [start, end]);
-    
+
     useEffect(() => {
         if (sizes && isActive) {
             let x;
@@ -201,7 +200,7 @@ export function Tutorial({active, data, handler}) {
         <Wrapper show={show}>
             <Teacher top={teacherOffset && teacherOffset.y} left={teacherOffset && teacherOffset.x} ref={ref}>
                 <img src={data.teacher} alt="teacher"/>
-                <Bubble position={data.bubble.position}>
+                <Bubble teacherHeight={teacherSize.height} position={data.bubble.position}>
                     {bubble !== null && <img src={bubble} alt="text"/>}
                 </Bubble>
             </Teacher>

@@ -53,6 +53,6 @@ export default [
             position: 'right'
         },
         type: 'tutorial',
-        offset: '50vw'
+        offset: document.documentElement.clientWidth < 500 ? '5vw' : '50vw'
     }
 ]
