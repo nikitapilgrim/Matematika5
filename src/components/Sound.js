@@ -24,6 +24,7 @@ export const Sound = ({color, size = {width: '2.5rem', height: '2.5rem'}}) => {
 
     useEffect(() => {
         if (!final) sounds.final.pause();
+        if (final) sounds.background.pause();
         const m = final ? sounds.final : sounds.background;
         if (music) {
             m.play();
