@@ -94,13 +94,14 @@ const Blur = styled.div`
 `;
 
 export function GameView() {
-    const {dispatch, stage, start, kviz, preloader, final, tutorial} = useStoreon(
+    const {dispatch, stage, start, kviz, preloader, final, tutorial,tutorialDone} = useStoreon(
         'stage',
         'start',
         'kviz',
         'preloader',
         'final',
         'tutorial',
+        'tutorialDone'
     );
     const [stageData, setStageData] = useState(stagesData[stage]);
     const [tutorialCount, setTutorialCount] = useState(0);
@@ -183,8 +184,8 @@ export function GameView() {
         <WrapperApp key={id}>
             <Intro show={showIntro}/>
             <Kviz/>
-            <Tutorial handler={handlerNextTutorial} active={showTutorial && !kviz.show && !final}
-                      data={tutorialData[tutorialCount]}/>
+            {!tutorialDone && <Tutorial handler={handlerNextTutorial} active={showTutorial && !kviz.show && !final}
+                                        data={tutorialData[tutorialCount]}/>}
             <CurrentStage>{stageData.id && stageData.id}</CurrentStage>
             <Desk handlerNext={handlerNext}
                   tutorialData={tutorialData[tutorialCount]}

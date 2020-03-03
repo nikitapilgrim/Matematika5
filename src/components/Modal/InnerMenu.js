@@ -138,13 +138,21 @@ export const InnerMenu = (props) => {
     const handlerStage = (next, number) => () => {
         sounds.mouseclick.play();
         dispatch('game/start');
+        const important = Math.sign(kviz.order) === -1;
+        const abs = Math.abs(kviz.order);
         if (next === 0 && stage === 0) {
             dispatch('tutorial', true);
         }
+        if (!stage === 0) {
+            dispatch('tutorialDone');
+            dispatch('stage/to', next);
+        }
+
         const state = {
             current: -number,
             prev: kviz.prev,
         };
+
         setTimeout(() => {
             dispatch('stage/final', false);
         }, 500);
@@ -152,7 +160,7 @@ export const InnerMenu = (props) => {
         setTimeout(() => {
             dispatch('kviz/show');
         }, 50);
-        dispatch('stage/to', next);
+        dispatch('stage/to', next === 0 ? 1: next);
         dispatch('modal/hide');
     };
 

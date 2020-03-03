@@ -30,6 +30,7 @@ const initState = {
     medals: {},
     reset: false,
     resetDone: true,
+    tutorialDone: false,
 };
 const reset = {
     resetDone: false,
@@ -41,6 +42,7 @@ const reset = {
     countQuestions: 0,
     countCorrectAnswers: 0,
     tutorial: false,
+    tutorialDone: true,
     preloader: {
         container: preloader,
         count: 100,
@@ -140,6 +142,9 @@ const app = store => {
     });
     store.on('help/hide', ({kviz}) => {
         return ({help: false});
+    });
+    store.on('tutorialDone', ({kviz}) => {
+        return ({tutorialDone: true});
     });
     store.on('countQuestion', ({countQuestions}) => {
         return ({countQuestions: countQuestions + 1});
