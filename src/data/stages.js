@@ -32,7 +32,7 @@ export default [
                 question: '687 + {{313}} = 1000'
             },
             {
-                question: '794 + {{306}} = 1000'
+                question: '794 + {{206}} = 1000'
             },
         ],
     },

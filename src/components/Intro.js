@@ -154,7 +154,11 @@ const ButtonMenu = styled.div`
   &:not(:first-child) {
     margin-left: 1rem;
   }
-  filter: drop-shadow(0 0 10px #FFF)
+  filter: drop-shadow(0 0 10px #FFF);
+  svg {
+      position: relative;
+      top: 0.1rem;
+  }
 `;
 
 const MenuObjectsWrapper = styled.div`
@@ -240,7 +244,7 @@ export const Intro = React.memo(({show}) => {
                 <ChildrenRotateBG/>
                 <Buttons>
                     <ButtonMenu onClick={handlerShowMenu}>
-                        <MenuWithouModal color={'#FFF'} size={{width: '80%', height: '80%'}}/>
+                        <MenuWithouModal color={'#FFF'} size={{width: '60%', height: '60%'}}/>
                         <MenuHint>
                             <img src={menuhint} alt=" "/>
                         </MenuHint>
