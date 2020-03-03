@@ -34,7 +34,7 @@ const CurrentStage = styled.div`
 
 const Debugg = () => {
     const {dispatch, stage, tutorial, kviz, start} = useStoreon(
-        'stage', 'tutorial', 'kviz', 'start'
+        'stage', 'tutorial', 'kviz', 'start',
     );
 
     const ClickHandler = useCallback(() => {
@@ -94,12 +94,13 @@ const Blur = styled.div`
 `;
 
 export function GameView() {
-    const {dispatch, stage, start, kviz, preloader, final} = useStoreon(
+    const {dispatch, stage, start, kviz, preloader, final, tutorial} = useStoreon(
         'stage',
         'start',
         'kviz',
         'preloader',
-        'final'
+        'final',
+        'tutorial',
     );
     const [stageData, setStageData] = useState(stagesData[stage]);
     const [tutorialCount, setTutorialCount] = useState(0);
@@ -129,11 +130,10 @@ export function GameView() {
     }, [kviz.show, start]);
 
     useEffect(() => {
-        if (start) {
-            dispatch('tutorial', true);
+        if (tutorial) {
             setShowTutorial(true);
         }
-    }, [start]);
+    }, [tutorial]);
 
     useEffect(() => {
         if (stagesData[stage] + 1) {
@@ -153,7 +153,7 @@ export function GameView() {
 
 
     const handlerNextTutorial = useCallback(() => {
-        if (start === true) {
+        if (start === true && stage < 3) {
             if (tutorialData[tutorialCount + 1]) {
                 setTutorialCount((prev) => prev + 1);
             } else {
@@ -161,7 +161,7 @@ export function GameView() {
                 setShowTutorial(false)
             }
         }
-    }, [start, tutorialData, tutorialCount]);
+    }, [start, tutorialData, tutorialCount, stage]);
 
 
     const handlerNext = useCallback((right) => {

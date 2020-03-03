@@ -212,7 +212,7 @@ export const Intro = React.memo(({show}) => {
     };
 
     const onCloseModal = () => {
-        if (modal) {
+        if (modal && !final) {
             dispatch('modal/hide');
             dispatch('showDesk', false);
             setTimeout(() => {
@@ -225,6 +225,8 @@ export const Intro = React.memo(({show}) => {
 
     const handlerStart = (e) => {
         sounds.mouseclick.play();
+        dispatch('tutorial', true);
+
         const target = e.target;
         setTimeout(() => {
             setIsShow(false);

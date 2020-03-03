@@ -92,6 +92,7 @@ export const Kviz = ({order}) => {
             const abs = Math.abs(kviz.order);
 
             if (important) {
+                dispatch('showDesk', false);
                 setNumber(abs);
                 setTimeout(() => {
                     dispatch('kviz/hide');
