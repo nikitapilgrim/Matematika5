@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef, useCallback} from 'react';
 import styled, {keyframes} from "styled-components";
 import {sounds} from "../sounds";
 import {Sound} from "./Sound";
@@ -13,6 +13,8 @@ import nanoid from "nanoid";
 import soundhint from '../assets/image/sound-hint.png';
 import menuhint from '../assets/image/intro/menu-hint.png';
 import useKeyPressEvent from "react-use/lib/useKeyPressEvent";
+import {eventDesk} from "./Desk";
+import useClickAway from "react-use/lib/useClickAway";
 
 const pulse = keyframes`
   0% {
@@ -197,10 +199,17 @@ const Pos = styled.div`
 `;
 
 export const Intro = React.memo(({show}) => {
-    const {dispatch, countCorrectAnswers, countQuestions, final, showDesk, modal} = useStoreon('countCorrectAnswers', 'countQuestions', 'showDesk', 'final', 'modal');
+    const {dispatch, countCorrectAnswers, stage, final, showDesk, modal} = useStoreon('stage', 'countQuestions', 'showDesk', 'final', 'modal');
     const [id] = useState(nanoid(20));
     const [isShow, setIsShow] = useState(false);
-    
+    const [deskRef, setDeskRef] = useState(null);
+    const onRefs = useCallback((refs) => setDeskRef(refs), []);
+
+    useEffect(() => {
+        eventDesk.on('refs', onRefs);
+        return () => eventDesk.off('refs', onRefs)
+    }, []);
+
 
     const handlerShowMenu = () => {
         setIsShow(false);
@@ -223,6 +232,11 @@ export const Intro = React.memo(({show}) => {
     };
 
     useKeyPressEvent('Escape', onCloseModal);
+    useClickAway(deskRef, () => {
+        setTimeout(() => {
+            onCloseModal();
+        }, 100)
+    });
 
     const handlerStart = (e) => {
         sounds.mouseclick.play();
@@ -242,7 +256,7 @@ export const Intro = React.memo(({show}) => {
     }, [show]);
 
     return (
-        <Wrapper key={id} show={isShow}>
+        <Wrapper key={id} show={isShow && stage === 0}>
             <MenuObjectsWrapper>
                 <ChildrenRotateBG/>
                 <Buttons>

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import styled, {keyframes} from "styled-components";
 import useStoreon from "storeon/react";
 import {Scale} from "./Animate/Slide";
@@ -8,6 +8,8 @@ import {Sound} from "./Sound";
 import {MenuWithouModal} from "./Menu";
 import {sounds} from "../sounds";
 import useKeyPressEvent from "react-use/lib/useKeyPressEvent";
+import useClickAway from "react-use/lib/useClickAway";
+import {eventDesk} from "./Desk";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -108,7 +110,7 @@ const FakeButton = styled.button`
 `;
 
 export const Final = () => {
-    const {dispatch, countCorrectAnswers, countQuestions, final, showDesk, modal} = useStoreon('countCorrectAnswers', 'countQuestions', 'showDesk', 'final', 'modal');
+    const {dispatch, countCorrectAnswers, deskRef, final, showDesk, modal} = useStoreon('countCorrectAnswers', 'countQuestions', 'showDesk', 'final', 'modal', 'deskRef');
     const [show, setShow] = useState(final);
 
     useEffect(() => {
@@ -116,7 +118,6 @@ export const Final = () => {
             setShow(true);
         }
     }, [final]);
-
 
     const handlerPlayAgain = () => {
         setShow(false);
@@ -147,10 +148,15 @@ export const Final = () => {
     };
 
     useKeyPressEvent('Escape', onCloseModal);
+    useClickAway(deskRef, () => {
+        setTimeout(() => {
+            onCloseModal();
+        }, 100)
+    });
 
 
     return (
-        <Wrapper show={show}>
+        <Wrapper show={show && final}>
             <MenuObjectsWrapper>
                 <img src={menuobjects} alt=""/>
             </MenuObjectsWrapper>

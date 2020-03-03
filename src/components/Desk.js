@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from "react";
+import React, {useEffect, useState, useCallback, useRef} from "react";
 import nanoid from "nanoid";
 import notebook from "../assets/image/blackboard.png";
 import {TopPanel} from "./TopPanel";
@@ -7,6 +7,7 @@ import {Stage} from "./Stage";
 import styled, {keyframes} from "styled-components";
 import {SlideVert} from "./Animate/Slide";
 import useStoreon from "storeon/react";
+import useClickAway from "react-use/lib/useClickAway";
 
 const shake = keyframes`
   10%, 90% {
@@ -104,22 +105,35 @@ const Inner = styled.div`
     transition-delay: ${props => props.show ? '0.1s' : '0.1s'};
     opacity: ${props => props.show ? 1 : 0}
 `;
+import mitt from 'mitt'
 
+export const eventDesk = mitt();
 
 export const Desk = React.memo(({tutorialData, showStage, stageData, handlerNext, shake}) => {
     const [id] = useState(nanoid(20));
-    const {dispatch, start, kviz, modal,final, resetDone, showDesk} = useStoreon(
+    const ref = useRef(null);
+    const {dispatch, start, kviz, modal,final, resetDone, showDesk, stage} = useStoreon(
         'start',
         'kviz',
         'modal',
         'final',
         'showDesk',
         'resetDone',
+        'stage',
     );
 
+    useEffect(() => {
+        dispatch('deskRef', ref);
+        if (ref) {
+            eventDesk.emit('refs', ref);
+            eventDesk.emit('refsf', ref)
+        }
+    }, [ref]);
+
+
     return (
-        <Wrapper key={id} show={showDesk || (start && !kviz.show && !final && resetDone)}>
-            <DeskWrapper shake={shake} className="desk-wrapper">
+        <Wrapper key={id} show={showDesk || (start && stage > 0 && !kviz.show && !final && resetDone)}>
+            <DeskWrapper ref={ref} shake={shake} className="desk-wrapper">
                 <WrapperImg>
                     <img src={notebook} alt="notebook"/>
                     {/*<Medal/>*/}

@@ -31,6 +31,7 @@ const initState = {
     reset: false,
     resetDone: true,
     tutorialDone: false,
+    deskRef: null,
 };
 const reset = {
     resetDone: false,
@@ -148,6 +149,9 @@ const app = store => {
     });
     store.on('countQuestion', ({countQuestions}) => {
         return ({countQuestions: countQuestions + 1});
+    });
+    store.on('deskRef', ({deskRef}, ref) => {
+        return ({deskRef: ref});
     });
     store.on('countCorrectAnswers', ({countCorrectAnswers}) => {
         return ({countCorrectAnswers: countCorrectAnswers + 1});
