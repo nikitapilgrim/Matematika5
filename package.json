@@ -39,7 +39,7 @@
     "konva": "^4.1.6",
     "mitt": "^1.2.0",
     "modern-normalize": "^0.6.0",
-    "nanoid": "^2.1.11",
+    "nanoid": "^3.1.31",
     "pixi.js": "^5.2.1",
     "preact": "^10.3.3",
     "prop-types": "^15.5",
