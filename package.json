@@ -76,7 +76,7 @@
     "soundmanager2": "^2.97.20170602",
     "storeon": "^0.9.8",
     "styled-components": "^5.0.1",
-    "three": "^0.113.2",
+    "three": "^0.137.0",
     "wouter": "^2.4.0"
   },
   "cache": {
